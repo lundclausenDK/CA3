@@ -32,6 +32,12 @@ public class User implements IUser, Serializable{
     this.passwordHash = PasswordStorage.createHash(password);
   }
   
+  public User(String userName, String password, List<Role> roles) throws PasswordStorage.CannotPerformOperationException {
+      this.userName = userName;
+      this.passwordHash = PasswordStorage.createHash(password);
+      this.roles = roles;
+  }
+  
   
   public void addRole(Role role){
     if(roles == null){
