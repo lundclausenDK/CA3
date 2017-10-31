@@ -1,5 +1,7 @@
 package security;
 
+import entity.Role;
+import entity.User;
 import java.util.List;
 
 /**
@@ -13,5 +15,5 @@ public interface IUserFacade {
      */
     List<String> authenticateUser(String userName, String password);
     IUser getUserByUserId(String id);
-    boolean registerUser(User user);
+    boolean registerUser(User user, List<Role> roles);
 }
