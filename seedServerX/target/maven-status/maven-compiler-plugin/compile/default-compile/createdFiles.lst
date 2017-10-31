@@ -1,3 +1,4 @@
+facades\RoleFacade.class
 security\Secret.class
 entity\User_.class
 security\IUserFacade.class
@@ -15,8 +16,10 @@ rest\Admin.class
 rest\User.class
 facades\UserFacade.class
 security\NotAuthorizedExceptionMapper.class
+rest\Register.class
 security\IUser.class
 security\JWTAuthenticationFilter.class
+facades\IRoleFacade.class
 entity\Place.class
 rest\All.class
 cors\CorsRequestFilter.class
