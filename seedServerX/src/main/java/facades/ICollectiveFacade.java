@@ -10,4 +10,6 @@ public interface ICollectiveFacade {
     boolean registerUser(User user);
     List<String> authenticateUser(String userName, String password);
     IUser getUserByUserId(String id);
+    
+    boolean createRole(Role role);
 }

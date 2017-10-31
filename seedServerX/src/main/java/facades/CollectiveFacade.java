@@ -46,5 +46,11 @@ public class CollectiveFacade implements ICollectiveFacade
     {
         return userFacade.getUserByUserId(id);
     }
+
+    @Override
+    public boolean createRole(Role role)
+    {
+        return roleFacade.createRole(role);
+    }
     
 }
