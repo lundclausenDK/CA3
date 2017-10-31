@@ -38,7 +38,7 @@ public class Register {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getSomething(String content) {
         User user = gs.fromJson(content, User.class);
-        uf.registerUser(user, user.getRoles());
+        uf.registerUser(user);
         JsonObject responseJson = new JsonObject();
         List<String> roles = new ArrayList();
         for (Role role : user.getRoles()) {
