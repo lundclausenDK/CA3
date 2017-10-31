@@ -1,6 +1,7 @@
 security\Secret.class
 entity\User_.class
 security\IUserFacade.class
+main\Main.class
 security\PasswordStorage$CannotPerformOperationException.class
 entity\Role_.class
 security\UserFacadeFactory.class
@@ -16,6 +17,7 @@ facades\UserFacade.class
 security\NotAuthorizedExceptionMapper.class
 security\IUser.class
 security\JWTAuthenticationFilter.class
+entity\Place.class
 rest\All.class
 cors\CorsRequestFilter.class
 entity\User.class
@@ -24,4 +26,5 @@ security\PasswordStorage.class
 security\JWTAuthenticationFilter$1.class
 security\PasswordStorage$InvalidHashException.class
 security\RolesAllowedFilter.class
+entity\Place_.class
 entity\Role.class
