@@ -6,8 +6,7 @@ import com.google.gson.JsonParser;
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jwt.*;
-import facades.UserFacade;
-import java.security.SecureRandom;
+import facades.ICollectiveFacade;
 import java.util.Date;
 import java.util.List;
 import javax.ws.rs.Consumes;
@@ -54,7 +53,7 @@ public class Login {
   }
 
   private List<String> authenticate(String userName, String password) {
-    IUserFacade facade = UserFacadeFactory.getInstance();
+    ICollectiveFacade facade = CollectiveFacadeFactory.getInstance();
     return facade.authenticateUser(userName, password);
   }
 
