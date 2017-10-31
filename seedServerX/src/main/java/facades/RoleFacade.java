@@ -9,14 +9,21 @@ public class RoleFacade implements IRoleFacade
     private EntityManagerFactory emf;
 
     @Override
-    public Role createRole(Role role)
+    public boolean createRole(Role role)
     {
         EntityManager em = emf.createEntityManager();
         
-        em.persist(role);
-        Role found = em.find(Role.class, em);
+        if (findRole(role) != null)
+            return false;
         
-        return found;
+        em.getTransaction().begin();
+        
+        em.persist(role);
+        
+        em.getTransaction().commit();
+        em.close();
+        
+        return true;
     }
 
     @Override
@@ -29,6 +36,21 @@ public class RoleFacade implements IRoleFacade
     public void addEntityManagerFactory(EntityManagerFactory emf)
     {
         this.emf = emf;
+    }
+
+    @Override
+    public Role findRole(Role role)
+    {
+        EntityManager em = emf.createEntityManager();
+        
+        Role found = em.find(Role.class, role.getRoleName());
+        
+        if (found != null)
+        {
+            return found;
+        }
+        
+        return null;
     }
 
 }

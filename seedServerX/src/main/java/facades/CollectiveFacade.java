@@ -2,6 +2,7 @@ package facades;
 
 import entity.Role;
 import entity.User;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import security.IUser;
@@ -21,12 +22,15 @@ public class CollectiveFacade implements ICollectiveFacade
     }
     
     @Override
-    public boolean registerUser(User user, List<Role> roles)
+    public boolean registerUser(User user)
     {
-        for (Role role : roles)
+        List<Role> roles = new ArrayList();
+        for (Role role : user.getRoles())
         {
-            user.addRole(roleFacade.createRole(role));
+            if (roleFacade.findRole(role) != null)
+                roles.add(role);
         }
+        user.setRoles(roles);
         
         return userFacade.registerUser(user);
     }
@@ -41,6 +45,12 @@ public class CollectiveFacade implements ICollectiveFacade
     public IUser getUserByUserId(String id)
     {
         return userFacade.getUserByUserId(id);
+    }
+
+    @Override
+    public boolean createRole(Role role)
+    {
+        return roleFacade.createRole(role);
     }
     
 }

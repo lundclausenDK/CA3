@@ -5,7 +5,8 @@ import javax.persistence.EntityManagerFactory;
 
 public interface IRoleFacade 
 {
-    Role createRole(Role role);
+    boolean createRole(Role role);
     boolean removeRole(Role role);
+    Role findRole(Role role);
     void addEntityManagerFactory(EntityManagerFactory emf);
 }

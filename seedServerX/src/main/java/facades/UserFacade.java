@@ -56,7 +56,11 @@ public class UserFacade implements IUserFacade {
     {
         EntityManager em = getEntityManager();
         
+        em.getTransaction().begin();
+        
         em.persist(user);
+        
+        em.getTransaction().commit();
         em.close();
         
         return true;
