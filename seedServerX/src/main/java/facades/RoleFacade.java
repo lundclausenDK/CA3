@@ -16,7 +16,11 @@ public class RoleFacade implements IRoleFacade
         if (findRole(role) != null)
             return false;
         
+        em.getTransaction().begin();
+        
         em.persist(role);
+        
+        em.getTransaction().commit();
         em.close();
         
         return true;
@@ -39,7 +43,7 @@ public class RoleFacade implements IRoleFacade
     {
         EntityManager em = emf.createEntityManager();
         
-        Role found = em.find(Role.class, role);
+        Role found = em.find(Role.class, role.getRoleName());
         
         if (found != null)
         {
