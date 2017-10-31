@@ -25,18 +25,7 @@ public class Place implements Serializable {
     @Column(nullable = true)
     private String geo;
     private int rating;
-    
-    /*
-    public Place (String name, String city, String street, String description, String url, String geo, int zip, int rating) {
-        this.name = name;
-        this.city = city;
-        this.street = street;
-        this.description = description;
-        this.url = url;
-        this.zip = zip;
-        this.geo = geo;
-    }
-    */
+
 
     public int getId() {
         return id;
