@@ -4,12 +4,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-  <!-- 
-    IMPORTANT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
-    NEVER!!! SET THIS VALUE TO TRUE FOR PRODUCION, OR EVEN BETTER, REMOVE THE CODE THAT CREATES THE INITAL TEST USERS
-  -->
+
   <context-param>
     <param-name>makeTestUser</param-name>
-    <param-value>true</param-value>
+    <param-value>false</param-value>
   </context-param>
 </web-app>

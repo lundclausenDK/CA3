@@ -1,7 +1,7 @@
-target/
+seedServerX/src/main/resources/META-INF/persistence.xml
+seedServerX/src/main/resources/config.properties
 
-seedServer/src/main/resources/META-INF/persistence.xml
-seedServer/src/main/resources/config.properties
+seedServerX/target/
 
 pom.xml.tag
 pom.xml.releaseBackup
@@ -14,7 +14,5 @@ buildNumber.properties
 .mvn/timing.properties
 
 derby.log
-
-
 
 nb-configuration.xml
