@@ -15,11 +15,6 @@ public class UserFacade implements IUserFacade {
 
     EntityManagerFactory emf;
 
-    public UserFacade(EntityManagerFactory emf)
-    {
-        this.emf = emf;
-    }
-
     private EntityManager getEntityManager()
     {
         return emf.createEntityManager();
@@ -39,8 +34,8 @@ public class UserFacade implements IUserFacade {
     }
 
     /*
-  Return the Roles if users could be authenticated, otherwise null
-     */
+        Return the Roles if users could be authenticated, otherwise null
+    */
     @Override
     public List<String> authenticateUser(String userName, String password)
     {
@@ -57,32 +52,20 @@ public class UserFacade implements IUserFacade {
     }
 
     @Override
-    public boolean registerUser(User user, List<Role> roles)
+    public boolean registerUser(User user)
     {
         EntityManager em = getEntityManager();
-        
-        for (int i = 0; i < roles.size(); i++)
-        {
-            Role found = em.find(Role.class, roles.get(i));
-            
-            if (found != null)
-            {
-                user.addRole(found);
-                roles.remove(i);
-                i--;
-            }
-        }
-        
-        for (Role role : roles)
-        {
-            user.addRole(role);
-            em.persist(role);
-        }
         
         em.persist(user);
         em.close();
         
         return true;
+    }
+
+    @Override
+    public void addEntityManagerFactory(EntityManagerFactory emf)
+    {
+        this.emf = emf;
     }
 
 }
