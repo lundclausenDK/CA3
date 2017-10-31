@@ -16,6 +16,8 @@ public class CollectiveFacade implements ICollectiveFacade
     {
         this.userFacade = userFacade;
         this.roleFacade = roleFacade;
+        userFacade.addEntityManagerFactory(emf);
+        roleFacade.addEntityManagerFactory(emf);
     }
     
     @Override
