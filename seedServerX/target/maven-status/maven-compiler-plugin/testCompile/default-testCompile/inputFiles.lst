@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 C:\Users\Bade\Documents\GitKraken\CA3\seedServerX\src\test\java\test\plainDemoTest.java
 C:\Users\Bade\Documents\GitKraken\CA3\seedServerX\src\test\java\test\InitialSeedRestIntegrationTest.java
 C:\Users\Bade\Documents\GitKraken\CA3\seedServerX\src\test\java\test\utils\EmbeddedTomcat.java
+=======
+C:\Users\Peter\Desktop\Projects\CA3\seedServerX\src\test\java\test\plainDemoTest.java
+C:\Users\Peter\Desktop\Projects\CA3\seedServerX\src\test\java\test\InitialSeedRestIntegrationTest.java
+C:\Users\Peter\Desktop\Projects\CA3\seedServerX\src\test\java\test\utils\EmbeddedTomcat.java
+>>>>>>> master
