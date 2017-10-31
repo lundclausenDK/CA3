@@ -7,7 +7,7 @@
     <class>entity.Place</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://165.227.151.92:3306/MikeSeed?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://165.227.151.92:3306/CA3?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="mikkel"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="mikkel1234"/>
