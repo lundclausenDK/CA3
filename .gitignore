@@ -16,3 +16,5 @@ buildNumber.properties
 derby.log
 
 nb-configuration.xml
+
+seedServerX/src/main/java/rest/ApplicationConfig\.java
