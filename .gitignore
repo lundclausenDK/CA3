@@ -1,7 +1,7 @@
 target/
 
-seedServer/src/main/resources/META-INF/persistence.xml
-seedServer/src/main/resources/config.properties
+seedServerX/src/main/resources/META-INF/persistence.xml
+seedServerX/src/main/resources/config.properties
 
 pom.xml.tag
 pom.xml.releaseBackup
