@@ -15,6 +15,7 @@ class PlaceFacade implements IPlaceFacade {
         this.emf = emf;
     }
 
+    @Override
     public boolean createPlace(Place place)
     {
         EntityManager em = emf.createEntityManager();
