@@ -36,7 +36,7 @@ export default class Place extends React.Component {
     };
 
     sortOnName = (e) => {
-        let sorted = this.state.places.sort((a, b) => {
+        let sorted = this.state.view.sort((a, b) => {
             if (a.name < b.name) {
                 return -1;
             } else if (b.name.toLocaleLowerCase() < a.name.toLocaleLowerCase()) {
@@ -48,7 +48,7 @@ export default class Place extends React.Component {
     };
 
     sortOnRating = (e) => {
-        let sorted = this.state.places.sort((a, b) => {
+        let sorted = this.state.view.sort((a, b) => {
             if (a.rating < b.rating) return -1;
             if (a.rating > b.rating) return 1;
             return 0;
