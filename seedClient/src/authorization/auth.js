@@ -87,8 +87,8 @@ class AuthenticationHandler {
       this._userWasLoggenIn(cb);
     }
 
-
-    var user = { username, password };
+    var roles = ["User"];
+    var user = { username, password, roles};
 
     var options = {
       method: "POST",
