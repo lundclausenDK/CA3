@@ -16,4 +16,4 @@ The project reached the following goals:
 - it is possible to sort through the places after name and after rating (both ascending and descending). 
 - searching through the places by entering part of the name of the place.
 
-
+https://designcookies.dk/#/
