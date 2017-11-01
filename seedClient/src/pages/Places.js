@@ -7,7 +7,8 @@ export default class Place extends React.Component {
         super();
         this.state = {
             places: [],
-            view: []
+            view: [],
+            ratingSort: true
         };
         this.getData = this.getData.bind(this);
         this.getData();
@@ -26,8 +27,8 @@ export default class Place extends React.Component {
 
     getSearch = (e) => {
         const name = document.getElementById("searchText").value;
-        let viewList = this.state.places.filter((place)=>{
-            if(place.name.toLocaleLowerCase().includes(name.toLocaleLowerCase())){
+        let viewList = this.state.places.filter((place) => {
+            if (place.name.toLocaleLowerCase().includes(name.toLocaleLowerCase())) {
                 return place;
             }
         });
@@ -48,11 +49,23 @@ export default class Place extends React.Component {
     };
 
     sortOnRating = (e) => {
-        let sorted = this.state.view.sort((a, b) => {
-            if (a.rating < b.rating) return -1;
-            if (a.rating > b.rating) return 1;
-            return 0;
-        });
+        let sorted;
+        if (this.state.ratingSort) {
+            sorted = this.state.view.sort((a, b) => {
+                if (a.rating > b.rating) return -1;
+                if (a.rating < b.rating) return 1;
+                return 0;
+            });
+            this.setState({ratingSort: false});
+        } else {
+            sorted = this.state.view.sort((a, b) => {
+                if (a.rating < b.rating) return -1;
+                if (a.rating > b.rating) return 1;
+                return 0;
+            });
+            this.setState({ratingSort: true});
+        }
+
         this.setState({view: sorted});
         e.preventDefault();
     };
@@ -65,7 +78,11 @@ export default class Place extends React.Component {
                 <div className="tools-container">
                     <form>
                         <input id="searchText" type="text" placeholder="Type the name here"/>
-                        <button onClick={this.getSearch}>submit</button> - <button onClick={this.sortOnName}>Sort on Name</button> - <button onClick={this.sortOnRating}>Sort on Rating</button>
+                        <button onClick={this.getSearch}>submit</button>
+                        -
+                        <button onClick={this.sortOnName}>Sort on Name</button>
+                        -
+                        <button onClick={this.sortOnRating}>Sort on Rating</button>
                     </form>
                 </div>
 
