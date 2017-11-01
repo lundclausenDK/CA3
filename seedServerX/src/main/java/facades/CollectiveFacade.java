@@ -6,19 +6,25 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import entity.IUser;
+import entity.Place;
 
-public class CollectiveFacade implements ICollectiveFacade
-{
+public class CollectiveFacade implements ICollectiveFacade {
+
     private final IUserFacade userFacade;
     private final IRoleFacade roleFacade;
+    private final IPlaceFacade placeFacade;
 
-    public CollectiveFacade(EntityManagerFactory emf, IUserFacade userFacade, IRoleFacade roleFacade)
+    CollectiveFacade(EntityManagerFactory emf, IUserFacade userFacade, IRoleFacade roleFacade, IPlaceFacade placeFacade)
     {
         this.userFacade = userFacade;
         this.roleFacade = roleFacade;
+        this.placeFacade = placeFacade;
         userFacade.addEntityManagerFactory(emf);
         roleFacade.addEntityManagerFactory(emf);
+        placeFacade.addEntityManagerFactory(emf);
     }
+    
+    // ##### User facade ##### //
     
     @Override
     public boolean registerUser(User user)
@@ -26,20 +32,20 @@ public class CollectiveFacade implements ICollectiveFacade
         List<Role> roles = new ArrayList();
         for (Role role : user.getRoles())
         {
-            if (roleFacade.findRole(role) != null)
+            if (roleFacade.findRole(role.getRoleName()) != null)
                 roles.add(role);
         }
         user.setRoles(roles);
-        
+
         return userFacade.registerUser(user);
     }
-    
+
     @Override
     public List<String> authenticateUser(String userName, String password)
     {
         return userFacade.authenticateUser(userName, password);
     }
-    
+
     @Override
     public IUser getUserByUserId(String id)
     {
@@ -47,9 +53,54 @@ public class CollectiveFacade implements ICollectiveFacade
     }
 
     @Override
+    public List<User> listAllUsers()
+    {
+        return userFacade.listAllUsers();
+    }
+
+    // ##### Role Facade ##### //
+    
+    @Override
     public boolean createRole(Role role)
     {
         return roleFacade.createRole(role);
     }
-    
+
+    @Override
+    public boolean removeRole(String roleName)
+    {
+        return roleFacade.removeRole(roleName);
+    }
+
+    @Override
+    public Role findRole(String roleName)
+    {
+        return roleFacade.findRole(roleName);
+    }
+
+    // ##### Place Facade ##### //
+
+    @Override
+    public boolean createPlace(Place place)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean removePlace(int id)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Place findPlace(int id)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Place> listAllPlaces()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
