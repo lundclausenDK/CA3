@@ -8,7 +8,7 @@ The project reached the following goals:
 	- name
 	- short description
 	- address
-	- gps coordinats (GEO)
+	- gps coordinates (GEO)
 	- rating
 	- an image of the place
 - it is possible to sort through the places after name and after rating (both ascending and descending). 
