@@ -1,6 +1,6 @@
 {
   "name": "seedclient",
-  "serverURL": "http://5c05a63d.ngrok.io/seedMaven/",
+  "serverURL": "https://www.joachimhhansen.tk/backend/seedMaven/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

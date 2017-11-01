@@ -1,20 +1,21 @@
 import React from 'react';
 
-//const URL = require("http://localhost:8080/seedMaven/").serverURL;
+const URL = require("../../package.json").serverURL;
 
 export default class Place extends React.Component {
     constructor() {
         super();
         this.state = {
             places: [],
-            view: []
+            view: [],
+            ratingSort: true
         };
         this.getData = this.getData.bind(this);
         this.getData();
     }
 
     getData = () => {
-        fetch("http://localhost:8080/seedMaven/api/places/")
+        fetch(URL + "api/places/")
             .then(function (response) {
                 return response.json()
             }).then(function (data) {
@@ -26,8 +27,8 @@ export default class Place extends React.Component {
 
     getSearch = (e) => {
         const name = document.getElementById("searchText").value;
-        let viewList = this.state.places.filter((place)=>{
-            if(place.name.toLocaleLowerCase().includes(name.toLocaleLowerCase())){
+        let viewList = this.state.places.filter((place) => {
+            if (place.name.toLocaleLowerCase().includes(name.toLocaleLowerCase())) {
                 return place;
             }
         });
@@ -36,7 +37,7 @@ export default class Place extends React.Component {
     };
 
     sortOnName = (e) => {
-        let sorted = this.state.places.sort((a, b) => {
+        let sorted = this.state.view.sort((a, b) => {
             if (a.name < b.name) {
                 return -1;
             } else if (b.name.toLocaleLowerCase() < a.name.toLocaleLowerCase()) {
@@ -48,11 +49,23 @@ export default class Place extends React.Component {
     };
 
     sortOnRating = (e) => {
-        let sorted = this.state.places.sort((a, b) => {
-            if (a.rating < b.rating) return -1;
-            if (a.rating > b.rating) return 1;
-            return 0;
-        });
+        let sorted;
+        if (this.state.ratingSort) {
+            sorted = this.state.view.sort((a, b) => {
+                if (a.rating > b.rating) return -1;
+                if (a.rating < b.rating) return 1;
+                return 0;
+            });
+            this.setState({ratingSort: false});
+        } else {
+            sorted = this.state.view.sort((a, b) => {
+                if (a.rating < b.rating) return -1;
+                if (a.rating > b.rating) return 1;
+                return 0;
+            });
+            this.setState({ratingSort: true});
+        }
+
         this.setState({view: sorted});
         e.preventDefault();
     };
@@ -65,7 +78,11 @@ export default class Place extends React.Component {
                 <div className="tools-container">
                     <form>
                         <input id="searchText" type="text" placeholder="Type the name here"/>
-                        <button onClick={this.getSearch}>submit</button> - <button onClick={this.sortOnName}>Sort on Name</button> - <button onClick={this.sortOnRating}>Sort on Rating</button>
+                        <button onClick={this.getSearch}>submit</button>
+                        -
+                        <button onClick={this.sortOnName}>Sort on Name</button>
+                        -
+                        <button onClick={this.sortOnRating}>Sort on Rating</button>
                     </form>
                 </div>
 
