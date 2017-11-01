@@ -9,13 +9,13 @@ class PlaceFacade implements IPlaceFacade {
     
     private EntityManagerFactory emf;
 
-    
     @Override
     public void addEntityManagerFactory(EntityManagerFactory emf)
     {
         this.emf = emf;
     }
 
+    @Override
     public boolean createPlace(Place place)
     {
         EntityManager em = emf.createEntityManager();
@@ -70,7 +70,5 @@ class PlaceFacade implements IPlaceFacade {
         
         return res;
     }
-    
-    
 
 }
