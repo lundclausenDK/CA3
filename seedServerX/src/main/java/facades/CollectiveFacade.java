@@ -8,7 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import entity.IUser;
 import entity.Place;
 
-public class CollectiveFacade implements ICollectiveFacade {
+class CollectiveFacade implements ICollectiveFacade {
 
     private final IUserFacade userFacade;
     private final IRoleFacade roleFacade;
@@ -24,7 +24,9 @@ public class CollectiveFacade implements ICollectiveFacade {
         placeFacade.addEntityManagerFactory(emf);
     }
     
+    // ####################### //
     // ##### User facade ##### //
+    // ####################### //
     
     @Override
     public boolean registerUser(User user)
@@ -58,7 +60,9 @@ public class CollectiveFacade implements ICollectiveFacade {
         return userFacade.listAllUsers();
     }
 
+    // ####################### //
     // ##### Role Facade ##### //
+    // ####################### //
     
     @Override
     public boolean createRole(Role role)
@@ -78,29 +82,31 @@ public class CollectiveFacade implements ICollectiveFacade {
         return roleFacade.findRole(roleName);
     }
 
+    // ######################## //
     // ##### Place Facade ##### //
+    // ######################## //
 
     @Override
     public boolean createPlace(Place place)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return placeFacade.createPlace(place);
     }
 
     @Override
     public boolean removePlace(int id)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return placeFacade.removePlace(id);
     }
 
     @Override
     public Place findPlace(int id)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return placeFacade.findPlace(id);
     }
 
     @Override
     public List<Place> listAllPlaces()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return placeFacade.listAllPlaces();
     }
 }

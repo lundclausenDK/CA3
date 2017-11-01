@@ -7,11 +7,11 @@ public class CollectiveFacadeFactory {
     // Private constructor for a static class //
     private CollectiveFacadeFactory(){}
     
-    private static final ICollectiveFacade instance
-            = new CollectiveFacade(Persistence.createEntityManagerFactory("pu_development"), new UserFacade(), new RoleFacade(), new PlaceFacade());
+    private static final ICollectiveFacade INSTANCE = new CollectiveFacade
+        (Persistence.createEntityManagerFactory("pu_development"), new UserFacade(), new RoleFacade(), new PlaceFacade());
 
-    public static ICollectiveFacade getInstance()
+    public static ICollectiveFacade getINSTANCE()
     {
-        return instance;
+        return INSTANCE;
     }
 }
