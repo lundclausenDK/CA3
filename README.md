@@ -1,6 +1,6 @@
 # CA3
 
-Group 3: Benjamin Løvig Rasmussen, Joachim Henvig Hansen, Mikkel Lund Clausen & Peter Leonhardt Rasmussen
+Group 3: Benjamin Løvig Rasmussen, Joachim Henvig Hansen, Mikkel Lund Clausen & Peter Leonhardt Rasmussen(Minimekill)
 
 The project reached the following goals:
 - a non user can register on the page and become a member.
