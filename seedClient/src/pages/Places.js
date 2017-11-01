@@ -95,6 +95,7 @@ export default class Place extends React.Component {
                         <div>{item.street}</div>
                         <div>{item.zip} {item.city}</div>
                         <div>Rating: {item.rating}</div>
+                        <div>GEO: {item.geo}</div>
 
 
                     </div>
