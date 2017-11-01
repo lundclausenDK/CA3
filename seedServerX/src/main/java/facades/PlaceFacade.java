@@ -5,9 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-class PlaceFacade implements IPlaceFacade
-{
-
+class PlaceFacade implements IPlaceFacade {
+    
     private EntityManagerFactory emf;
 
     @Override
@@ -16,7 +15,6 @@ class PlaceFacade implements IPlaceFacade
         this.emf = emf;
     }
 
-    @Override
     public boolean createPlace(Place place)
     {
         EntityManager em = emf.createEntityManager();

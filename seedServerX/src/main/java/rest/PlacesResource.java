@@ -1,6 +1,7 @@
 package rest;
 
 import com.google.gson.Gson;
+import facades.CollectiveFacade;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -10,15 +11,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 
-/**
- * REST Web Service
- *
- * @author
- */
+
 @Path("places")
 public class PlacesResource {
     
     Gson gs = new Gson();
+    //PlaceFacade pf = new PlaceFacade();
+    CollectiveFacade cf;
+    
 
     @Context
     private UriInfo context;
@@ -37,6 +37,7 @@ public class PlacesResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getJson() {
         //TODO return proper representation object
+        
         return gs.toJson("{content: hello}");
     }
 
