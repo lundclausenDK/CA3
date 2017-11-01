@@ -5,8 +5,7 @@ import entity.User;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
-import security.IUser;
-import security.IUserFacade;
+import entity.IUser;
 
 public class CollectiveFacade implements ICollectiveFacade
 {

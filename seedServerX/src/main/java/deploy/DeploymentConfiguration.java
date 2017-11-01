@@ -2,10 +2,8 @@ package deploy;
 
 import entity.Role;
 import entity.User;
-import facades.UserFacade;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Map;
 import java.util.Properties;
 
 import java.util.logging.Level;
@@ -73,7 +71,7 @@ public class DeploymentConfiguration implements ServletContextListener {
           System.out.println("Created TEST Users");
         }
       } catch (Exception ex) {
-        Logger.getLogger(UserFacade.class.getName()).log(Level.SEVERE, null, ex);
+          System.err.println(ex);
         em.getTransaction().rollback();
       } finally {
         em.close();

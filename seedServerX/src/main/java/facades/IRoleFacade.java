@@ -3,7 +3,7 @@ package facades;
 import entity.Role;
 import javax.persistence.EntityManagerFactory;
 
-public interface IRoleFacade 
+interface IRoleFacade 
 {
     boolean createRole(Role role);
     boolean removeRole(Role role);

@@ -4,7 +4,7 @@ import entity.Role;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-public class RoleFacade implements IRoleFacade
+class RoleFacade implements IRoleFacade
 {
     private EntityManagerFactory emf;
 
