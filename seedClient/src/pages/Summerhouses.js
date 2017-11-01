@@ -11,6 +11,7 @@ const URL = require("../../package.json").serverURL;
 export default class SummerHouse extends React.Component{
     constructor(){
         super();
+        this.state = {houses: []}
 
     }
     getdata(){
