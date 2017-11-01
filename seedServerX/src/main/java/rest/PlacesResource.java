@@ -37,6 +37,7 @@ public class PlacesResource {
     public String getJson() {
         //TODO return proper representation object
         return gs.toJson(cf.listAllPlaces());
+        //return "{content: 'hello'}";
     }
 
     /**
