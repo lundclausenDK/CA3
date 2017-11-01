@@ -9,40 +9,13 @@ class PlaceFacade implements IPlaceFacade {
     
     private EntityManagerFactory emf;
 
-    private EntityManagerFactory emf;
     
     @Override
-<<<<<<< HEAD
-    public void addEntityManagerFactory(EntityManagerFactory emf) {
-=======
     public void addEntityManagerFactory(EntityManagerFactory emf)
     {
->>>>>>> 95760327a94ecea0cf5351955c3e7af41bb71fe7
         this.emf = emf;
     }
 
-    @Override
-<<<<<<< HEAD
-    public boolean createPlace(Place place) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean removePlace(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Place findPlace(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Place> listAllPlaces() {
-        EntityManager em = emf.createEntityManager();
-        List<Place> results = em.createQuery("SELECT p FROM Place p").getResultList();
-        return results;
-=======
     public boolean createPlace(Place place)
     {
         EntityManager em = emf.createEntityManager();
@@ -96,7 +69,6 @@ class PlaceFacade implements IPlaceFacade {
         em.close();
         
         return res;
->>>>>>> 95760327a94ecea0cf5351955c3e7af41bb71fe7
     }
     
     
