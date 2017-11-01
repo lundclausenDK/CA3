@@ -8,7 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import entity.IUser;
 import entity.Place;
 
-public class CollectiveFacade implements ICollectiveFacade {
+class CollectiveFacade implements ICollectiveFacade {
 
     private final IUserFacade userFacade;
     private final IRoleFacade roleFacade;
