@@ -80,7 +80,6 @@ class PlaceFacade implements IPlaceFacade {
         Query query = em.createQuery("select p from Place p where p.city like :word or p.description like :word "
                 + "or p.name like :word or p.street like :word");
         query.setParameter("word", "%" + searchWord + "%");
-        System.out.println("toString: " + query.toString());
         
         List<Place> res = query.getResultList();
         
