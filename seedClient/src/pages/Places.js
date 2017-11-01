@@ -28,7 +28,18 @@ export default class Place extends React.Component {
                 <h2>Places</h2>
 
                 {this.state.places.map((item) => (
-                    <div>ID:{item.id}</div>
+                    <div className="places-container clearfix">
+
+                        <div className="left image"><img src={item.url} /></div>
+                        <div className="bold">{item.name}</div>
+                        <div>{item.description}</div>
+                        <div>{item.street}</div>
+                        <div>{item.zip} {item.city}</div>
+                        <div>Rating: {item.rating}</div>
+
+
+                    </div>
+
                 ))}
 
             </div>

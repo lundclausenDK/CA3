@@ -100,3 +100,12 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.places-container {border-bottom: solid 1px lightgrey; margin-bottom: 20px;}
+.places-container .bold {font-weight: bold;}
+.places-container .left  {float: left;}
+.places-container .right {float: right;}
+.places-container .image img {width: 200px; height: auto; margin-right: 20px; margin-bottom: 20px;}
+
+
+.clearfix:after {height:0; content:" "; clear:both; display:block; visibility:hidden;}
