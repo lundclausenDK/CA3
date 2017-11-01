@@ -26,8 +26,8 @@ export default class Place extends React.Component {
 
     getSearch = (e) => {
         const name = document.getElementById("searchText").value;
-        let viewList = this.state.places.filter((place)=>{
-            if(place.name.includes(name)){
+        let viewList = this.state.places.filter((place) => {
+            if (place.name.includes(name)) {
                 return place;
             }
         });
@@ -36,10 +36,10 @@ export default class Place extends React.Component {
     };
 
     sortOnName = (e) => {
-        let sorted = this.state.places.sort((a, b)=>{
-            if(a.name < b.name){
+        let sorted = this.state.places.sort((a, b) => {
+            if (a.name < b.name) {
                 return -1;
-            }else if(b.name.toLocaleLowerCase() < a.name.toLocaleLowerCase()){
+            } else if (b.name.toLocaleLowerCase() < a.name.toLocaleLowerCase()) {
                 return 1;
             }
         });
@@ -48,9 +48,9 @@ export default class Place extends React.Component {
     };
 
     sortOnRating = (e) => {
-        let sorted = this.state.places.sort((a, b)=>{
-            if(a.rating < b.rating) return -1;
-            if(a.rating > b.rating) return 1;
+        let sorted = this.state.places.sort((a, b) => {
+            if (a.rating < b.rating) return -1;
+            if (a.rating > b.rating) return 1;
             return 0;
         });
         this.setState({view: sorted});
@@ -62,13 +62,13 @@ export default class Place extends React.Component {
             <div>
 
                 <h2>Places</h2>
+                <div className="tools-container">
+                    <form>
+                        <input id="searchText" type="text" placeholder="Type the name here"/>
+                        <button onClick={this.getSearch}>submit</button> - <button onClick={this.sortOnName}>Sort on Name</button> - <button onClick={this.sortOnRating}>Sort on Rating</button>
+                    </form>
+                </div>
 
-                <form>
-                    <input id="searchText" type="text" placeholder="Type the name here"/>
-                    <button onClick={this.getSearch}>submit</button>
-                </form>
-                <button onClick={this.sortOnName}>Sort on Name</button>
-                <button onClick={this.sortOnRating}>Sort on Rating</button>
                 {this.state.view.map((item) => (
                     <div className="places-container clearfix">
 
