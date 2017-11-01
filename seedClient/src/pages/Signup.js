@@ -5,7 +5,7 @@ export default class Signup extends React.Component {
 
     constructor() {
         super();
-        this.state = { err: "", user: { username: "", password: "" } };
+        this.state = { err: "", user: { username: "", password: "",roles: [] } };
         this.handleSignIn = this.handleSignIn.bind(this)
     }
 

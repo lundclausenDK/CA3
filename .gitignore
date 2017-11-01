@@ -17,3 +17,8 @@ derby.log
 
 nb-configuration.xml
 seedClient/node_modules/
+seedClient/package-lock.json
+seedClient/.idea/misc.xml
+seedClient/.idea/modules.xml
+seedClient/.idea/seedClient.iml
+seedClient/.idea/workspace.xml

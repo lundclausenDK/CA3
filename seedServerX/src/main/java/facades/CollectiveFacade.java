@@ -109,4 +109,10 @@ class CollectiveFacade implements ICollectiveFacade {
     {
         return placeFacade.listAllPlaces();
     }
+
+    @Override
+    public List<Place> searchForPlaces(String searchWord)
+    {
+        return placeFacade.searchForPlaces(searchWord);
+    }
 }
