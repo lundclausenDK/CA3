@@ -1,7 +1,8 @@
 package rest;
 
 import com.google.gson.Gson;
-import facades.CollectiveFacade;
+import facades.CollectiveFacadeFactory;
+import facades.ICollectiveFacade;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -16,10 +17,8 @@ import javax.ws.rs.core.MediaType;
 public class PlacesResource {
     
     Gson gs = new Gson();
-    //PlaceFacade pf = new PlaceFacade();
-    CollectiveFacade cf;
+    ICollectiveFacade cf = CollectiveFacadeFactory.getInstance();
     
-
     @Context
     private UriInfo context;
 
@@ -37,8 +36,7 @@ public class PlacesResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getJson() {
         //TODO return proper representation object
-        
-        return gs.toJson("{content: hello}");
+        return gs.toJson(cf.listAllPlaces());
     }
 
     /**
