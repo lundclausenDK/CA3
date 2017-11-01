@@ -9,7 +9,7 @@ class PlaceFacade implements IPlaceFacade
 {
 
     private EntityManagerFactory emf;
-    
+
     @Override
     public void addEntityManagerFactory(EntityManagerFactory emf)
     {
@@ -71,5 +71,5 @@ class PlaceFacade implements IPlaceFacade
         
         return res;
     }
-    
+
 }
