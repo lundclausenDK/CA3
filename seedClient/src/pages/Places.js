@@ -27,7 +27,7 @@ export default class Place extends React.Component {
     getSearch = (e) => {
         const name = document.getElementById("searchText").value;
         let viewList = this.state.places.filter((place)=>{
-            if(place.name.includes(name)){
+            if(place.name.toLocaleLowerCase().includes(name.toLocaleLowerCase())){
                 return place;
             }
         });
