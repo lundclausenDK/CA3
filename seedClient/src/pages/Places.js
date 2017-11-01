@@ -1,6 +1,6 @@
 import React from 'react';
 
-//const URL = require("http://localhost:8080/seedMaven/").serverURL;
+const URL = require("../../package.json").serverURL;
 
 export default class Place extends React.Component {
     constructor() {
@@ -15,7 +15,7 @@ export default class Place extends React.Component {
     }
 
     getData = () => {
-        fetch("http://localhost:8080/seedMaven/api/places/")
+        fetch(URL + "api/places/")
             .then(function (response) {
                 return response.json()
             }).then(function (data) {
