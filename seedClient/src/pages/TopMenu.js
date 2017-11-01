@@ -6,7 +6,7 @@ class TopMenu extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { loggedIn: auth.loggedIn, userName: auth.userName, isUser: false, isAdmin: true }
+    this.state = { loggedIn: auth.loggedIn, userName: auth.userName, isUser: false, isAdmin: false }
   }
 
   loginStatus = (status, userName, isUser, isAdmin) => {
@@ -20,7 +20,7 @@ class TopMenu extends Component {
   render() {
 
     const logInStatus = this.state.loggedIn ? "Logged in as: " + this.state.userName : "";
-    //console.log("RENDERING - REMOVE ME",JSON.stringify(this.state));
+
     return (
       <div>
         <nav className="navbar navbar-default" >
@@ -31,9 +31,8 @@ class TopMenu extends Component {
             <ul className="nav navbar-nav">
               <li><Link to="">Home</Link></li>
               <li><Link to="/about">About</Link></li>
-              <li><Link to="/user">Page for Users </Link></li>
-              <li><Link to="/admin">Page for Admins</Link></li>
-              <li><Link to="/summerhouses">Summerhouses</Link></li>
+              {this.state.isAdmin && <li><Link to="/admin">Page for Admins</Link></li>}
+              <li><Link to="/summerhouses">Places</Link></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
               <li className="navbar-text" style={{ color: "steelBlue" }}>{logInStatus}</li>
