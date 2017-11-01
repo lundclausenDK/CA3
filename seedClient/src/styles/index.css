@@ -101,6 +101,8 @@
   border-top-right-radius: 0;
 }
 
+.tools-container {border-bottom: solid 1px lightgrey; padding-bottom: 20px; margin-bottom: 20px;}
+
 .places-container {border-bottom: solid 1px lightgrey; margin-bottom: 20px;}
 .places-container .bold {font-weight: bold;}
 .places-container .left  {float: left;}
