@@ -20,7 +20,7 @@ class AdminStore {
       }).then((data) => {
         errorChecker(resFromFirstPromise,data);
         if (cb) {
-          cb(null, data.message)
+          cb(null, data)
         }
       }).catch(err => {
         if (cb) {
