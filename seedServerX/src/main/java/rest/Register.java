@@ -32,7 +32,7 @@ import security.Secret;
 @Path("register")
 public class Register {
 
-    ICollectiveFacade uf = CollectiveFacadeFactory.getInstance();
+    ICollectiveFacade uf = CollectiveFacadeFactory.getINSTANCE();
     Gson gs = new Gson();
 
     @POST
