@@ -1,17 +1,12 @@
-package security;
+package facades;
 
-import facades.CollectiveFacade;
-import facades.ICollectiveFacade;
-import facades.RoleFacade;
-import facades.UserFacade;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author lam
- */
 public class CollectiveFacadeFactory {
 
+    // Private constructor for a static class //
+    private CollectiveFacadeFactory(){}
+    
     private static final ICollectiveFacade instance
             = new CollectiveFacade(Persistence.createEntityManagerFactory("pu_development"), new UserFacade(), new RoleFacade());
 

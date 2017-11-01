@@ -1,15 +1,11 @@
-package security;
+package facades;
 
-import entity.Role;
 import entity.User;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
+import entity.IUser;
 
-/**
- *
- * @author lam
- */
-public interface IUserFacade {
+interface IUserFacade {
 
     /*
     Return the Roles if users could be authenticated, otherwise null

@@ -3,7 +3,7 @@ package facades;
 import entity.Role;
 import entity.User;
 import java.util.List;
-import security.IUser;
+import entity.IUser;
 
 public interface ICollectiveFacade {
 
