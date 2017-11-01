@@ -2,8 +2,8 @@ package facades;
 
 import javax.persistence.Persistence;
 
-public class CollectiveFacadeFactory {
-
+public class CollectiveFacadeFactory 
+{
     // Private constructor for a static class //
     private CollectiveFacadeFactory(){}
     
