@@ -1,23 +1,27 @@
 package facades;
 
-import entity.Role;
-import security.IUserFacade;
 import entity.User;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.core.Response;
-import security.IUser;
+import entity.IUser;
 import security.PasswordStorage;
 
-public class UserFacade implements IUserFacade {
+class UserFacade implements IUserFacade {
 
     EntityManagerFactory emf;
 
     private EntityManager getEntityManager()
     {
         return emf.createEntityManager();
+    }
+
+    @Override
+    public void addEntityManagerFactory(EntityManagerFactory emf)
+    {
+        this.emf = emf;
     }
 
     @Override
@@ -35,7 +39,7 @@ public class UserFacade implements IUserFacade {
 
     /*
         Return the Roles if users could be authenticated, otherwise null
-    */
+     */
     @Override
     public List<String> authenticateUser(String userName, String password)
     {
@@ -55,21 +59,26 @@ public class UserFacade implements IUserFacade {
     public boolean registerUser(User user)
     {
         EntityManager em = getEntityManager();
-        
+
         em.getTransaction().begin();
-        
+
         em.persist(user);
-        
+
         em.getTransaction().commit();
         em.close();
-        
+
         return true;
     }
 
     @Override
-    public void addEntityManagerFactory(EntityManagerFactory emf)
+    public List<User> listAllUsers()
     {
-        this.emf = emf;
+        EntityManager em = getEntityManager();
+        
+        List<User> res = em.createQuery("select u from SEED_USER u").getResultList();
+        em.close();
+        
+        return res;
     }
 
 }

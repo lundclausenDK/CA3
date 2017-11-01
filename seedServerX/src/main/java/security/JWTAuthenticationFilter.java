@@ -1,5 +1,7 @@
 package security;
 
+import entity.IUser;
+import facades.CollectiveFacadeFactory;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSVerifier;
 import com.nimbusds.jose.crypto.MACVerifier;
