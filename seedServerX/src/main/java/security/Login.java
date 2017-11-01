@@ -54,7 +54,7 @@ public class Login {
   }
 
   private List<String> authenticate(String userName, String password) {
-    ICollectiveFacade facade = CollectiveFacadeFactory.getINSTANCE();
+    ICollectiveFacade facade = CollectiveFacadeFactory.getInstance();
     return facade.authenticateUser(userName, password);
   }
 
