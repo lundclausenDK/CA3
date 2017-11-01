@@ -21,4 +21,5 @@ public interface ICollectiveFacade
     boolean removePlace(int id);
     Place findPlace(int id);
     List<Place> listAllPlaces();
+    List<Place> searchForPlaces(String searchWord);
 }
