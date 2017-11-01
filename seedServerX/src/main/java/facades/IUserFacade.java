@@ -5,13 +5,11 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import entity.IUser;
 
-interface IUserFacade {
-
-    /*
-    Return the Roles if users could be authenticated, otherwise null
-     */
+interface IUserFacade 
+{
+    void addEntityManagerFactory(EntityManagerFactory emf);
     List<String> authenticateUser(String userName, String password);
     IUser getUserByUserId(String id);
     boolean registerUser(User user);
-    void addEntityManagerFactory(EntityManagerFactory emf);
+    List<User> listAllUsers();
 }

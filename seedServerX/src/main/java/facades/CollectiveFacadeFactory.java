@@ -8,7 +8,7 @@ public class CollectiveFacadeFactory {
     private CollectiveFacadeFactory(){}
     
     private static final ICollectiveFacade instance
-            = new CollectiveFacade(Persistence.createEntityManagerFactory("pu_development"), new UserFacade(), new RoleFacade());
+            = new CollectiveFacade(Persistence.createEntityManagerFactory("pu_development"), new UserFacade(), new RoleFacade(), new PlaceFacade());
 
     public static ICollectiveFacade getInstance()
     {
