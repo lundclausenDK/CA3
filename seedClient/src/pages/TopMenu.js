@@ -32,7 +32,7 @@ class TopMenu extends Component {
               <li><Link to="">Home</Link></li>
               <li><Link to="/about">About</Link></li>
               <li><Link to="/user">Page for Users </Link></li>
-              <li><Link to="/admin">Page for Admins</Link></li>
+              
               <li><Link to="/places">Places</Link></li>
               {this.state.isAdmin && <li><Link to="/admin">Page for Admins</Link></li>}
             </ul>
