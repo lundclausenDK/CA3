@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import auth from '../authorization/auth'
 
 const URL = require("../../package.json").serverURL;
 
@@ -9,8 +10,10 @@ export default class Place extends React.Component {
             places: [],
             view: [],
             ratingSort: true,
-            rated: false
+            rated: false,
+            userName: auth.userName
         };
+
         this.getData = this.getData.bind(this);
         this.getData();
     }
@@ -21,6 +24,13 @@ export default class Place extends React.Component {
                 return response.json()
             }).then(function (data) {
             //console.log(data);
+            for(let i = 0; i < data.length; i++){
+                for(let y = 0; y < data[i].raters.length; y++){
+                    if(data[i].raters[y].user.includes(this.state.userName.toLocaleLowerCase())){
+                        data[i].rated = true;
+                    }
+                }
+            }
             this.setState({places: data, view: data});
         }.bind(this));
 
@@ -109,7 +119,7 @@ export default class Place extends React.Component {
                         <div>{item.zip} {item.city}</div>
                         <div>GEO: {item.geo}</div>
 
-                        {this.state.rated?
+                        {item.rated?
                             (<div>{item.rating}</div>) :
                             (<form>
                                 <select onChange={this.submitRating}>
