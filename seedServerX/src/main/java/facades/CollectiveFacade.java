@@ -47,13 +47,13 @@ class CollectiveFacade implements ICollectiveFacade {
     @Override
     public boolean deleteUser(String username)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return userFacade.deleteUser(username);
     }
 
     @Override
     public boolean editUser(User user)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return userFacade.editUser(user);
     }
 
     @Override
