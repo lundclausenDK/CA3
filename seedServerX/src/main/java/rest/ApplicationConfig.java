@@ -29,11 +29,10 @@ public class ApplicationConfig extends Application {
     resources.add(rest.All.class);
     resources.add(rest.PlacesResource.class);
     resources.add(rest.Register.class);
-    resources.add(rest.UploadResource.class);
     resources.add(rest.User.class);
     resources.add(rest.Users.class);
     resources.add(security.JWTAuthenticationFilter.class);
-        resources.add(security.Login.class);
+    resources.add(security.Login.class);
         resources.add(security.NotAuthorizedExceptionMapper.class);
         resources.add(security.RolesAllowedFilter.class);
   }

@@ -97,13 +97,12 @@ export default class Place extends React.Component {
                         <div>{item.zip} {item.city}</div>
                         <div>GEO: {item.geo}</div>
 
-                        {this.state.rated? (<div>{item.rating}</div>) : (<option><select>Rate this place...</select></option>)}
+                        {this.state.rated? (<div>{item.rating}</div>) : (<select><option>Rate this place...</option></select>)}
 
 
                     </div>
 
                 ))}
-
             </div>
 
 
