@@ -16,7 +16,7 @@ public class UserControl
     @Consumes(MediaType.APPLICATION_JSON)
     public String deleteUser(String body)
     {
-        return "";
+        return "{\"error\": \"Not implemented yet.\"}";
     }
     
     @POST
@@ -24,7 +24,7 @@ public class UserControl
     @Consumes(MediaType.APPLICATION_JSON)
     public String addUser(String body)
     {
-        return "";
+        return "{\"error\": \"Not implemented yet.\"}";
     }
     
     @PUT
@@ -32,6 +32,6 @@ public class UserControl
     @Consumes(MediaType.APPLICATION_JSON)
     public String editUser(String body)
     {
-        return "";
+        return "{\"error\": \"Not implemented yet.\"}";
     }
 }
