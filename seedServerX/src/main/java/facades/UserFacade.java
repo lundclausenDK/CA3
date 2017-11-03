@@ -25,13 +25,14 @@ class UserFacade implements IUserFacade {
     }
 
     @Override
-    public IUser getUserByUserId(String id)
+    public User findUser(String id)
     {
         EntityManager em = getEntityManager();
         try
         {
             return em.find(User.class, id);
-        } finally
+        }
+        finally
         {
             em.close();
         }
@@ -46,10 +47,11 @@ class UserFacade implements IUserFacade {
         try
         {
             System.out.println("User Before:" + userName + ", " + password);
-            IUser user = getUserByUserId(userName);
+            IUser user = findUser(userName);
             System.out.println("User After:" + user.getUserName() + ", " + user.getPasswordHash());
             return user != null && PasswordStorage.verifyPassword(password, user.getPasswordHash()) ? user.getRolesAsStrings() : null;
-        } catch (PasswordStorage.CannotPerformOperationException | PasswordStorage.InvalidHashException ex)
+        }
+        catch (PasswordStorage.CannotPerformOperationException | PasswordStorage.InvalidHashException ex)
         {
             throw new NotAuthorizedException("Invalid username or password", Response.Status.FORBIDDEN);
         }
@@ -71,13 +73,54 @@ class UserFacade implements IUserFacade {
     }
 
     @Override
+    public boolean deleteUser(String username)
+    {
+        EntityManager em = emf.createEntityManager();
+
+        User found = findUser(username);
+
+        if (found == null)
+        {
+            return false;
+        }
+
+        em.getTransaction().begin();
+        em.remove(found);
+        em.getTransaction().commit();
+        em.close();
+
+        return true;
+    }
+
+    @Override
+    public boolean editUser(User user)
+    {
+        EntityManager em = emf.createEntityManager();
+
+        User found = findUser(user.getUserName());
+
+        if (found == null)
+        {
+            return false;
+        }
+
+        em.getTransaction().begin();
+        found.setRoles(user.getRoles());
+        em.persist(found);
+        em.getTransaction().commit();
+        em.close();
+
+        return true;
+    }
+
+    @Override
     public List<User> listAllUsers()
     {
         EntityManager em = getEntityManager();
-        
+
         List<User> res = em.createQuery("select u from SEED_USER u").getResultList();
         em.close();
-        
+
         return res;
     }
 

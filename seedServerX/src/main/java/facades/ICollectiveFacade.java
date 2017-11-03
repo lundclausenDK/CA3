@@ -11,6 +11,8 @@ public interface ICollectiveFacade
     List<String> authenticateUser(String userName, String password);
     IUser getUserByUserId(String id);
     boolean registerUser(User user);
+    boolean deleteUser(String username);
+    boolean editUser(User user);
     List<User> listAllUsers();
     
     boolean createRole(Role role);

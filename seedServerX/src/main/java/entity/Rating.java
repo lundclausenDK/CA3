@@ -1,7 +1,6 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,9 +11,6 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Rating implements Serializable {
-
-    @ManyToOne
-    private Place place;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,14 +35,6 @@ public class Rating implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Place getPlace() {
-        return place;
-    }
-
-    public void setPlace(Place place) {
-        this.place = place;
     }
     
     public int getId() {
