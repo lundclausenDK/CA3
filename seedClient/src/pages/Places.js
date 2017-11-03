@@ -73,7 +73,19 @@ export default class Place extends React.Component {
 
     submitRating = (e) => {
         console.log(e.target.value);
-    }
+
+        fetch('https://mywebsite.com/endpoint/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                ratingValue: e.target.value
+            })
+        });
+
+    };
 
     render() {
         return (
@@ -111,11 +123,11 @@ export default class Place extends React.Component {
                             </form>)}
 
 
-
                     </div>
 
 
                 ))}
+
             </div>
 
 
