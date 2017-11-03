@@ -8,19 +8,22 @@ export default class AddPlace extends React.Component {
         super();
 
         this.state = {
-            name: "",
-            street: "",
-            city: "",
-            zip: "",
-            description: ""
+            name: null,
+            street: null,
+            city: null,
+            zip: null,
+            description: null
         }
+
+        this.addData = this.addData.bind(this);
     }
 
     returnValue = (e) => {
-        let fieldID = e.target.id;
+        let id = e.target.id;
         let value = e.target.value;
 
-        this.setState({fieldID: value});
+        this.setState({[id]: value});
+        e.preventDefault();
     };
 
     addData = () => {
@@ -29,6 +32,7 @@ export default class AddPlace extends React.Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + sessionStorage.token
             },
             body: JSON.stringify({
                 name: this.state.name,
@@ -38,7 +42,7 @@ export default class AddPlace extends React.Component {
                 description: this.state.description
             })
         })
-    }
+    };
 
     render() {
         return (
