@@ -8,8 +8,7 @@ import org.glassfish.jersey.media.multipart.MultiPartFeature;
 public class ApplicationConfig extends Application {
 
     @Override
-    public Set<Class<?>> getClasses()
-    {
+    public Set<Class<?>> getClasses() {
         Set<Class<?>> resources = new java.util.HashSet<>();
         addRestResourceClasses(resources);
         resources.add(MultiPartFeature.class);
@@ -21,8 +20,7 @@ public class ApplicationConfig extends Application {
      * populated with all resources defined in the project. If required, comment
      * out calling this method in getClasses().
      */
-    private void addRestResourceClasses(Set<Class<?>> resources)
-    {
+    private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(cors.CorsRequestFilter.class);
         resources.add(cors.CorsResponseFilter.class);
         resources.add(httpErrors.GenericExceptionMapper.class);

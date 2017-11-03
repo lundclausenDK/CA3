@@ -111,3 +111,5 @@
 
 
 .clearfix:after {height:0; content:" "; clear:both; display:block; visibility:hidden;}
+
+.ca3 input, textarea {min-width: 300px; display: block; padding: 10px; margin-bottom: 10px; border-radius: 4px; border: solid 1px lightgray}
