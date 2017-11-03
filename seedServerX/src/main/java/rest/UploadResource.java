@@ -1,10 +1,15 @@
 package rest;
 
+import entity.Place;
+import facades.CollectiveFacadeFactory;
+import facades.ICollectiveFacade;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.POST;
@@ -20,27 +25,23 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 public class UploadResource {
 
     //public static final String FILE_LOCATION = "D:\\photobucket\\";
+    ICollectiveFacade uf = CollectiveFacadeFactory.getInstance();
     public String path;
-    
-    
+
     UploadResource() {
-            if (!System.getProperty("os.name").equals("Windows")) {
-                path = "/etc/img";
-            }
-            File folder = new File(path);
-            folder.mkdir();
+        if (!System.getProperty("os.name").equals("Windows")) {
+            path = "/etc/img";
         }
-    
-    
+        File folder = new File(path);
+        folder.mkdir();
+    }
+
     @Context
     private UriInfo context;
-
 
     /**
      * Creates a new instance of UploadResource
      */
-    
-
     /**
      * Retrieves representation of an instance of
      * com.mycompany.photoupload.UploadResource
@@ -54,7 +55,6 @@ public class UploadResource {
             @FormDataParam("file") InputStream file,
             @FormDataParam("file") FormDataContentDisposition fileDisposition) throws IOException {
 
-        
         String geoLocation = geo;
         String picInfo = info;
         String fileName = fileDisposition.getFileName();
@@ -74,6 +74,41 @@ public class UploadResource {
                 os.write(buffer, 0, bytes);
             }
         }
+    }
+
+    @Path("/placeUpload")
+    @POST
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public Response uploadPlace(@DefaultValue("") @FormDataParam("name") String name,
+            @DefaultValue("") @FormDataParam("info") String info,
+            @DefaultValue("") @FormDataParam("geo") String geo,
+            @DefaultValue("") @FormDataParam("street") String street,
+             @DefaultValue("") @FormDataParam("zip") String zip,
+             @DefaultValue("") @FormDataParam("city") String city,
+            @FormDataParam("file") InputStream file,
+            @FormDataParam("file") FormDataContentDisposition fileDisposition) {
+
+        
+        String placeName = name;
+        String placeInfo = info;
+        String placeGEO = geo;
+        String placeStreet = street;
+        String placeCity = city;
+        String fileName = fileDisposition.getFileName();
+        int placeZip = Integer.parseInt(zip);
+        
+        try {
+            saveFile(file, fileName);
+            Place place = new Place(placeName,placeCity,placeStreet,placeInfo,fileName,placeZip,placeGEO);
+            uf.createPlace(place);
+        } catch (IOException ex) {
+            Logger.getLogger(UploadResource.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        String status = "{\"status\":\"uploaded\"}";
+        return Response.ok(status).build();
     }
 
 }
