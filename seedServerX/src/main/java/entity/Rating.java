@@ -6,10 +6,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Rating implements Serializable {
+
+    @ManyToOne
+    private Place place;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -17,12 +22,9 @@ public class Rating implements Serializable {
     private int id;
     private int ratingValue;
     
-    @OneToMany
+    @OneToOne
     private User user;
     
-    @OneToMany
-    private Place place;
-
     public int getRatingValue() {
         return ratingValue;
     }
