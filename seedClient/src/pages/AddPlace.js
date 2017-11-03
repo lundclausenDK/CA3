@@ -8,11 +8,11 @@ export default class AddPlace extends React.Component {
         super();
 
         this.state = {
-            name: null,
-            street: null,
-            city: null,
-            zip: null,
-            description: null
+            name: "",
+            street: "",
+            city: "",
+            zip: "",
+            description: ""
         }
     }
 
