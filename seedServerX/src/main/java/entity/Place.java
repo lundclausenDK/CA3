@@ -24,7 +24,7 @@ public class Place implements Serializable {
     private String url;
     private int zip;
 
-    @OneToMany(mappedBy = "places")
+    @OneToMany(mappedBy = "place")
     private List<Rating> ratings;
 
     @Column(nullable = true)

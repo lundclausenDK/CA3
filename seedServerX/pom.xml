@@ -35,13 +35,7 @@
           <version>2.23.2</version>
         </dependency>
         
-    
-    
-        <dependency>
-            <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-multipart</artifactId>
-            <version>2.26</version>
-        </dependency>
+
         -->        
 
         <dependency>
@@ -53,7 +47,12 @@
     
     
 
-
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-multipart</artifactId>
+            <version>2.23</version>
+            <type>jar</type>
+        </dependency>
 
     
         <!--    <dependency>

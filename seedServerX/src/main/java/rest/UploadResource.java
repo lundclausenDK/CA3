@@ -1,4 +1,4 @@
-/*package rest;
+package rest;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -34,7 +34,7 @@ public class UploadResource {
     
     @Context
     private UriInfo context;
-*/
+
 
     /**
      * Creates a new instance of UploadResource
@@ -47,7 +47,7 @@ public class UploadResource {
      *
      * @return an instance of java.lang.String
      */
-   /* @Path("/file")
+    @Path("/file")
     @POST
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response uploadFile(@DefaultValue("") @FormDataParam("info") String info, @DefaultValue("") @FormDataParam("geo") String geo,
@@ -76,4 +76,4 @@ public class UploadResource {
         }
     }
 
-}*/
+}
