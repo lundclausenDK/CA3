@@ -32,7 +32,6 @@ export default class Place extends React.Component {
                 }
             }
             this.setState({places: data, view: data});
-            console.log(data[0].raters);
         }.bind(this));
 
     };
