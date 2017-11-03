@@ -1,5 +1,7 @@
 # CA3
 
+Group 3: Benjamin Løvig Rasmussen, Joachim Henvig Hansen, Mikkel Lund Clausen & Peter Leonhardt Rasmussen(Minimekill)
+
 The project reached the following goals:
 - a non user can register on the page and become a member.
 - logging in as admin (username: user3 password: test) and clicking on the adminpage will show all current users in the system.
@@ -14,4 +16,4 @@ The project reached the following goals:
 - it is possible to sort through the places after name and after rating (both ascending and descending). 
 - searching through the places by entering part of the name of the place.
 
-
+https://designcookies.dk/#/
