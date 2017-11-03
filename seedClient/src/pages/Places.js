@@ -8,7 +8,8 @@ export default class Place extends React.Component {
         this.state = {
             places: [],
             view: [],
-            ratingSort: true
+            ratingSort: true,
+            rated: false
         };
         this.getData = this.getData.bind(this);
         this.getData();
@@ -94,8 +95,9 @@ export default class Place extends React.Component {
                         <div>{item.description}</div>
                         <div>{item.street}</div>
                         <div>{item.zip} {item.city}</div>
-                        <div>Rating: {item.rating}</div>
                         <div>GEO: {item.geo}</div>
+
+                        {this.state.rated? (<div>{item.rating}</div>) : (<option><select>Rate this place...</select></option>)}
 
 
                     </div>
