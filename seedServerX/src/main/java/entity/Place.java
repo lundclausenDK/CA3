@@ -128,4 +128,18 @@ public class Place implements Serializable {
         return "entity.Place[ id=" + id + " ]";
     }
 
+    /**
+     * @return the ratings
+     */
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    /**
+     * @param ratings the ratings to set
+     */
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
 }
