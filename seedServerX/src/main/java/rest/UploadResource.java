@@ -49,15 +49,15 @@ public class UploadResource {
     @Path("/file")
     @POST
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response uploadFile(@DefaultValue("") @FormDataParam("user") String user,
+    public Response uploadFile(@DefaultValue("") @FormDataParam("info") String info, @DefaultValue("") @FormDataParam("geo") String geo,
             @FormDataParam("file") InputStream file,
             @FormDataParam("file") FormDataContentDisposition fileDisposition) throws IOException {
 
         
-        
-
-        System.out.println("image loaded : " + user);
+        String geoLocation = geo;
+        String picInfo = info;
         String fileName = fileDisposition.getFileName();
+        //SAVE TO GIT
         saveFile(file, fileName);
         String status = "{\"status\":\"uploaded\"}";
         return Response.ok(status).build();
