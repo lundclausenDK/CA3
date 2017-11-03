@@ -20,7 +20,7 @@ export default class Place extends React.Component {
             .then(function (response) {
                 return response.json()
             }).then(function (data) {
-            console.log(data);
+            //console.log(data);
             this.setState({places: data, view: data});
         }.bind(this));
 
@@ -71,8 +71,8 @@ export default class Place extends React.Component {
         e.preventDefault();
     };
 
-    submitRating = () => {
-
+    submitRating = (e) => {
+        console.log(e.target.value);
     }
 
     render() {
@@ -83,11 +83,7 @@ export default class Place extends React.Component {
                 <div className="tools-container">
                     <form>
                         <input id="searchText" type="text" placeholder="Type the name here"/>
-                        <button onClick={this.getSearch}>submit</button>
-                        -
-                        <button onClick={this.sortOnName}>Sort on Name</button>
-                        -
-                        <button onClick={this.sortOnRating}>Sort on Rating</button>
+                        <button onClick={this.getSearch}>submit</button> - <button onClick={this.sortOnName}>Sort on Name</button> - <button onClick={this.sortOnRating}>Sort on Rating</button>
                     </form>
                 </div>
 
@@ -101,7 +97,18 @@ export default class Place extends React.Component {
                         <div>{item.zip} {item.city}</div>
                         <div>GEO: {item.geo}</div>
 
-                        {this.state.rated? (<div>{item.rating}</div>) : (<form><select onChange="this.submitRating()"><option>Rate this place...</option></select></form>)}
+                        {this.state.rated?
+                            (<div>{item.rating}</div>) :
+                            (<form>
+                                <select onChange={this.submitRating}>
+                                    <option>Rate this place...</option>
+                                    <option>5 (Most positive)</option>
+                                    <option>4</option>
+                                    <option>3</option>
+                                    <option>2</option>
+                                    <option>1 (Low of the lowest)</option>
+                                </select>
+                            </form>)}
 
 
                     </div>
