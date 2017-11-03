@@ -71,6 +71,10 @@ export default class Place extends React.Component {
         e.preventDefault();
     };
 
+    submitRating = () => {
+
+    }
+
     render() {
         return (
             <div>
@@ -97,10 +101,11 @@ export default class Place extends React.Component {
                         <div>{item.zip} {item.city}</div>
                         <div>GEO: {item.geo}</div>
 
-                        {this.state.rated? (<div>{item.rating}</div>) : (<option><select>Rate this place...</select></option>)}
+                        {this.state.rated? (<div>{item.rating}</div>) : (<form><select onChange="this.submitRating()"><option>Rate this place...</option></select></form>)}
 
 
                     </div>
+
 
                 ))}
 
