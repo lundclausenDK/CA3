@@ -80,7 +80,7 @@ public class UploadResource {
     }
 
     @Path("/place")
-    @RolesAllowed("User")
+    //@RolesAllowed("User")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response uploadHouse(String content) {
