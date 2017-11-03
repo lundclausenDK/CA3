@@ -111,11 +111,11 @@ export default class Place extends React.Component {
                             </form>)}
 
 
+
                     </div>
 
 
                 ))}
-
             </div>
 
 
