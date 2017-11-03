@@ -29,7 +29,7 @@ public class UploadResource {
 
     //public static final String FILE_LOCATION = "D:\\photobucket\\";
     ICollectiveFacade uf = CollectiveFacadeFactory.getInstance();
-    public String path;
+    public String path = "/img";
 
     UploadResource() {
         if (!System.getProperty("os.name").equals("Windows")) {
