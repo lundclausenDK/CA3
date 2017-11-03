@@ -66,7 +66,7 @@ class PlaceFacade implements IPlaceFacade {
     {
         EntityManager em = emf.createEntityManager();
         
-        List<Place> res = em.createQuery("select p from Place p join Rating r").getResultList();
+        List<Place> res = em.createQuery("select p from Place p").getResultList();
         em.close();
         
         return res;
