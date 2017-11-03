@@ -23,7 +23,7 @@ class CollectiveFacade implements ICollectiveFacade {
         roleFacade.addEntityManagerFactory(emf);
         placeFacade.addEntityManagerFactory(emf);
     }
-    
+
     // ####################### //
     // ##### User facade ##### //
     // ####################### //
@@ -35,11 +35,25 @@ class CollectiveFacade implements ICollectiveFacade {
         for (Role role : user.getRoles())
         {
             if (roleFacade.findRole(role.getRoleName()) != null)
+            {
                 roles.add(role);
+            }
         }
         user.setRoles(roles);
 
         return userFacade.registerUser(user);
+    }
+
+    @Override
+    public boolean deleteUser(String username)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean editUser(User user)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -51,7 +65,7 @@ class CollectiveFacade implements ICollectiveFacade {
     @Override
     public IUser getUserByUserId(String id)
     {
-        return userFacade.getUserByUserId(id);
+        return userFacade.findUser(id);
     }
 
     @Override
@@ -63,7 +77,6 @@ class CollectiveFacade implements ICollectiveFacade {
     // ####################### //
     // ##### Role Facade ##### //
     // ####################### //
-    
     @Override
     public boolean createRole(Role role)
     {
@@ -85,7 +98,6 @@ class CollectiveFacade implements ICollectiveFacade {
     // ######################## //
     // ##### Place Facade ##### //
     // ######################## //
-
     @Override
     public boolean createPlace(Place place)
     {
