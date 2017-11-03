@@ -65,7 +65,7 @@ public class UserControl {
 
             if (success)
             {
-                status = "Successfully deleted user.";
+                status = "Successfully added user.";
             }
         }
         catch (PasswordStorage.CannotPerformOperationException ex)
@@ -84,7 +84,6 @@ public class UserControl {
         String status = "Could not edit user";
         JsonObject json = new JsonParser().parse(body).getAsJsonObject();
         String username = json.get("username").getAsString();
-        String password = json.get("password").getAsString();
         JsonArray roles = json.get("roles").getAsJsonArray();
 
         List<Role> foundRoles = new ArrayList();
@@ -93,19 +92,12 @@ public class UserControl {
             foundRoles.add(new Role(role.getAsString()));
         }
 
-        try
-        {
-            entity.User registrant = new entity.User(username, password, foundRoles);
-            boolean success = CollectiveFacadeFactory.getInstance().editUser(registrant);
+        entity.User registrant = new entity.User(username, foundRoles);
+        boolean success = CollectiveFacadeFactory.getInstance().editUser(registrant);
 
-            if (success)
-            {
-                status = "Successfully edited user.";
-            }
-        }
-        catch (PasswordStorage.CannotPerformOperationException ex)
+        if (success)
         {
-            Logger.getLogger(UserControl.class.getName()).log(Level.SEVERE, null, ex);
+            status = "Successfully edited user.";
         }
 
         return "{\"status\": \"" + status + "\"}";
