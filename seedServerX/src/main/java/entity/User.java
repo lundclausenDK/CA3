@@ -36,6 +36,12 @@ public class User implements IUser, Serializable{
       this.passwordHash = PasswordStorage.createHash(password);
       this.roles = roles;
   }
+
+    public User(String username, List<Role> foundRoles)
+    {
+        this.userName = username;
+        this.roles = foundRoles;
+    }
   
   
   public void addRole(Role role){
