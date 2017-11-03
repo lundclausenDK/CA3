@@ -50,7 +50,7 @@ export default class AddPlace extends React.Component {
                     <input placeholder="Type city here" value={this.state.city} onChange={this.returnValue} id="city"/>
                     <input placeholder="Type zip here" value={this.state.zip} onChange={this.returnValue} id="zip"/>
                     <textarea placeholder="Please type description" value={this.state.description} onChange={this.returnValue} id="description"/>
-                    <button onSubmit={this.addData()}>Submit</button>
+                    <button onClick={this.addData}>Submit</button>
                 </form>
             </div>
         );
