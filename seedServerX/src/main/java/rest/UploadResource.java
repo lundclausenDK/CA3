@@ -31,7 +31,7 @@ public class UploadResource {
     ICollectiveFacade uf = CollectiveFacadeFactory.getInstance();
     public String path = "/img";
 
-    UploadResource() {
+    public UploadResource() {
         if (!System.getProperty("os.name").equals("Windows")) {
             path = "/etc/img";
         }
@@ -86,7 +86,7 @@ public class UploadResource {
     public Response uploadHouse(String content) {
         JsonObject json = new JsonParser().parse(content).getAsJsonObject();
         String name = json.get("name").getAsString();
-        String info = json.get("info").getAsString();
+        String info = json.get("description").getAsString();
         String street = json.get("street").getAsString();
         String city = json.get("city").getAsString();
         int zip = json.get("zip").getAsInt();

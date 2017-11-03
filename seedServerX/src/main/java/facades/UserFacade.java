@@ -28,14 +28,11 @@ class UserFacade implements IUserFacade {
     public User findUser(String id)
     {
         EntityManager em = getEntityManager();
-        try
-        {
-            return em.find(User.class, id);
-        }
-        finally
-        {
-            em.close();
-        }
+        
+        User found = em.find(User.class, id);
+        em.close();
+        
+        return found;
     }
 
     /*
@@ -77,7 +74,7 @@ class UserFacade implements IUserFacade {
     {
         EntityManager em = emf.createEntityManager();
 
-        User found = findUser(username);
+        User found = em.find(User.class, username);
 
         if (found == null)
         {
@@ -97,7 +94,7 @@ class UserFacade implements IUserFacade {
     {
         EntityManager em = emf.createEntityManager();
 
-        User found = findUser(user.getUserName());
+        User found = em.find(User.class, user.getUserName());
 
         if (found == null)
         {
