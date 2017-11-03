@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import adminData from "../facades/adminFacade";
+import auth from '../authorization/auth'
 
 class AdminPage extends Component {
 
@@ -23,14 +24,15 @@ class AdminPage extends Component {
         });
     }
 
+
+
     render() {
         return (
             <div>
-                <h2>Admins</h2>
-                <p>This message is fetched from the server if you were properly logged in</p>
-                <div className="msgFromServer">
+                <h2>Admin Panel</h2>
+                <div>
                     {this.state.data.map((item) => {
-                        return(<div>{item}</div>)
+                        return(<div>{item} <button>Edit</button> <button>Delete</button></div>)
                     })}
                 </div>
                 {this.state.err && (
