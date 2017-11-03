@@ -1,11 +1,13 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Place implements Serializable {
@@ -14,18 +16,20 @@ public class Place implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    
+
     private String name;
     private String city;
     private String street;
     private String description;
     private String url;
     private int zip;
-    
+
+    @OneToMany(mappedBy = "places")
+    private List<Rating> ratings;
+
     @Column(nullable = true)
     private String geo;
     private int rating;
-
 
     public int getId() {
         return id;
@@ -82,8 +86,7 @@ public class Place implements Serializable {
     public void setZip(int zip) {
         this.zip = zip;
     }
-    
-    
+
     public String getGeo() {
         return geo;
     }
@@ -100,14 +103,6 @@ public class Place implements Serializable {
         this.rating = rating;
     }
 
-       
-    
-    
-    
-    
-    
-    
-    
     @Override
     public int hashCode() {
         int hash = 0;
