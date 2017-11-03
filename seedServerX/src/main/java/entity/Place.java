@@ -31,6 +31,33 @@ public class Place implements Serializable {
     private String geo;
     private int rating;
 
+    public Place(String name, String city, String street, String description, String url, int zip, String geo) {
+        this.name = name;
+        this.city = city;
+        this.street = street;
+        this.description = description;
+        this.url = url;
+        this.zip = zip;
+        this.geo = geo;
+    }
+
+    public Place(String name, String city, String street, String description, int zip) {
+        this.name = name;
+        this.city = city;
+        this.street = street;
+        this.description = description;
+        this.zip = zip;
+    }
+    
+    
+    
+    public Place(){
+        
+    }
+    
+    
+    
+    
     public int getId() {
         return id;
     }
