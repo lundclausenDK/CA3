@@ -29,7 +29,7 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 public class UploadResource {
 
     private ICollectiveFacade uf = CollectiveFacadeFactory.getInstance();
-    private String path = "c://img/";
+    private String path = "/var/www/img/";
 
     public UploadResource() {
         File folder = new File(path);
@@ -111,7 +111,7 @@ public class UploadResource {
         String placeGEO = geo;
         String placeStreet = street;
         String placeCity = city;
-        String fileName = path + fileDisposition.getFileName();
+        String fileName = fileDisposition.getFileName();
         System.out.println(fileName);
         int placeZip = Integer.parseInt(zip);
 

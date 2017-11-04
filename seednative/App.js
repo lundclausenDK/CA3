@@ -21,7 +21,7 @@ export default class App extends React.Component {
 
     getData = () => {
         console.log("ping");
-        fetch("http://d367cd14.ngrok.io/seedMaven/api/places", {
+        fetch("http://a684cfe3.ngrok.io/seedMaven/api/places", {
             method: "GET", headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'

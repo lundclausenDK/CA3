@@ -61,7 +61,7 @@ export default class AddPlace extends React.Component {
         data.append('file', input.files[0]);
         fetch(URL + 'api/upload/placeUpload', {
             method: 'POST',
-            body: data
+            body: data, headers: {'Authorization': sessionStorage.token}
         });
     }
 
