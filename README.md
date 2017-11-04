@@ -60,33 +60,36 @@ all rest endpoints retrieves and insert their data into the sql via the facades 
 
 web/app
 
-- as a user i would like to be able to book a summerhouse from the list of summerhouses and cancel bookings.
-- as a user i would like to see a list of bookings made by me.
-- as a user i would like to delete/edit bookings made by me.
-- as a user i would like to be able to leave a comment on a summerhouse and edit and delete this comment.
-- as a user i would like to be able to read comments from other users on a summerhouse.
-- as a user i would like to put pictures on a summerhouse.
-- as a user i would like to delete my own pictures on a summerhouse.
-- as a user i would like to see all pictures users has put on a summerhouse
-- as a user i would like to put pictures with GEO location on a summerhouse.
-- as a user i would like to see a summerhouse with pictures from other users and geo locations and see how far theese pictures are taken from  from the summerhouse.
-- as a user i would like if there was a online chat/message system to talk with other users/admin.
-- as a user i would like that theweb/app looks good and is easy to use.
-- as a user i would like to see events on a summerhouse.
-- as a user i would like to put events on a summerhouse.
+- as a user i would like to be able to book a summerhouse from the list of summerhouses and cancel bookings. (8 hours)
+- as a user i would like to see a list of bookings made by me. (2 hours)
+- as a user i would like to delete/edit bookings made by me. (2 hours)
+- as a user i would like to be able to leave a comment on a summerhouse and edit and delete this comment. (4 hours)
+- as a user i would like to be able to read comments from other users on a summerhouse. (2 hours)
+- as a user i would like to put pictures on a summerhouse. (2 hours)
+- as a user i would like to delete my own pictures on a summerhouse. (1 hours)
+- as a user i would like to see all pictures users has put on a summerhouse (1 hours)
+- as a user i would like to put pictures with GEO location on a summerhouse. (2 hours)
+- as a user i would like to see a summerhouse with pictures from other users and geo locations and see how far theese pictures are taken from  from the summerhouse. (3 hours)
+- as a user i would like if there was a online chat/message system to talk with other users/admin. (16 hours)
+- as a user i would like that the web/app looks good and is easy to use. (4 hours)
+- as a user i would like to see events on a summerhouse. (3 hours)
+- as a user i would like to put events on a summerhouse. (3 hours)
 
-
+53 hours
 
 web
 
-- as an admin i would like to be able to edit/delete any summerhouse.
-- as an admin i would like to see a list of bookings on any given summerhouses in the system.
-- as an admin i would like to delete/edit bookings on any given summerhouse in the system.
-- as an admin i would like to see all pictures on a summerhouse and edit/delete theese.
-- as an admin i would like to see users and admins currently online.
-- as an admin i would like to be able to message users and other admins.
+- as an admin i would like to be able to edit/delete any summerhouse. (2 hours)
+- as an admin i would like to see a list of bookings on any given summerhouses in the system. (2 hours)
+- as an admin i would like to delete/edit bookings on any given summerhouse in the system. (2 hours)
+- as an admin i would like to see all pictures on a summerhouse and edit/delete theese. (3 hours)
+- as an admin i would like to see users and admins currently online. (8 hours)
+- as an admin i would like to be able to message users and other admins. (2 hours)
 
+19 hours
 
+total: 72 hours.
+Since our teams velocity is not determined yet, no more user stories will be added until several sprints are completed, and the velocity that we add user stories is learned.
 
 ## Manual: how to use the system!
 
@@ -115,6 +118,16 @@ If you are logged, click the "places" in the top menu. A list of places stored i
 - Admin tools
 
 Logging in with as a admin ("admin","test") you now have acces to a "users page", link located in the top menu. From here you can add, edit delete and promote users. Promoting users will promote them to admins.
+
+
+## Who did what
+
+Who made what?:
+
+- Joachim Henvig Hansen: Java, REACT, REACT Native, rest, JPA
+- Benjamin Løvig Rasmussen: Java, REACT, rest, JPA
+- Peter Leonhardt Rasmussen: Java, REACT, rest
+- Mikkel Lund Clausen: Java, REACT REACT Native, rest, JPA
 
 
 link to website
