@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, TextInput, Button, Form, AppRegistry, Header} from 'react-native';
+import {StyleSheet, Text, View, TextInput, Button, Form, AppRegistry, Header, Image} from 'react-native';
 
 const URL = require("./package.json").serverURL;
 
@@ -11,8 +11,8 @@ export default class App extends React.Component {
             places: [],
             view: [],
             ratingSort: true,
-            rated: false
-            //userName: auth.userName
+            rated: false,
+            userName: "none"
         };
 
         this.getData = this.getData.bind(this);
@@ -21,7 +21,10 @@ export default class App extends React.Component {
 
     getData = () => {
         console.log("ping");
-        fetch("http://drayzin.tk/backend/seedMaven/api/places")
+        fetch("http://d367cd14.ngrok.io/seedMaven/api/places", {method: "GET", headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }})
             .then(function (response) {
                 return response.json()
             }).then(function (data) {
@@ -117,27 +120,13 @@ export default class App extends React.Component {
                 {this.state.view.map((item) => (
                     <Text>
 
-                        <Text className="left image"><img src={item.url}/></Text>
+                        <Text className="left image"><Image src={{uri: item.url}}/></Text>
                         <Text className="bold">{item.name}</Text>
                         <Text>{item.description}</Text>
                         <Text>{item.street}</Text>
                         <Text>{item.zip} {item.city}</Text>
                         <Text>GEO: {item.geo}</Text>
-
-                        {item.rated ?
-                            (<Text>{item.rating}</Text>) :
-                            (
-                                <select onChange={this.submitRating}>
-                                    <option>Rate this place...</option>
-                                    <option>5 (Most positive)</option>
-                                    <option>4</option>
-                                    <option>3</option>
-                                    <option>2</option>
-                                    <option>1 (Low of the lowest)</option>
-                                </select>
-                            )}
-
-
+                        <Text>{item.rating}</Text>
                     </Text>
 
 
@@ -148,7 +137,6 @@ export default class App extends React.Component {
         );
     }
 }
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
