@@ -124,10 +124,10 @@ Logging in with as a admin ("admin","test") you now have acces to a "users page"
 
 Who made what?:
 
-- Joachim Henvig Hansen: 
-- Benjamin Løvig Rasmussen: 
-- Peter Leonhardt Rasmussen: 
-- Mikkel Lund Clausen: 
+- Joachim Henvig Hansen: Java, REACT, REACT Native, rest, JPA
+- Benjamin Løvig Rasmussen: Java, REACT, rest, JPA
+- Peter Leonhardt Rasmussen: Java, REACT, rest
+- Mikkel Lund Clausen: Java, REACT REACT Native, rest, JPA
 
 
 link to website
