@@ -77,6 +77,7 @@ class CollectiveFacade implements ICollectiveFacade {
     // ####################### //
     // ##### Role Facade ##### //
     // ####################### //
+    
     @Override
     public boolean createRole(Role role)
     {
@@ -95,9 +96,16 @@ class CollectiveFacade implements ICollectiveFacade {
         return roleFacade.findRole(roleName);
     }
 
+    @Override
+    public List<Role> listAllRoles()
+    {
+        return roleFacade.listAllRoles();
+    }
+
     // ######################## //
     // ##### Place Facade ##### //
     // ######################## //
+    
     @Override
     public boolean createPlace(Place place)
     {
@@ -126,5 +134,11 @@ class CollectiveFacade implements ICollectiveFacade {
     public List<Place> searchForPlaces(String searchWord)
     {
         return placeFacade.searchForPlaces(searchWord);
+    }
+
+    @Override
+    public void addRating(int locationID, int rating, String userName)
+    {
+        placeFacade.addRating(locationID, rating, userName);
     }
 }

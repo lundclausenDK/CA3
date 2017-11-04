@@ -9,7 +9,7 @@ class AdminPage extends Component {
 
     constructor() {
         super();
-        this.state = {data: [], err: ""}
+        this.state = {data: [], err: "", roles: []}
     }
 
     componentWillMount() {
@@ -28,10 +28,17 @@ class AdminPage extends Component {
     }
 
     deleteUser = (username) => {
-        const options = fetchHelper.makeOptions("POST", true, {"username": username});
-        console.log(URL + "api/user_control/delete");
+        const options = fetchHelper.makeOptions("POST", true, {username: username});
+        const index = this.state.data.indexOf(username);
+        
+        index > -1 && this.state.data.splice(index, 1);
+
         fetch(URL + "api/user_control/delete", options)
             .then((response) => { this.setState({err: response.status}) });
+    }
+
+    addUser = () => {
+
     }
 
     render() {
@@ -39,8 +46,12 @@ class AdminPage extends Component {
             <div>
                 <h2>Admin Panel</h2>
                 <div>
+                    <span> Username: </span><input type="text"/><span> Password: </span><input type="text"/><span> Roles: </span><select> {} </select>
+                </div>
+                    <br/>
+                <div>
                     {this.state.data.map((item) => {
-                        return(<div>{item} <button>Edit</button> <button onClick={ (item) => {this.deleteUser(item)} }>Delete</button></div>)
+                        return(<div>{item} <button>Edit</button> <button onClick={ () => {this.deleteUser(item)} }>Delete</button></div>)
                     })}
                 </div>
                 {this.state.err && (

@@ -3,6 +3,7 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import entity.Place;
 import entity.Rating;
 import facades.CollectiveFacadeFactory;
@@ -13,6 +14,7 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
@@ -81,7 +83,6 @@ public class PlacesResource {
         //return gs.toJson(cf.listAllPlaces());
         //return "{content: 'hello'}";
     }
-
     /**
      * PUT method for updating or creating an instance of PlacesResource
      *

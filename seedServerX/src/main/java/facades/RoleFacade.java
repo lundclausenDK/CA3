@@ -1,6 +1,7 @@
 package facades;
 
 import entity.Role;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -51,6 +52,17 @@ class RoleFacade implements IRoleFacade {
         }
 
         return null;
+    }
+
+    @Override
+    public List<Role> listAllRoles()
+    {
+        EntityManager em = emf.createEntityManager();
+        
+        List<Role> res = em.createQuery("select r from USER_ROLE r").getResultList();
+        em.close();
+        
+        return res;
     }
 
 }

@@ -23,3 +23,5 @@ seedClient/.idea/modules.xml
 seedClient/.idea/seedClient.iml
 seedClient/.idea/workspace.xml
 seedClient/npm-debug.log
+
+seedClient/package\.json

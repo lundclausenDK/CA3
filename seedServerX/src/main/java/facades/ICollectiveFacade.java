@@ -18,10 +18,12 @@ public interface ICollectiveFacade
     boolean createRole(Role role);
     boolean removeRole(String roleName);
     Role findRole(String roleName);
+    List<Role> listAllRoles();
     
     boolean createPlace(Place place);
     boolean removePlace(int id);
     Place findPlace(int id);
     List<Place> listAllPlaces();
     List<Place> searchForPlaces(String searchWord);
+    void addRating(int locationID, int rating, String userName);
 }
