@@ -21,10 +21,12 @@ export default class App extends React.Component {
 
     getData = () => {
         console.log("ping");
-        fetch("http://d367cd14.ngrok.io/seedMaven/api/places", {method: "GET", headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }})
+        fetch("http://d367cd14.ngrok.io/seedMaven/api/places", {
+            method: "GET", headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
             .then(function (response) {
                 return response.json()
             }).then(function (data) {
@@ -106,28 +108,27 @@ export default class App extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <View style={{flexDirection: 'row', paddingBottom: 5, justifyContent: 'space-between'}}>
+
+                    <Button onPress={this.sortOnName} title="Sort on Name"/>
+
+                    <Button onPress={this.sortOnRating} title="Sort on Rating"/>
+
+                </View>
 
 
-
-                <TextInput id="searchText"/>
-                <Button onPress={this.getSearch} title="Submit"/>
-
-                <Button onPress={this.sortOnName} title="Sort on Name"/>
-
-                <Button onPress={this.sortOnRating} title="Sort on Rating"/>
-
-                <ScrollView>
-                {this.state.view.map((item) => (
-                    <View key={item.id}>
-                        <Text className="left image"><Image source={{uri: item.url}} style={styles.Image}/></Text>
-                        <Text className="bold">{item.name}</Text>
-                        <Text>{item.description}</Text>
-                        <Text>{item.street}</Text>
-                        <Text>{item.zip} {item.city}</Text>
-                        <Text>GEO: {item.geo}</Text>
-                        <Text>{item.rating}</Text>
-                    </View>
-                ))}
+                <ScrollView style={{width: '98%'}}>
+                    {this.state.view.map((item) => (
+                        <View key={item.id} style={{borderColor: "black", borderWidth: 2, marginBottom: 5}}>
+                            {item.url && <Image source={{uri: item.url}} style={styles.Image}/>}
+                            <Text style={styles.textPadding}>{item.name}</Text>
+                            <Text style={styles.textPadding}>{item.description}</Text>
+                            <Text style={styles.textPadding}>{item.street}</Text>
+                            <Text style={styles.textPadding}>{item.zip} {item.city}</Text>
+                            <Text style={styles.textPadding}>GEO: {item.geo}</Text>
+                            <Text style={styles.textPadding}>Rating: {item.rating}</Text>
+                        </View>
+                    ))}
                 </ScrollView>
 
             </View>
@@ -135,16 +136,20 @@ export default class App extends React.Component {
     }
 }
 
-
 const styles = StyleSheet.create({
     container: {
+        paddingTop: 25,
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
     },
-    Image:{
-        width: 500,
-        height: 500
+    Image: {
+        width: '100%',
+        height: 300
+    },
+    textPadding: {
+        paddingLeft: 5,
+        paddingBottom: 5
     }
 });
