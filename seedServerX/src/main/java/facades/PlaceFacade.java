@@ -1,6 +1,8 @@
 package facades;
 
 import entity.Place;
+import entity.Rating;
+import entity.User;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -85,6 +87,25 @@ class PlaceFacade implements IPlaceFacade {
         
         em.close();
         return res;
+    }
+
+    @Override
+    public void addRating(int locationID, int rating, String userName) {
+        EntityManager em = emf.createEntityManager();
+        
+        em.getTransaction().begin();
+        
+        Place place = em.find(Place.class, locationID);
+        User user = (User) em.createQuery("select u from User u where u.userName like :userName").setParameter("userName", userName).getSingleResult();
+        List<Rating> ratings = place.getRatings();
+        Rating newRating = new Rating();
+        newRating.setRatingValue(rating);
+        newRating.setUser(user);
+        ratings.add(newRating);
+        place.setRatings(ratings);
+        
+        em.getTransaction().commit();
+        em.close();
     }
 
 }
