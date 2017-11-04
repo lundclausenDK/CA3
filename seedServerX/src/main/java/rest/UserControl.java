@@ -6,6 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import entity.Role;
+import entity.User;
 import facades.CollectiveFacadeFactory;
 import facades.ICollectiveFacade;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ import security.PasswordStorage;
 public class UserControl {
 
     private ICollectiveFacade facade = CollectiveFacadeFactory.getInstance();
-    
+
     @GET
     @Path("list_roles")
     public String listAllRoles()
@@ -38,6 +39,31 @@ public class UserControl {
             roles[i] = res.get(i).getRoleName();
         }
         return new Gson().toJson(roles);
+    }
+
+    @GET
+    @Path("list_users")
+    public String listAllUsers()
+    {
+        List<User> res = facade.listAllUsers();
+        JsonObject[] jsonObjects = new JsonObject[res.size()];
+        
+        for (int i = 0; i < res.size(); i++)
+        {
+            JsonObject obj = new JsonObject();
+            obj.addProperty("username", res.get(i).getUserName());
+            JsonArray roles = new JsonArray();
+            
+            for (Role role : res.get(i).getRoles())
+            {
+                roles.add(role.getRoleName());
+            }
+            obj.add("roles", roles);
+            
+            jsonObjects[i] = obj;
+        }
+        
+        return new Gson().toJson(jsonObjects);
     }
 
     @POST
