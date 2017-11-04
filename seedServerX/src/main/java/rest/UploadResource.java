@@ -10,8 +10,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
@@ -80,7 +78,7 @@ public class UploadResource {
     }
 
     @Path("/place")
-    //@RolesAllowed("User")
+    @RolesAllowed("User")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response uploadHouse(String content) {
