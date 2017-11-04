@@ -127,7 +127,7 @@ Who made what?:
 - Joachim Henvig Hansen: Java, REACT, REACT Native, rest, JPA
 - Benjamin Løvig Rasmussen: Java, REACT, rest, JPA
 - Peter Leonhardt Rasmussen: Java, REACT, rest
-- Mikkel Lund Clausen: Java, REACT REACT Native, rest, JPA
+- Mikkel Lund Clausen: Java, REACT, REACT Native, rest, JPA
 
 
 link to website
