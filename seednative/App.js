@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, TextInput, Button, Form, AppRegistry, Header, Image} from 'react-native';
+import {StyleSheet, Text, View, TextInput, Button, Form, AppRegistry, Header, Image, ScrollView} from 'react-native';
 
 const URL = require("./package.json").serverURL;
 
@@ -116,27 +116,26 @@ export default class App extends React.Component {
 
                 <Button onPress={this.sortOnRating} title="Sort on Rating"/>
 
-
+                <ScrollView>
                 {this.state.view.map((item) => (
-                    <Text>
-
-                        <Text className="left image"><Image src={{uri: item.url}}/></Text>
+                    <View key={item.id}>
+                        <Text className="left image"><Image source={{uri: item.url}} style={styles.Image}/></Text>
                         <Text className="bold">{item.name}</Text>
                         <Text>{item.description}</Text>
                         <Text>{item.street}</Text>
                         <Text>{item.zip} {item.city}</Text>
                         <Text>GEO: {item.geo}</Text>
                         <Text>{item.rating}</Text>
-                    </Text>
-
-
+                    </View>
                 ))}
-
+                </ScrollView>
 
             </View>
         );
     }
 }
+
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -144,4 +143,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    Image:{
+        width: 500,
+        height: 500
+    }
 });
