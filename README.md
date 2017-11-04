@@ -89,6 +89,7 @@ web
 19 hours
 
 total: 72 hours.
+Since our teams velocity is not determined yet, no more user stories will be added until several sprints are completed, and the velocity that we add user stories is learned.
 
 ## Manual: how to use the system!
 
