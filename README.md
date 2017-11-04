@@ -1,9 +1,10 @@
 # CA3
 
-Group 3: Benjamin Løvig Rasmussen,
-Joachim Henvig Hansen, 
-Mikkel Lund Clausen & 
-Peter Leonhardt Rasmussen(Minimekill)
+Group 3: 
+- Benjamin Løvig Rasmussen
+- Joachim Henvig Hansen 
+- Mikkel Lund Clausen 
+- Peter Leonhardt Rasmussen(Minimekill)
 
 ## Backend feature list:
 
