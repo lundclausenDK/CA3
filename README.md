@@ -93,7 +93,7 @@ Since our teams velocity is not determined yet, no more user stories will be add
 
 ## Manual: how to use the system!
 
-go to the website www.drayzin.tk. The only element you can interact with is the top menu.
+go to the website https://designcookies.dk/#/. The only element you can interact with is the top menu.
 - Places
 
 Without logging in you can already click on places and see the current places in the systems database. Here you can either search for a place using the search bar and clicking submit. You are also able to sort the list of places by clicking the "Sort on name" button, which will sort the list alphabetically. Clicking "Sort on rating" will sort the places according to their current raiting, reclicking this button will shift the ascending and descending order of how the places are sorted.
