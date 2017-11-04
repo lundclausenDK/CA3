@@ -1,17 +1,18 @@
 package main;
 
 import entity.Place;
+import entity.Rating;
+import entity.Role;
+import entity.User;
+import facades.CollectiveFacadeFactory;
+import facades.ICollectiveFacade;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import security.PasswordStorage;
 
 public class Main {
-    public static void main(String[] args) {
-        
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu_development");
-        EntityManager em = emf.createEntityManager();
-        
-        em.getTransaction().begin();
+    public static void main(String[] args) throws PasswordStorage.CannotPerformOperationException {
         
         Place place01 = new Place();
         Place place02 = new Place();
@@ -44,13 +45,26 @@ public class Main {
         place03.setZip(8300);
         place03.setRating(3);
         
-        em.persist(place01);
-        em.persist(place02);
-        em.persist(place03);
+        ICollectiveFacade facade = CollectiveFacadeFactory.getInstance();
         
-        em.getTransaction().commit();
-        em.close();
+        Role userRole = new Role("User");
+        Role adminRole = new Role("Admin");
         
+        User user = new User("user", "test");
+        User admin = new User("admin", "test");
+        user.addRole(userRole);
+        admin.addRole(adminRole);
+        
+        
+        
+        facade.createRole(userRole);
+        facade.createRole(adminRole);
+        facade.registerUser(user);
+        facade.registerUser(admin);
+        
+        facade.createPlace(place01);
+        facade.createPlace(place02);
+        facade.createPlace(place03);
     }
 
 }
