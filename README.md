@@ -24,7 +24,7 @@ Following actions can be done by the rest endpoints:
 all rest endpoints retrieves and insert their data into the sql via the facades interface located in the package "facades".
 
 
-## web frontend feature list: 
+## Web frontend feature list: 
 
 - a non user can register on the page and become a member.
 
@@ -55,12 +55,12 @@ all rest endpoints retrieves and insert their data into the sql via the facades 
 - a user can insert a new place using the "add a new place" in the top menu
 
 
-## app frontend feature list:
+## App frontend feature list:
 - a non user can see all places
 
 
 
-## future of this project:
+## Future of this project:
 
 web/app
 
