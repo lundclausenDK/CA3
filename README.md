@@ -2,7 +2,7 @@
 
 Group 3: Benjamin Løvig Rasmussen, Joachim Henvig Hansen, Mikkel Lund Clausen & Peter Leonhardt Rasmussen(Minimekill)
 
-Backend feature list:
+## Backend feature list:
 
 The server is able to create and hand out security tokens to frontend users to make sure that the server can recognise
 users and admins.
@@ -20,9 +20,7 @@ Following actions can be done by the rest endpoints:
 all rest endpoints retrieves and insert their data into the sql via the facades interface located in the package "facades".
 
 
-web frontend feature list: 
-
-The project reached the following goals:
+## web frontend feature list: 
 
 - a non user can register on the page and become a member.
 
@@ -53,12 +51,12 @@ The project reached the following goals:
 - a user can insert a new place using the "add a new place" in the top menu
 
 
-app frontend feature list:
+## app frontend feature list:
 - a non user can see all places
 
 
 
-future of this project:
+## future of this project:
 
 web/app
 
@@ -90,7 +88,7 @@ web
 
 
 
-#Manual: how to use the system!
+## Manual: how to use the system!
 
 go to the website www.drayzin.tk. The only element you can interact with is the top menu.
 - Places
