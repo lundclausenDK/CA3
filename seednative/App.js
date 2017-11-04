@@ -20,7 +20,7 @@ export default class App extends React.Component {
     }
 
     getData = () => {
-        fetch(URL + "api/places/")
+        fetch(URL + "http://localhost:8080/seedMaven/api/places/")
             .then(function (response) {
                 return response.json()
             }).then(function (data) {
