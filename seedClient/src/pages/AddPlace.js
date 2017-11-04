@@ -1,4 +1,5 @@
 import React from "react";
+import fetchHelper from "../facades/fetchHelpers";
 
 const URL = require("../../package.json").serverURL;
 
@@ -27,21 +28,16 @@ export default class AddPlace extends React.Component {
     };
 
     addData = () => {
-        fetch(URL + "api/upload/place", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + sessionStorage.token
-            },
-            body: JSON.stringify({
-                name: this.state.name,
-                street: this.state.street,
-                city: this.state.city,
-                zip: this.state.zip,
-                description: this.state.description
-            })
-        })
+    
+        const options = fetchHelper.makeOptions("POST", true, {
+            name: this.state.name,
+            street: this.state.street,
+            city: this.state.city,
+            zip: this.state.zip,
+            description: this.state.description
+        });
+
+        fetch(URL + "api/upload/place", options);
     };
 
     render() {
