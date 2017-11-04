@@ -1,7 +1,7 @@
 import jwtDecode from "jwt-decode";
-import fetchHelper, { errorChecker } from "../facades/fetchHelpers"
+import fetchHelper, { errorChecker } from "../../seedClient/src/facades/fetchHelpers"
 
-const URL = require("../../package.json").serverURL;
+const URL = require("../../seedClient/package.json").serverURL;
 
 class AuthenticationHandler {
 

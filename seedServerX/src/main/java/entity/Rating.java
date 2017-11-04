@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -20,6 +18,15 @@ public class Rating implements Serializable {
     
     @OneToOne
     private User user;
+
+    public Rating()
+    {
+    }
+
+    public Rating(int ratingValue)
+    {
+        this.ratingValue = ratingValue;
+    }
     
     public int getRatingValue() {
         return ratingValue;

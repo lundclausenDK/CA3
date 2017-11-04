@@ -18,6 +18,7 @@ public interface ICollectiveFacade
     boolean createRole(Role role);
     boolean removeRole(String roleName);
     Role findRole(String roleName);
+    List<Role> listAllRoles();
     
     boolean createPlace(Place place);
     boolean removePlace(int id);

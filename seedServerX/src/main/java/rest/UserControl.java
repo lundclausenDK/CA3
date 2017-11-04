@@ -1,17 +1,20 @@
 package rest;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import entity.Role;
 import facades.CollectiveFacadeFactory;
+import facades.ICollectiveFacade;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -22,6 +25,21 @@ import security.PasswordStorage;
 @RolesAllowed("Admin")
 public class UserControl {
 
+    private ICollectiveFacade facade = CollectiveFacadeFactory.getInstance();
+    
+    @GET
+    @Path("list_roles")
+    public String listAllRoles()
+    {
+        List<Role> res = facade.listAllRoles();
+        String[] roles = new String[res.size()];
+        for (int i = 0; i < res.size(); i++)
+        {
+            roles[i] = res.get(i).getRoleName();
+        }
+        return new Gson().toJson(roles);
+    }
+
     @POST
     @Path("delete")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -31,7 +49,7 @@ public class UserControl {
         JsonObject json = new JsonParser().parse(body).getAsJsonObject();
         String username = json.get("username").getAsString();
 
-        boolean success = CollectiveFacadeFactory.getInstance().deleteUser(username);
+        boolean success = facade.deleteUser(username);
 
         if (success)
         {
@@ -61,7 +79,7 @@ public class UserControl {
         try
         {
             entity.User registrant = new entity.User(username, password, foundRoles);
-            boolean success = CollectiveFacadeFactory.getInstance().registerUser(registrant);
+            boolean success = facade.registerUser(registrant);
 
             if (success)
             {
@@ -93,7 +111,7 @@ public class UserControl {
         }
 
         entity.User registrant = new entity.User(username, foundRoles);
-        boolean success = CollectiveFacadeFactory.getInstance().editUser(registrant);
+        boolean success = facade.editUser(registrant);
 
         if (success)
         {
