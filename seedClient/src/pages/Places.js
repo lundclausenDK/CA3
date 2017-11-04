@@ -83,7 +83,7 @@ export default class Place extends React.Component {
 
     submitRating = (e) => {
         const ratingString =  e.target.value.split(" ");
-        const locationID = document.getElementById("ratingID").value;
+        const locationID = e.target.name;
         const rating = ratingString[0];
 
         let myRatingPost = {
@@ -130,15 +130,14 @@ export default class Place extends React.Component {
 
                         {item.rated?
                             (<div>{item.rating}</div>) :
-                            (<form>
-                                <input id="ratingID" type="hidden" value={item.id}/>
-                                <select onChange={this.submitRating}>
+                            (<form >
+                                <select name={item.id} onChange={this.submitRating}>
                                     <option>Rate this place...</option>
-                                    <option>5 (Most positive)</option>
-                                    <option>4</option>
-                                    <option>3</option>
-                                    <option>2</option>
-                                    <option>1 (Low of the lowest)</option>
+                                    <option >5 (Most positive)</option>
+                                    <option >4</option>
+                                    <option >3</option>
+                                    <option >2</option>
+                                    <option >1 (Low of the lowest)</option>
                                 </select>
                             </form>)}
 
