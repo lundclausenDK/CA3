@@ -127,4 +127,9 @@ class CollectiveFacade implements ICollectiveFacade {
     {
         return placeFacade.searchForPlaces(searchWord);
     }
+    
+    @Override
+    public void addRating(int locationID, int rating, String userName) {
+        placeFacade.addRating(locationID, rating, userName);
+    }
 }

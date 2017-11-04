@@ -24,4 +24,5 @@ public interface ICollectiveFacade
     Place findPlace(int id);
     List<Place> listAllPlaces();
     List<Place> searchForPlaces(String searchWord);
+    void addRating(int locationID, int rating, String userName);
 }
