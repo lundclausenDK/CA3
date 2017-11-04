@@ -1,6 +1,10 @@
 # CA3
 
-Group 3: Benjamin Løvig Rasmussen, Joachim Henvig Hansen, Mikkel Lund Clausen & Peter Leonhardt Rasmussen(Minimekill)
+Group 3: 
+- Benjamin Løvig Rasmussen
+- Joachim Henvig Hansen 
+- Mikkel Lund Clausen 
+- Peter Leonhardt Rasmussen(Minimekill)
 
 ## Backend feature list:
 
@@ -20,7 +24,7 @@ Following actions can be done by the rest endpoints:
 all rest endpoints retrieves and insert their data into the sql via the facades interface located in the package "facades".
 
 
-## web frontend feature list: 
+## Web frontend feature list: 
 
 - a non user can register on the page and become a member.
 
@@ -51,12 +55,12 @@ all rest endpoints retrieves and insert their data into the sql via the facades 
 - a user can insert a new place using the "add a new place" in the top menu
 
 
-## app frontend feature list:
+## App frontend feature list:
 - a non user can see all places
 
 
 
-## future of this project:
+## Future of this project:
 
 web/app
 
@@ -93,7 +97,7 @@ Since our teams velocity is not determined yet, no more user stories will be add
 
 ## Manual: how to use the system!
 
-go to the website www.drayzin.tk. The only element you can interact with is the top menu.
+go to the website https://designcookies.dk/#/. The only element you can interact with is the top menu.
 - Places
 
 Without logging in you can already click on places and see the current places in the systems database. Here you can either search for a place using the search bar and clicking submit. You are also able to sort the list of places by clicking the "Sort on name" button, which will sort the list alphabetically. Clicking "Sort on rating" will sort the places according to their current raiting, reclicking this button will shift the ascending and descending order of how the places are sorted.
@@ -127,7 +131,7 @@ Who made what?:
 - Joachim Henvig Hansen: Java, REACT, REACT Native, rest, JPA
 - Benjamin Løvig Rasmussen: Java, REACT, rest, JPA
 - Peter Leonhardt Rasmussen: Java, REACT, rest
-- Mikkel Lund Clausen: Java, REACT REACT Native, rest, JPA
+- Mikkel Lund Clausen: Java, REACT, REACT Native, rest, JPA
 
 
 link to website

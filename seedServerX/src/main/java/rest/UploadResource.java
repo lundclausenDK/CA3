@@ -10,6 +10,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
@@ -23,16 +25,13 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
 @Path("upload")
+//@RolesAllowed("User")
 public class UploadResource {
 
-    //public static final String FILE_LOCATION = "D:\\photobucket\\";
-    ICollectiveFacade uf = CollectiveFacadeFactory.getInstance();
-    public String path = "/img";
+    private ICollectiveFacade uf = CollectiveFacadeFactory.getInstance();
+    private String path = "c://img/";
 
     public UploadResource() {
-        if (!System.getProperty("os.name").equals("Windows")) {
-            path = "/etc/img";
-        }
         File folder = new File(path);
         folder.mkdir();
     }
@@ -67,7 +66,7 @@ public class UploadResource {
 
     private void saveFile(InputStream is, String fileLocation) throws IOException {
 
-        String location = path + fileLocation;
+        String location = fileLocation;
         try (OutputStream os = new FileOutputStream(new File(location))) {
             byte[] buffer = new byte[256];
             int bytes = 0;
@@ -78,7 +77,6 @@ public class UploadResource {
     }
 
     @Path("/place")
-    @RolesAllowed("User")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response uploadHouse(String content) {
@@ -96,13 +94,11 @@ public class UploadResource {
         return Response.ok(status).build();
     }
 
-    /* to be continued
     @Path("/placeUpload")
-    @RolesAllowed("User")
     @POST
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response uploadPlace(@DefaultValue("") @FormDataParam("name") String name,
-            @DefaultValue("") @FormDataParam("info") String info,
+            @DefaultValue("") @FormDataParam("desc") String info,
             @DefaultValue("") @FormDataParam("geo") String geo,
             @DefaultValue("") @FormDataParam("street") String street,
             @DefaultValue("") @FormDataParam("zip") String zip,
@@ -115,7 +111,8 @@ public class UploadResource {
         String placeGEO = geo;
         String placeStreet = street;
         String placeCity = city;
-        String fileName = fileDisposition.getFileName();
+        String fileName = path + fileDisposition.getFileName();
+        System.out.println(fileName);
         int placeZip = Integer.parseInt(zip);
 
         try {
@@ -129,5 +126,4 @@ public class UploadResource {
         String status = "{\"status\":\"uploaded\"}";
         return Response.ok(status).build();
     }
-     */
 }
