@@ -48,6 +48,7 @@ public class UploadResource {
      *
      * @return an instance of java.lang.String
      */
+    /*
     @Path("/picture")
     @POST
     @Consumes(MediaType.MULTIPART_FORM_DATA)
@@ -63,7 +64,8 @@ public class UploadResource {
         String status = "{\"status\":\"uploaded\"}";
         return Response.ok(status).build();
     }
-
+    */
+    
     private void saveFile(InputStream is, String fileLocation) throws IOException {
 
         String location = fileLocation;
