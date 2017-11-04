@@ -11,8 +11,13 @@ export default class Place extends React.Component {
             view: [],
             ratingSort: true,
             rated: false,
-            userName: auth.userName
+            userName: "none"
         };
+
+        auth.initDataFromToken();
+        if (auth.isloggedIn) {
+            this.state.userName = auth.userName;
+        }
 
         this.getData = this.getData.bind(this);
         this.getData();
@@ -24,9 +29,9 @@ export default class Place extends React.Component {
                 return response.json()
             }).then(function (data) {
             //console.log(data);
-            for(let i = 0; i < data.length; i++){
-                for(let y = 0; y < data[i].raters.length; y++){
-                    if(data[i].raters[y].user.includes(this.state.userName.toLocaleLowerCase())){
+            for (let i = 0; i < data.length; i++) {
+                for (let y = 0; y < data[i].raters.length; y++) {
+                    if (data[i].raters[y].user.includes(this.state.userName.toLocaleLowerCase())) {
                         data[i].rated = true;
                     }
                 }
@@ -82,14 +87,14 @@ export default class Place extends React.Component {
     };
 
     submitRating = (e) => {
-        const ratingString =  e.target.value.split(" ");
-        const locationID = document.getElementById("ratingID").value;
+        const ratingString = e.target.value.split(" ");
+        const locationID = e.target.name;
         const rating = ratingString[0];
 
         let myRatingPost = {
             locationID: locationID,
             rating: rating,
-            userName: auth.userName
+            userName: this.state.userName
         };
         console.log(myRatingPost);
         fetch(URL + "api/rate", {
@@ -100,7 +105,7 @@ export default class Place extends React.Component {
                 'Authorization': `Bearer ${sessionStorage.token}`
             },
             body: JSON.stringify(myRatingPost)
-        }).then(()=>{
+        }).then(() => {
             this.getData();
         });
 
@@ -114,7 +119,11 @@ export default class Place extends React.Component {
                 <div className="tools-container">
                     <form>
                         <input id="searchText" type="text" placeholder="Type the name here"/>
-                        <button onClick={this.getSearch}>submit</button> - <button onClick={this.sortOnName}>Sort on Name</button> - <button onClick={this.sortOnRating}>Sort on Rating</button>
+                        <button onClick={this.getSearch}>submit</button>
+                        -
+                        <button onClick={this.sortOnName}>Sort on Name</button>
+                        -
+                        <button onClick={this.sortOnRating}>Sort on Rating</button>
                     </form>
                 </div>
 
@@ -128,11 +137,10 @@ export default class Place extends React.Component {
                         <div>{item.zip} {item.city}</div>
                         <div>GEO: {item.geo}</div>
 
-                        {item.rated?
-                            (<div>{item.rating}</div>) :
+                        {item.rated || this.state.userName === "none"?
+                            (<div>Rating: {item.rating}</div>) :
                             (<form>
-                                <input id="ratingID" type="hidden" value={item.id}/>
-                                <select onChange={this.submitRating}>
+                                <select name={item.id} onChange={this.submitRating}>
                                     <option>Rate this place...</option>
                                     <option>5 (Most positive)</option>
                                     <option>4</option>
