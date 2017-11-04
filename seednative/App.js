@@ -1,17 +1,18 @@
-import React from 'react'
-import auth from '../authorization/auth'
+import React from 'react';
+import {StyleSheet, Text, View, TextInput, Button, Form, AppRegistry, Header} from 'react-native';
 
-const URL = require("../../package.json").serverURL;
+const URL = require("./package.json").serverURL;
 
-export default class Place extends React.Component {
+export default class App extends React.Component {
+
     constructor() {
         super();
         this.state = {
             places: [],
             view: [],
             ratingSort: true,
-            rated: false,
-            userName: auth.userName
+            rated: false
+            //userName: auth.userName
         };
 
         this.getData = this.getData.bind(this);
@@ -24,9 +25,9 @@ export default class Place extends React.Component {
                 return response.json()
             }).then(function (data) {
             //console.log(data);
-            for(let i = 0; i < data.length; i++){
-                for(let y = 0; y < data[i].raters.length; y++){
-                    if(data[i].raters[y].user.includes(this.state.userName.toLocaleLowerCase())){
+            for (let i = 0; i < data.length; i++) {
+                for (let y = 0; y < data[i].raters.length; y++) {
+                    if (data[i].raters[y].user.includes(this.state.userName.toLocaleLowerCase())) {
                         data[i].rated = true;
                     }
                 }
@@ -82,56 +83,49 @@ export default class Place extends React.Component {
     };
 
     submitRating = (e) => {
-        const ratingString =  e.target.value.split(" ");
-        const locationID = document.getElementById("ratingID").value;
-        const rating = ratingString[0];
+        console.log(e.target.value);
 
-        let myRatingPost = {
-            locationID: locationID,
-            rating: rating,
-            userName: auth.userName
-        };
-        console.log(myRatingPost);
-        fetch(URL + "api/rate", {
+        fetch('https://mywebsite.com/endpoint/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${sessionStorage.token}`
             },
-            body: JSON.stringify(myRatingPost)
-        }).then(()=>{
-            this.getData();
+            body: JSON.stringify({
+                ratingValue: e.target.value
+            })
         });
 
     };
 
+
     render() {
         return (
-            <div>
+            <View style={styles.container}>
 
-                <h2>Places</h2>
-                <div className="tools-container">
-                    <form>
-                        <input id="searchText" type="text" placeholder="Type the name here"/>
-                        <button onClick={this.getSearch}>submit</button> - <button onClick={this.sortOnName}>Sort on Name</button> - <button onClick={this.sortOnRating}>Sort on Rating</button>
-                    </form>
-                </div>
+
+
+                <TextInput id="searchText"/>
+                <Button onPress={this.getSearch} title="Submit"/>
+
+                <Button onPress={this.sortOnName} title="Sort on Name"/>
+
+                <Button onPress={this.sortOnRating} title="Sort on Rating"/>
+
 
                 {this.state.view.map((item) => (
-                    <div className="places-container clearfix">
+                    <Text>
 
-                        <div className="left image"><img src={item.url}/></div>
-                        <div className="bold">{item.name}</div>
-                        <div>{item.description}</div>
-                        <div>{item.street}</div>
-                        <div>{item.zip} {item.city}</div>
-                        <div>GEO: {item.geo}</div>
+                        <Text className="left image"><img src={item.url}/></Text>
+                        <Text className="bold">{item.name}</Text>
+                        <Text>{item.description}</Text>
+                        <Text>{item.street}</Text>
+                        <Text>{item.zip} {item.city}</Text>
+                        <Text>GEO: {item.geo}</Text>
 
-                        {item.rated?
-                            (<div>{item.rating}</div>) :
-                            (<form>
-                                <input id="ratingID" type="hidden" value={item.id}/>
+                        {item.rated ?
+                            (<Text>{item.rating}</Text>) :
+                            (
                                 <select onChange={this.submitRating}>
                                     <option>Rate this place...</option>
                                     <option>5 (Most positive)</option>
@@ -140,17 +134,25 @@ export default class Place extends React.Component {
                                     <option>2</option>
                                     <option>1 (Low of the lowest)</option>
                                 </select>
-                            </form>)}
+                            )}
 
 
-                    </div>
+                    </Text>
 
 
                 ))}
 
-            </div>
 
-
-        )
+            </View>
+        );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});

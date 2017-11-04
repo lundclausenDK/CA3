@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../seedClient/.idea/seedClient.iml" filepath="$PROJECT_DIR$/../seedClient/.idea/seedClient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/seednative.iml" filepath="$PROJECT_DIR$/.idea/seednative.iml" />
+    </modules>
+  </component>
+</project>
