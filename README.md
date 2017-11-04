@@ -60,29 +60,29 @@ all rest endpoints retrieves and insert their data into the sql via the facades 
 
 web/app
 
-- as a user i would like to be able to book a summerhouse from the list of summerhouses and cancel bookings. (8 hours)
+- as a user i would like to be able to book a place from the list of places and cancel bookings. (8 hours)
 - as a user i would like to see a list of bookings made by me. (2 hours)
 - as a user i would like to delete/edit bookings made by me. (2 hours)
-- as a user i would like to be able to leave a comment on a summerhouse and edit and delete this comment. (4 hours)
-- as a user i would like to be able to read comments from other users on a summerhouse. (2 hours)
-- as a user i would like to put pictures on a summerhouse. (2 hours)
-- as a user i would like to delete my own pictures on a summerhouse. (1 hours)
-- as a user i would like to see all pictures users has put on a summerhouse (1 hours)
-- as a user i would like to put pictures with GEO location on a summerhouse. (2 hours)
-- as a user i would like to see a summerhouse with pictures from other users and geo locations and see how far theese pictures are taken from  from the summerhouse. (3 hours)
+- as a user i would like to be able to leave a comment on a place and edit and delete this comment. (4 hours)
+- as a user i would like to be able to read comments from other users on a place. (2 hours)
+- as a user i would like to put pictures on a place. (2 hours)
+- as a user i would like to delete my own pictures on a place. (1 hours)
+- as a user i would like to see all pictures users has put on a place. (1 hours)
+- as a user i would like to put pictures with GEO location on a place. (2 hours)
+- as a user i would like to see a place with pictures from other users and geo locations and see how far theese pictures are taken from  from the place. (3 hours)
 - as a user i would like if there was a online chat/message system to talk with other users/admin. (16 hours)
 - as a user i would like that the web/app looks good and is easy to use. (4 hours)
-- as a user i would like to see events on a summerhouse. (3 hours)
-- as a user i would like to put events on a summerhouse. (3 hours)
+- as a user i would like to see events on a place (such as festivals). (3 hours)
+- as a user i would like to put events on a place. (3 hours)
 
 53 hours
 
 web
 
-- as an admin i would like to be able to edit/delete any summerhouse. (2 hours)
-- as an admin i would like to see a list of bookings on any given summerhouses in the system. (2 hours)
-- as an admin i would like to delete/edit bookings on any given summerhouse in the system. (2 hours)
-- as an admin i would like to see all pictures on a summerhouse and edit/delete theese. (3 hours)
+- as an admin i would like to be able to edit/delete any place. (2 hours)
+- as an admin i would like to see a list of bookings on any given place in the system. (2 hours)
+- as an admin i would like to delete/edit bookings on any given place in the system. (2 hours)
+- as an admin i would like to see all pictures on a place and edit/delete theese. (3 hours)
 - as an admin i would like to see users and admins currently online. (8 hours)
 - as an admin i would like to be able to message users and other admins. (2 hours)
 
