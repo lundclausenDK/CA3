@@ -34,7 +34,7 @@ class AdminPage extends Component {
 
         fetch(URL + "api/user_control/list_roles", options)
             .then((response) => response.json())
-                .then((json) => { this.setState({roles: json}) });
+            .then((json) => { this.setState({ roles: json }) });
     }
 
     deleteUser = (username) => {
@@ -52,7 +52,13 @@ class AdminPage extends Component {
         const password = document.getElementById("password_input").value;
         const startRole = document.getElementById("role_select").value;
         const roles = [];
-        roles.push()
+        roles.push(startRole);
+
+        const newUser = {username: username, password: password, roles: roles};
+        const options = fetchHelper.makeOptions("POST", true, newUser);
+
+        fetch(URL + "api/user_control/add", options)
+            .then((response) => { this.setState({ err: response.status }) });
     }
 
     render() {
@@ -60,8 +66,8 @@ class AdminPage extends Component {
             <div>
                 <h2>Admin Panel</h2>
                 <div>
-                    <span> Username: </span><input type="text" id="username_input"/><span> Password: </span><input type="text" id="password_input"/>
-                    <span> Roles: </span><select id="role_select"> {this.state.roles.map((ele) => { return (<option value={ele}>{ele}</option>)} )} </select>
+                    <span> Username: </span><input type="text" id="username_input" /><span> Password: </span><input type="text" id="password_input" />
+                    <span> Roles: </span><select id="role_select"> {this.state.roles.map((ele) => { return (<option value={ele}>{ele}</option>) })} </select>
                     <button onClick={this.addUser}>Add User</button>
                 </div>
                 <br />
