@@ -96,7 +96,7 @@ class PlaceFacade implements IPlaceFacade {
         em.getTransaction().begin();
         
         Place place = em.find(Place.class, locationID);
-        User user = (User) em.createQuery("select u from User u where u.userName like :userName").setParameter("userName", userName).getSingleResult();
+        User user = (User) em.createQuery("select u from entity.User u where u.userName like :userName").setParameter("userName", userName).getSingleResult();
         List<Rating> ratings = place.getRatings();
         Rating newRating = new Rating();
         newRating.setRatingValue(rating);

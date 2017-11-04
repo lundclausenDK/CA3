@@ -82,17 +82,26 @@ export default class Place extends React.Component {
     };
 
     submitRating = (e) => {
-        console.log(e.target.value);
+        const ratingString =  e.target.value.split(" ");
+        const locationID = document.getElementById("ratingID").value;
+        const rating = ratingString[0];
 
-        fetch('https://mywebsite.com/endpoint/', {
+        let myRatingPost = {
+            locationID: locationID,
+            rating: rating,
+            userName: auth.userName
+        };
+        console.log(myRatingPost);
+        fetch(URL + "api/rate", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionStorage.token}`
             },
-            body: JSON.stringify({
-                ratingValue: e.target.value
-            })
+            body: JSON.stringify(myRatingPost)
+        }).then(()=>{
+            this.getData();
         });
 
     };
@@ -122,6 +131,7 @@ export default class Place extends React.Component {
                         {item.rated?
                             (<div>{item.rating}</div>) :
                             (<form>
+                                <input id="ratingID" type="hidden" value={item.id}/>
                                 <select onChange={this.submitRating}>
                                     <option>Rate this place...</option>
                                     <option>5 (Most positive)</option>

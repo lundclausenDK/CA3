@@ -11,7 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 
 @Path("rate")
-@RolesAllowed("Admin")
+@RolesAllowed("User")
 public class RatingEndPoint {
     
     ICollectiveFacade cf = CollectiveFacadeFactory.getInstance();

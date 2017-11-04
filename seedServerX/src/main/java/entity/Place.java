@@ -2,6 +2,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class Place implements Serializable {
     private String url;
     private int zip;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Rating> ratings;
 
     @Column(nullable = true)
