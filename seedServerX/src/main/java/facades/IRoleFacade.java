@@ -1,6 +1,7 @@
 package facades;
 
 import entity.Role;
+import java.util.List;
 import javax.persistence.EntityManagerFactory;
 
 interface IRoleFacade 
@@ -9,4 +10,5 @@ interface IRoleFacade
     boolean createRole(Role role);
     boolean removeRole(String roleName);
     Role findRole(String roleName);
+    List<Role> listAllRoles();
 }
