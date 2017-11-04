@@ -25,7 +25,6 @@ public class Main {
         place01.setUrl("http://strand-hotel.dk/hotel/");
         place01.setGeo("56.0588077,12.0672844");
         place01.setZip(3220);
-        place01.setRating(5);
         
         place02.setName("Skjoldenæsholm");
         place02.setCity("Jystrup");
@@ -34,7 +33,6 @@ public class Main {
         place02.setUrl("http://www.skj.dk/");
         place02.setGeo("55.604444,12.088299");
         place02.setZip(4174);
-        place02.setRating(5);
         
         place03.setName("Norsminde Kro");
         place03.setCity("Odder");
@@ -43,7 +41,6 @@ public class Main {
         place03.setUrl("https://www.norsmindekro.dk/");
         place03.setGeo("56.021966,10.2598323");
         place03.setZip(8300);
-        place03.setRating(3);
         
         ICollectiveFacade facade = CollectiveFacadeFactory.getInstance();
         

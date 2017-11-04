@@ -29,7 +29,6 @@ public class Place implements Serializable {
 
     @Column(nullable = true)
     private String geo;
-    private int rating;
 
     public Place(String name, String city, String street, String description, String url, int zip, String geo) {
         this.name = name;
@@ -120,14 +119,6 @@ public class Place implements Serializable {
 
     public void setGeo(String geo) {
         this.geo = geo;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
     }
 
     @Override
