@@ -20,11 +20,12 @@ export default class App extends React.Component {
     }
 
     getData = () => {
-        fetch(URL + "http://localhost:8080/seedMaven/api/places/")
+        console.log("ping");
+        fetch("http://drayzin.tk/backend/seedMaven/api/places")
             .then(function (response) {
                 return response.json()
             }).then(function (data) {
-            //console.log(data);
+            console.log(data);
             for (let i = 0; i < data.length; i++) {
                 for (let y = 0; y < data[i].raters.length; y++) {
                     if (data[i].raters[y].user.includes(this.state.userName.toLocaleLowerCase())) {
