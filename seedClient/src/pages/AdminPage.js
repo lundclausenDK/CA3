@@ -28,8 +28,7 @@ class AdminPage extends Component {
     }
 
     deleteUser = (username) => {
-        const options = fetchHelper.makeOptions("POST", true, {"username": username});
-        console.log(URL + "api/user_control/delete");
+        const options = fetchHelper.makeOptions("POST", true, {username: username});
         fetch(URL + "api/user_control/delete", options)
             .then((response) => { this.setState({err: response.status}) });
     }
@@ -40,7 +39,7 @@ class AdminPage extends Component {
                 <h2>Admin Panel</h2>
                 <div>
                     {this.state.data.map((item) => {
-                        return(<div>{item} <button>Edit</button> <button onClick={ (item) => {this.deleteUser(item)} }>Delete</button></div>)
+                        return(<div>{item} <button>Edit</button> <button onClick={ () => {this.deleteUser(item)} }>Delete</button></div>)
                     })}
                 </div>
                 {this.state.err && (
