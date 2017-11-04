@@ -130,7 +130,7 @@ export default class Place extends React.Component {
                 {this.state.view.map((item) => (
                     <div className="places-container clearfix">
 
-                        <div className="left image"><img src={item.url}/></div>
+                        <div className="left image"><img src={"https://designcookies.dk/img/"+item.url}/></div>
                         <div className="bold">{item.name}</div>
                         <div>{item.description}</div>
                         <div>{item.street}</div>

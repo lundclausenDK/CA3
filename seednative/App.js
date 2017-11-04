@@ -16,12 +16,12 @@ export default class App extends React.Component {
         };
 
         this.getData = this.getData.bind(this);
-        this.getData();
+        setInterval(this.getData(), 30000)
     }
 
     getData = () => {
         console.log("ping");
-        fetch("http://a684cfe3.ngrok.io/seedMaven/api/places", {
+        fetch(URL + "api/places", {
             method: "GET", headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -120,7 +120,7 @@ export default class App extends React.Component {
                 <ScrollView style={{width: '98%'}}>
                     {this.state.view.map((item) => (
                         <View key={item.id} style={{borderColor: "black", borderWidth: 2, marginBottom: 5}}>
-                            {item.url && <Image source={{uri: item.url}} style={styles.Image}/>}
+                            {item.url && <Image source={{uri: "https://designcookies.dk/img/"+item.url}} style={styles.Image}/>}
                             <Text style={styles.textPadding}>{item.name}</Text>
                             <Text style={styles.textPadding}>{item.description}</Text>
                             <Text style={styles.textPadding}>{item.street}</Text>
