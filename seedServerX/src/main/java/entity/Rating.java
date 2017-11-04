@@ -23,10 +23,9 @@ public class Rating implements Serializable {
     {
     }
 
-    public Rating(int ratingValue, User user)
+    public Rating(int ratingValue)
     {
         this.ratingValue = ratingValue;
-        this.user = user;
     }
     
     public int getRatingValue() {

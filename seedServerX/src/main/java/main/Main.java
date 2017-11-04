@@ -55,8 +55,6 @@ public class Main {
         user.addRole(userRole);
         admin.addRole(adminRole);
         
-        
-        
         facade.createRole(userRole);
         facade.createRole(adminRole);
         facade.registerUser(user);
