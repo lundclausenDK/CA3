@@ -116,4 +116,6 @@ If you are logged, click the "places" in the top menu. A list of places stored i
 
 Logging in with as a admin ("admin","test") you now have acces to a "users page", link located in the top menu. From here you can add, edit delete and promote users. Promoting users will promote them to admins.
 
+
+link to website
 https://designcookies.dk/#/
