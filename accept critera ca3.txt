@@ -1,0 +1,91 @@
+Given
+1 The book is checked out
+2 the book doesnt exist
+3 user is not registered in the system
+4 a user has already booked the book
+5 the library has flooded
+6 the book is checked in
+7 the book is checked out and the reservationlist.length / size() > 1
+When 
+1 a user tries to book the book
+2 a user tries to book the book
+3 user tries to book the book
+4 a user tries to book the book
+5 a user tries to book the book
+6 a user tries to book the book
+7 a user tries to extend the loan period on the book
+Then
+1 user gets an message that the book is unavailable
+2 user gets a message "the book doesnt exist"
+3 user gets a message "you need to be logged in to perform this action"
+4 user gets a message "you have already booked this book"
+5 a user gets message "the library has flooded"
+6 user gets a message "book has succesfully been booked"
+7 user gets message "book is already reserved by another user"
+
+
+UP exercise
+
+Primary Actor: USER
+Preconditions: The user must be logged in.
+Post Conditions: The user has uploaded a place with a description and a picture
+Main succes scenario:
+1. The user enters the addplace site.
+2. The user enters details about a place.
+3. The user adds a picture.
+4. the user clicks the ok button.
+5. The System validates the user.
+6. The System stores the place details.
+7. The System stores the picture.
+8. The System sends a succes message to the user.
+9. The user recieves a succes message from the system.
+10.the user goes home...
+
+
+
+Primary Actor: User
+Preconditions: The User must be logged in, A summerhouse exists and is available.
+post Conditions: the user succesfully rents a place.
+main succes scenario:
+1. The user finds a summerhouse
+2. the user indicates that he/she wants to rent the summerhouse
+3. the system validates the user
+4. the system validates the summerhouse availability.
+5. the system stores the user as a renter on the summerhouse.
+6. the system sets the rental period
+7. the system sends back a succes message to the user.
+8. the user recieves a succes message from the system.
+9. the user logs out.
+
+
+
+
+
+
+1 as a user, i want to be able to rent a house. (1 time, 2 timer , 3 timer) f(E) = 2 timer 
+2 as a non-user, i want to be able to register. (implememnted!) 
+3 as a registered user i want to be able to login. (implememnted!)
+4 as a logged in user i want to be able to logout (implemented!)
+5 as user i want to be able to add a house to rent out (2 , 4, 8)
+given
+1,1 a logged in user that has not rented anything as of yet and the house is unrented
+1,2 a logged in user that has not rented anything as of yet and the house is already rented
+2,1 a non-user whos username is not in use
+3,1 a registered user
+4,1 a registered user who is logged in
+5,1 a user who is logged in	
+
+When
+1,1 a user tries to rent the house
+1,2 a user tries to rent the house
+2,1 a non-user tries to register
+3,1 a registered user tries to login
+4,1 a registered user tries to log out
+5,1 a registered user tries to upload a house to rent out
+Then
+1,1 the user gets a message "succes", user is marked as a renter on the house, the house is added on the user rent list
+1,2 the user gets a message "fail hosue already rented"
+2,1 the non-user gets a message "succes", the non-user is registered as a user
+3,1 the user gets a message "succes", user is logged in
+4,1 the user gets a message "succes", user is logged out
+5,1 the user gets a message "succes", user house is added on the house list, user is added on the house as owner.
