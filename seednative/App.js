@@ -16,7 +16,7 @@ export default class App extends React.Component {
         };
 
         this.getData = this.getData.bind(this);
-        setInterval(this.getData(), 30000)
+        this.getData();
     }
 
     getData = () => {
