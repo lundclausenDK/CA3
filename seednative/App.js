@@ -19,6 +19,11 @@ const MyApp = TabNavigator({
         activeTintColor: '#e91e63',
         indicatorStyle: {
             backgroundColor: '#ffffff'
+        },
+        tabStyle:{
+            borderRightWidth: 1,
+            borderLeftWidth: 1,
+            borderTopWidth: 1
         }
     }
 });

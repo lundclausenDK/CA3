@@ -23,7 +23,7 @@ export default class Places extends React.Component {
     }
 
     static navigationOptions = {
-        tabBarLabel: 'Places'
+        tabBarLabel: 'Places',
     };
 
     getData = () => {
