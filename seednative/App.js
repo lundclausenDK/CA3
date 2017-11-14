@@ -30,7 +30,6 @@ export default class App extends React.Component {
             .then(function (response) {
                 return response.json()
             }).then(function (data) {
-            console.log(data);
             for (let i = 0; i < data.length; i++) {
                 for (let y = 0; y < data[i].raters.length; y++) {
                     if (data[i].raters[y].user.includes(this.state.userName.toLocaleLowerCase())) {
@@ -109,13 +108,12 @@ export default class App extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={{flexDirection: 'row', paddingBottom: 5, justifyContent: 'space-between'}}>
-
                     <Button onPress={this.sortOnName} title="Sort on Name"/>
-
                     <Button onPress={this.sortOnRating} title="Sort on Rating"/>
-
                 </View>
-
+                <View style={{flexDirection: 'row', paddingBottom: 5, justifyContent: 'space-between'}}>
+                    <TextInput style={{borderWidth: 2, borderColor: "black", width: "30%"}} placeholder={"Search Text"}/>
+                </View>
 
                 <ScrollView style={{width: '98%'}}>
                     {this.state.view.map((item) => (
