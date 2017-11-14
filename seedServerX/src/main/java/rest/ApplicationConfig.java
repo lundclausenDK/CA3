@@ -31,6 +31,7 @@ public class ApplicationConfig extends Application {
         resources.add(rest.PlacesResource.class);
         resources.add(rest.RatingEndPoint.class);
         resources.add(rest.Register.class);
+        resources.add(rest.SummerHouseResource.class);
         resources.add(rest.UploadResource.class);
         resources.add(rest.UserControl.class);
         resources.add(rest.Users.class);
