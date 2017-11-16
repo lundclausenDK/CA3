@@ -23,7 +23,11 @@ const MyApp = TabNavigator({
         tabStyle:{
             borderRightWidth: 1,
             borderLeftWidth: 1,
-            borderTopWidth: 1
+            borderTopWidth: 1,
+            paddingTop: '2%'
+        },
+        style: {
+            height: 40
         }
     }
 });

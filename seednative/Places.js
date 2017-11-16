@@ -11,9 +11,10 @@ export default class Places extends React.Component {
             places: [],
             view: [],
             ratingSort: true,
+            nameSort: true,
             rated: false,
             userName: "none",
-            searchPressed: false,
+            optionPressed: false,
             initialized: false
         };
 
@@ -54,26 +55,38 @@ export default class Places extends React.Component {
       this.setState({view: this.state.places, initialized: true});
     };
 
-    getSearch = (e) => {
+    getSearch = () => {
         const name = this.state.searchText;
         let viewList = this.state.places.filter((place) => {
             if (place.name.toLocaleLowerCase().includes(name.toLocaleLowerCase())) {
                 return place;
             }
         });
-        this.setState({view: viewList, searchPressed: false, searchText: ""});
-        e.preventDefault();
+        this.setState({view: viewList, optionPressed: false, searchText: ""});
     };
 
     sortOnName = (e) => {
-        let sorted = this.state.view.sort((a, b) => {
-            if (a.name < b.name) {
-                return -1;
-            } else if (b.name.toLocaleLowerCase() < a.name.toLocaleLowerCase()) {
-                return 1;
-            }
-        });
-        this.setState({view: sorted});
+        let sorted;
+        if(this.state.nameSort){
+            sorted = this.state.view.sort((a, b) => {
+                if (a.name < b) {
+                    return -1;
+                } else if (a.name > b.name) {
+                    return 1;
+                }
+            });
+            this.setState({nameSort: false});
+        }else{
+            sorted = this.state.view.sort((a, b) => {
+                if (a.name > b.name) {
+                    return -1;
+                } else if (a.name < b.name) {
+                    return 1;
+                }
+            });
+            this.setState({nameSort: true});
+        }
+        this.setState({view: sorted, ratingSort: true});
         e.preventDefault();
     };
 
@@ -92,7 +105,7 @@ export default class Places extends React.Component {
                 if (a.rating > b.rating) return 1;
                 return 0;
             });
-            this.setState({ratingSort: true});
+            this.setState({ratingSort: true, nameSort: true});
         }
 
         this.setState({view: sorted});
@@ -115,28 +128,28 @@ export default class Places extends React.Component {
 
     };
 
-    changeSearchPressed= ()=>{
-        let {searchPressed} = this.state;
-        if(searchPressed === false){
-            this.setState({searchPressed: true});
+    changeOptionPressed= ()=>{
+        let {optionPressed} = this.state;
+        if(optionPressed === false){
+            this.setState({optionPressed: true});
         }else{
-            this.setState({searchPressed: false});
+            this.setState({optionPressed: false});
         }
     };
 
     render() {
-        let {view, searchPressed} = this.state;
+        let {view, optionPressed} = this.state;
         return (
             <View style={styles.container}>
                 <View style={{flexDirection: 'row', paddingBottom: 5, justifyContent: 'space-between'}}>
-                    <Button onPress={this.sortOnName} title="Sort on Name"/>
-                    <Button onPress={this.sortOnRating} title="Sort on Rating"/>
-                    <Button onPress={this.changeSearchPressed} title="Search"/>
+                    <TextInput onChangeText={(text)=>{this.setState({searchText: text})}} style={{/*borderWidth: 2, borderColor: "black",*/ width: "45%", textAlign: 'center'}} placeholder={"Search Text"}/>
+                    <Button onPress={this.getSearch} title="Search"/>
+                    <Button onPress={this.changeOptionPressed} title="Options"/>
                 </View>
 
-                {searchPressed && <View style={{flexDirection: 'row', paddingBottom: 5, justifyContent: 'space-between'}}>
-                    <TextInput onChangeText={(text)=>{this.setState({searchText: text})}} style={{borderWidth: 2, borderColor: "black", width: "45%", textAlign: 'center'}} placeholder={"Search Text"}/>
-                    <Button onPress={this.getSearch} title="submit"/>
+                {optionPressed && <View style={{flexDirection: 'row', paddingBottom: 5, justifyContent: 'space-between'}}>
+                    <Button onPress={this.sortOnName} title="Sort on Name"/>
+                    <Button onPress={this.sortOnRating} title="Sort on Rating"/>
                 </View>}
 
 
