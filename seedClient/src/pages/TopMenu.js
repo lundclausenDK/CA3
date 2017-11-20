@@ -35,6 +35,7 @@ class TopMenu extends Component {
                 {this.state.isUser && <li><Link to="/add-new-place">Add new place</Link></li>}
               
               <li><Link to="/places">Places</Link></li>
+              <li><Link to="/summerhouses">Summerhouses</Link></li>
               {this.state.isAdmin && <li><Link to="/admin">Page for Admins</Link></li>}
             </ul>
             <ul className="nav navbar-nav navbar-right">
