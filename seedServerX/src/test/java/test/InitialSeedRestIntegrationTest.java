@@ -6,7 +6,6 @@ import io.restassured.RestAssured;
 import static io.restassured.RestAssured.*;
 import io.restassured.parsing.Parser;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -30,7 +29,7 @@ public class InitialSeedRestIntegrationTest {
 
     public InitialSeedRestIntegrationTest()
     {
-        String content = "tokenSecret=c6hFJOYY75765444EEEEvgTdeMnbV30h";
+        String content = "tokenSecret=c6hFJOYY75765894TTEEvgTyeMnbVk9h";
         Properties prop = new Properties();
         try (InputStream input = new ByteArrayInputStream(content.getBytes()))
         {
