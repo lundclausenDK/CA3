@@ -20,7 +20,7 @@ const MyMapComponent = compose(
         defaultZoom={8}
         defaultCenter={{ lat: 56.15, lng: 10.5 }}
     >
-        {props.isMarkerShown && <Marker position={{ lat: 56.15, lng: 10.5 }} onClick={props.onMarkerClick} />}
+        {props.isMarkerShown && <Marker position={{ lat: 56.16, lng: 10.20 }} onClick={props.onMarkerClick} />}
     </GoogleMap>
 )
 
