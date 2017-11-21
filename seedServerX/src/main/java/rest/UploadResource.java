@@ -124,8 +124,6 @@ public class UploadResource {
             Place place = new Place(name, city, street, info, fileName, placeZip, geo);
             saveFile(file, path + fileName);
 
-            Rating r = new Rating(rating);
-            
             uf.createPlace(place);
             
             Place found = uf.findPlaceByName(name);

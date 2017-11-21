@@ -23,7 +23,7 @@ public interface ICollectiveFacade
     boolean createPlace(Place place);
     boolean removePlace(int id);
     Place findPlace(int id);
-    Place findPlaceByName(String locatioName);
+    Place findPlaceByName(String locationName);
     List<Place> listAllPlaces();
     List<Place> searchForPlaces(String searchWord);
     void addRating(int locationID, int rating, String userName);

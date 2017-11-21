@@ -68,8 +68,9 @@ class PlaceFacade implements IPlaceFacade {
     {
         EntityManager em = emf.createEntityManager();
         
-        Place found = (Place) em.createQuery("select p from Place p where place like " 
-                + locationName).getResultList().get(0);
+        Query query = em.createQuery("select p from Place p where p.name like :locname");
+        query.setParameter("locname", locationName);
+        Place found = (Place) query.getResultList().get(0);
         em.close();
 
         return found;
