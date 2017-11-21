@@ -14,6 +14,7 @@ export default class AddPlace extends React.Component {
             city: null,
             zip: null,
             desc: null,
+            rating: null,
         }
 
         this.addData = this.addData.bind(this);
@@ -57,6 +58,7 @@ export default class AddPlace extends React.Component {
         data.append("city", this.state.city);
         data.append("zip", this.state.zip);
         data.append("desc", this.state.desc);
+        data.append("rating", this.state.rating);
 
         data.append('file', input.files[0]);
         fetch(URL + 'api/upload/placeUpload', {
@@ -74,6 +76,14 @@ export default class AddPlace extends React.Component {
                     <input placeholder="Type street here" value={this.state.street} onChange={this.returnValue} id="street" />
                     <input placeholder="Type city here" value={this.state.city} onChange={this.returnValue} id="city" />
                     <input type="number" placeholder="Type zip here" value={this.state.zip} onChange={this.returnValue} id="zip" />
+                    <select id="rating" onChange={this.returnValue}>
+                        <option>Select a rating!</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
                     <textarea placeholder="Please type description" value={this.state.description} onChange={this.returnValue} id="desc" />
                     <label>Select File</label><input type="file" id="file" /> <br /><br />
                     <button onClick={this.pushPlaceToServer}>Submit</button>
