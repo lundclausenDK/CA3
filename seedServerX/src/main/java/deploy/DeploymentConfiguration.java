@@ -32,7 +32,7 @@ public class DeploymentConfiguration implements ServletContextListener {
     InputStream input = null;
     Properties prop = new Properties();
     try {
-      input = getClass().getClassLoader().getResourceAsStream("/config.properties");;
+      input = getClass().getClassLoader().getResourceAsStream("/config.properties");
       if (input == null) {
         System.out.println("Could not load init-properties");
         return;
