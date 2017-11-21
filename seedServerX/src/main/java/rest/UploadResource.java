@@ -118,7 +118,8 @@ public class UploadResource {
         int placeZip = Integer.parseInt(zip);
 
         try {
-            saveFile(file, fileName);
+            saveFile(file, path + fileName);
+            
             Place place = new Place(placeName, placeCity, placeStreet, placeInfo, fileName, placeZip, placeGEO);
             uf.createPlace(place);
         } catch (IOException ex) {
