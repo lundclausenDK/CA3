@@ -138,7 +138,7 @@ export default class Place extends React.Component {
                         {item.geo && <div>GEO: {item.geo}</div>}
 
                         {item.rated || this.state.userName === "none"?
-                            (<div>Rating: {item.rating}</div>) :
+                            (<div>Rating: {item.rating} / 5,0 ({item.raters.length})</div>) :
                             (<form>
                                 <select name={item.id} onChange={this.submitRating}>
                                     <option>Rate this place...</option>
