@@ -1,17 +1,23 @@
 package test;
 
+import deploy.DeploymentConfiguration;
 import org.junit.BeforeClass;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.*;
 import io.restassured.parsing.Parser;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import org.apache.catalina.LifecycleException;
 import static org.hamcrest.Matchers.*;
 import org.junit.AfterClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import security.Secret;
 import test.utils.EmbeddedTomcat;
 
 public class InitialSeedRestIntegrationTest {
@@ -53,6 +59,23 @@ public class InitialSeedRestIntegrationTest {
 
   @BeforeClass
   public static void setUpBeforeAll() throws ServletException, MalformedURLException, LifecycleException {
+    
+    InputStream input = null;
+    Properties prop = new Properties();
+    try {
+      input = InitialSeedRestIntegrationTest.class.getClassLoader().getResourceAsStream("/config.properties");;
+      if (input == null) {
+        System.out.println("Could not load init-properties");
+        return;
+      }
+      prop.load(input);
+      Secret.SHARED_SECRET = prop.getProperty("tokenSecret").getBytes();
+      input.close();
+
+    } catch (IOException ex) {
+      Logger.getLogger(DeploymentConfiguration.class.getName()).log(Level.SEVERE, null, ex);
+    }
+      
     tomcat = new EmbeddedTomcat();
     tomcat.start(SERVER_PORT, APP_CONTEXT);
     RestAssured.baseURI = "http://localhost";
