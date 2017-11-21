@@ -3,6 +3,7 @@ package rest;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import entity.Place;
+import entity.Rating;
 import facades.CollectiveFacadeFactory;
 import facades.ICollectiveFacade;
 import java.io.File;
@@ -10,9 +11,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.POST;
@@ -105,22 +107,32 @@ public class UploadResource {
             @DefaultValue("") @FormDataParam("street") String street,
             @DefaultValue("") @FormDataParam("zip") String zip,
             @DefaultValue("") @FormDataParam("city") String city,
+            @DefaultValue("") @FormDataParam("userName") String userName,
+            @FormDataParam("rating") int rating,
             @FormDataParam("file") InputStream file,
             @FormDataParam("file") FormDataContentDisposition fileDisposition) {
 
-        String placeName = name;
-        String placeInfo = info;
-        String placeGEO = geo;
-        String placeStreet = street;
-        String placeCity = city;
         String fileName = fileDisposition.getFileName();
         System.out.println(fileName);
         int placeZip = Integer.parseInt(zip);
+        
+        if (rating < 1)
+            rating = 1;
 
         try {
-            saveFile(file, fileName);
-            Place place = new Place(placeName, placeCity, placeStreet, placeInfo, fileName, placeZip, placeGEO);
+            
+            Place place = new Place(name, city, street, info, fileName, placeZip, geo);
+            saveFile(file, path + fileName);
+
             uf.createPlace(place);
+            
+            Place found = uf.findPlaceByName(name);
+            
+            if (found != null)
+            {
+                uf.addRating(found.getId(), rating, userName);
+            }
+            
         } catch (IOException ex) {
             Logger.getLogger(UploadResource.class.getName()).log(Level.SEVERE, null, ex);
         }
