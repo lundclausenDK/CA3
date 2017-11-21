@@ -135,7 +135,7 @@ export default class Place extends React.Component {
                         <div>{item.description}</div>
                         <div>{item.street}</div>
                         <div>{item.zip} {item.city}</div>
-                        <div>GEO: {item.geo}</div>
+                        {item.geo && <div>GEO: {item.geo}</div>}
 
                         {item.rated || this.state.userName === "none"?
                             (<div>Rating: {item.rating}</div>) :
