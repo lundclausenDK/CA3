@@ -3,6 +3,7 @@ package rest;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import entity.Place;
+import entity.Rating;
 import facades.CollectiveFacadeFactory;
 import facades.ICollectiveFacade;
 import java.io.File;
@@ -10,9 +11,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.POST;
@@ -105,6 +107,7 @@ public class UploadResource {
             @DefaultValue("") @FormDataParam("street") String street,
             @DefaultValue("") @FormDataParam("zip") String zip,
             @DefaultValue("") @FormDataParam("city") String city,
+            @FormDataParam("rating") int rating,
             @FormDataParam("file") InputStream file,
             @FormDataParam("file") FormDataContentDisposition fileDisposition) {
 
@@ -120,6 +123,12 @@ public class UploadResource {
         try {
             saveFile(file, fileName);
             Place place = new Place(placeName, placeCity, placeStreet, placeInfo, fileName, placeZip, placeGEO);
+            
+            Rating r = new Rating(rating);
+            List<Rating> ratings = new ArrayList();
+            ratings.add(r);
+            place.setRatings(ratings);
+            
             uf.createPlace(place);
         } catch (IOException ex) {
             Logger.getLogger(UploadResource.class.getName()).log(Level.SEVERE, null, ex);
