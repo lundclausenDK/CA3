@@ -27,7 +27,6 @@ class CollectiveFacade implements ICollectiveFacade {
     // ####################### //
     // ##### User facade ##### //
     // ####################### //
-    
     @Override
     public boolean registerUser(User user)
     {
@@ -77,7 +76,6 @@ class CollectiveFacade implements ICollectiveFacade {
     // ####################### //
     // ##### Role Facade ##### //
     // ####################### //
-    
     @Override
     public boolean createRole(Role role)
     {
@@ -105,7 +103,6 @@ class CollectiveFacade implements ICollectiveFacade {
     // ######################## //
     // ##### Place Facade ##### //
     // ######################## //
-    
     @Override
     public boolean createPlace(Place place)
     {
@@ -122,6 +119,12 @@ class CollectiveFacade implements ICollectiveFacade {
     public Place findPlace(int id)
     {
         return placeFacade.findPlace(id);
+    }
+
+    @Override
+    public Place findPlaceByName(String locationName)
+    {
+        return placeFacade.findPlace(locationName);
     }
 
     @Override
