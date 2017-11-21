@@ -120,9 +120,10 @@ public class UploadResource {
             rating = 1;
 
         try {
-            saveFile(file, fileName);
-            Place place = new Place(name, city, street, info, fileName, placeZip, geo);
             
+            Place place = new Place(name, city, street, info, fileName, placeZip, geo);
+            saveFile(file, path + fileName);
+
             Rating r = new Rating(rating);
             
             uf.createPlace(place);
