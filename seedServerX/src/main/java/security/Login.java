@@ -38,15 +38,22 @@ public class Login {
       String password = json.get("password").getAsString();
       JsonObject responseJson = new JsonObject();
       List<String> roles;
-
+        System.out.println("BEFORE IF !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
       if ((roles = authenticate(username, password)) != null) {
         String token = createToken(username, roles);
+          System.out.println("så langt");
         responseJson.addProperty("username", username);
         responseJson.addProperty("token", token);
+          System.out.println("TOKEN I LOGIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+          System.out.println(token);
+          System.out.println("TOKEN SLUUUUTTT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return Response.ok(new Gson().toJson(responseJson)).build();
       }
+        System.out.println(roles + "roles !!!!!!!!!");
     } catch (Exception e) {
+        System.out.println(e);
       if (e instanceof JOSEException) {
+          System.out.println("true");
         throw e;
       }
     }

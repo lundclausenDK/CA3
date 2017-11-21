@@ -37,6 +37,15 @@ public class InitialSeedRestIntegrationTest {
     System.out.println("Token: " + securityToken);
 
   }
+  private static void register(String role, String password){
+      String json = String.format("{username: \"%s\", password: \"%s\", role: \"%s\"}", role,password,"User");
+      securityToken = given()
+              .contentType("application/json")
+              .body(json)
+              .when().post("/api/register")
+              .then()
+              .extract().path("token");
+  }
  
   private void logOut(){
     securityToken = null;
@@ -58,7 +67,6 @@ public class InitialSeedRestIntegrationTest {
   }
 
   @Test
-  @Ignore
   public void testRestNoAuthenticationRequired() {
     given()
             .contentType("application/json")
@@ -83,7 +91,6 @@ public class InitialSeedRestIntegrationTest {
   }
 
   @Test
-  @Ignore
   public void testRestForUser() {
     login("user","test");
     given()
@@ -94,6 +101,22 @@ public class InitialSeedRestIntegrationTest {
             .statusCode(200)
             .body("message", equalTo("Hello User from Server (Accesible by only authenticated USERS)"));
   }
+  
+  @Test
+  @Ignore
+  public void registerNewUser() {
+    logOut();
+    register("testuser11","test");
+    given()
+            .contentType("application/json")
+            .header("Authorization", "Bearer " + securityToken)
+            .when()
+            .get("/api/demouser").then()
+            .statusCode(200)
+            .body("message", equalTo("Hello User from Server (Accesible by only authenticated USERS)"));
+
+  }
+  
   
   @Test
   @Ignore
@@ -119,5 +142,7 @@ public class InitialSeedRestIntegrationTest {
             .body("error.message", equalTo("No authorization header provided"));
 
   }
+  
+  
 
 }
