@@ -5,6 +5,8 @@ import org.junit.BeforeClass;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.*;
 import io.restassured.parsing.Parser;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -22,150 +24,154 @@ import test.utils.EmbeddedTomcat;
 
 public class InitialSeedRestIntegrationTest {
 
-  private static final int SERVER_PORT = 9999;
-  private static final String APP_CONTEXT = "/seed";
-  private static EmbeddedTomcat tomcat;
+    private static final int SERVER_PORT = 9999;
+    private static final String APP_CONTEXT = "/seed";
+    private static EmbeddedTomcat tomcat;
 
-  public InitialSeedRestIntegrationTest() {
-  }
-  private static String securityToken;
-
-  //Utility method to login and set the securityToken
-  private static void login(String role, String password) {
-    String json = String.format("{username: \"%s\", password: \"%s\"}",role,password);
-    System.out.println(json);
-    securityToken = given()
-            .contentType("application/json")
-            .body(json)
-            .when().post("/api/login")
-            .then()
-            .extract().path("token");
-    System.out.println("Token: " + securityToken);
-
-  }
-  private static void register(String role, String password){
-      String json = String.format("{username: \"%s\", password: \"%s\", role: \"%s\"}", role,password,"User");
-      securityToken = given()
-              .contentType("application/json")
-              .body(json)
-              .when().post("/api/register")
-              .then()
-              .extract().path("token");
-  }
- 
-  private void logOut(){
-    securityToken = null;
-  }
-
-  @BeforeClass
-  public static void setUpBeforeAll() throws ServletException, MalformedURLException, LifecycleException {
-    
-    InputStream input = null;
-    Properties prop = new Properties();
-    try {
-      input = InitialSeedRestIntegrationTest.class.getClassLoader().getResourceAsStream("/config.properties");;
-      if (input == null) {
-        System.out.println("Could not load init-properties");
-        return;
-      }
-      prop.load(input);
-      Secret.SHARED_SECRET = prop.getProperty("tokenSecret").getBytes();
-      input.close();
-
-    } catch (IOException ex) {
-      Logger.getLogger(DeploymentConfiguration.class.getName()).log(Level.SEVERE, null, ex);
+    public InitialSeedRestIntegrationTest()
+    {
+        String content = "tokenSecret=c6hFJOYY75765444EEEEvgTdeMnbV30h";
+        Properties prop = new Properties();
+        try (InputStream input = new ByteArrayInputStream(content.getBytes()))
+        {
+            prop.load(input);
+            Secret.SHARED_SECRET = prop.getProperty("tokenSecret").getBytes();
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(DeploymentConfiguration.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-      
-    tomcat = new EmbeddedTomcat();
-    tomcat.start(SERVER_PORT, APP_CONTEXT);
-    RestAssured.baseURI = "http://localhost";
-    RestAssured.port = SERVER_PORT;
-    RestAssured.basePath = APP_CONTEXT;
-    RestAssured.defaultParser = Parser.JSON;
-  }
+    private static String securityToken;
 
-  @AfterClass
-  public static void after() throws ServletException, MalformedURLException, LifecycleException, IOException {
-    tomcat.stop();
-  }
+    //Utility method to login and set the securityToken
+    private static void login(String role, String password)
+    {
+        String json = String.format("{username: \"%s\", password: \"%s\"}", role, password);
+        System.out.println(json);
+        securityToken = given()
+                .contentType("application/json")
+                .body(json)
+                .when().post("/api/login")
+                .then()
+                .extract().path("token");
+        System.out.println("Token: " + securityToken);
 
-  @Test
-  public void testRestNoAuthenticationRequired() {
-    given()
-            .contentType("application/json")
-            .when()
-            .get("/api/demoall").then()
-            .statusCode(200)
-            .body("message", equalTo("result for all"));
-  }
+    }
 
-  @Test
-  @Ignore
-  public void tesRestForAdmin() {
-    login("admin","test");
-    given()
-            .contentType("application/json")
-            .header("Authorization", "Bearer " + securityToken)
-            .when()
-            .get("/api/demoadmin").then()
-            .statusCode(200)
-            .body("message", equalTo("Hello Admin from server (call accesible by only authenticated ADMINS)"))
-            .body("serverTime",notNullValue());
-  }
+    private static void register(String role, String password)
+    {
+        String json = String.format("{username: \"%s\", password: \"%s\", role: \"%s\"}", role, password, "User");
+        securityToken = given()
+                .contentType("application/json")
+                .body(json)
+                .when().post("/api/register")
+                .then()
+                .extract().path("token");
+    }
 
-  @Test
-  public void testRestForUser() {
-    login("user","test");
-    given()
-            .contentType("application/json")
-            .header("Authorization", "Bearer " + securityToken)
-            .when()
-            .get("/api/demouser").then()
-            .statusCode(200)
-            .body("message", equalTo("Hello User from Server (Accesible by only authenticated USERS)"));
-  }
-  
-  @Test
-  @Ignore
-  public void registerNewUser() {
-    logOut();
-    register("testuser11","test");
-    given()
-            .contentType("application/json")
-            .header("Authorization", "Bearer " + securityToken)
-            .when()
-            .get("/api/demouser").then()
-            .statusCode(200)
-            .body("message", equalTo("Hello User from Server (Accesible by only authenticated USERS)"));
+    private void logOut()
+    {
+        securityToken = null;
+    }
 
-  }
-  
-  
-  @Test
-  @Ignore
-  public void userNotAuthenticated() {
-    logOut();
-    given()
-            .contentType("application/json")
-            .when()
-            .get("/api/demouser").then()
-            .statusCode(401)
-            .body("error.message", equalTo("No authorization header provided"));
-  }
-  
-  @Test
-  @Ignore
-  public void adminNotAuthenticated() {
-    logOut();
-    given()
-            .contentType("application/json")
-            .when()
-            .get("/api/demoadmin").then()
-            .statusCode(401)
-            .body("error.message", equalTo("No authorization header provided"));
+    @BeforeClass
+    public static void setUpBeforeAll() throws ServletException, MalformedURLException, LifecycleException
+    {
+        tomcat = new EmbeddedTomcat();
+        tomcat.start(SERVER_PORT, APP_CONTEXT);
+        RestAssured.baseURI = "http://localhost";
+        RestAssured.port = SERVER_PORT;
+        RestAssured.basePath = APP_CONTEXT;
+        RestAssured.defaultParser = Parser.JSON;
+    }
 
-  }
-  
-  
+    @AfterClass
+    public static void after() throws ServletException, MalformedURLException, LifecycleException, IOException
+    {
+        tomcat.stop();
+    }
+
+    @Test
+    public void testRestNoAuthenticationRequired()
+    {
+        given()
+                .contentType("application/json")
+                .when()
+                .get("/api/demoall").then()
+                .statusCode(200)
+                .body("message", equalTo("result for all"));
+    }
+
+    @Test
+    @Ignore
+    public void tesRestForAdmin()
+    {
+        login("admin", "test");
+        given()
+                .contentType("application/json")
+                .header("Authorization", "Bearer " + securityToken)
+                .when()
+                .get("/api/demoadmin").then()
+                .statusCode(200)
+                .body("message", equalTo("Hello Admin from server (call accesible by only authenticated ADMINS)"))
+                .body("serverTime", notNullValue());
+    }
+
+    @Test
+    public void testRestForUser()
+    {
+        login("user", "test");
+        given()
+                .contentType("application/json")
+                .header("Authorization", "Bearer " + securityToken)
+                .when()
+                .get("/api/demouser").then()
+                .statusCode(200)
+                .body("message", equalTo("Hello User from Server (Accesible by only authenticated USERS)"));
+    }
+
+    @Test
+    @Ignore
+    public void registerNewUser()
+    {
+        logOut();
+        register("testuser11", "test");
+        given()
+                .contentType("application/json")
+                .header("Authorization", "Bearer " + securityToken)
+                .when()
+                .get("/api/demouser").then()
+                .statusCode(200)
+                .body("message", equalTo("Hello User from Server (Accesible by only authenticated USERS)"));
+
+    }
+
+    @Test
+    @Ignore
+    public void userNotAuthenticated()
+    {
+        logOut();
+        given()
+                .contentType("application/json")
+                .when()
+                .get("/api/demouser").then()
+                .statusCode(401)
+                .body("error.message", equalTo("No authorization header provided"));
+    }
+
+    @Test
+    @Ignore
+    public void adminNotAuthenticated()
+    {
+        logOut();
+        given()
+                .contentType("application/json")
+                .when()
+                .get("/api/demoadmin").then()
+                .statusCode(401)
+                .body("error.message", equalTo("No authorization header provided"));
+
+    }
 
 }
