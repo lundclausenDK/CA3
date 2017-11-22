@@ -11,7 +11,7 @@ const MyMapComponent = compose(
         loadingElement: <div style={{ height: `100%` }} />,
         containerElement: <div style={{ height: `600px` }} />,
         mapElement: <div style={{ height: `100%` }} />,
-        geoList: ["56.058363,12.067663","55.5346844,12.067663", "56.021966,10.2598323"]
+        /*geoList: ["56.058363,12.067663","55.5346844,12.067663", "56.021966,10.2598323"]*/
     }),
     withScriptjs,
     withGoogleMap,
@@ -22,14 +22,20 @@ const MyMapComponent = compose(
         defaultCenter={{ lat: 56.15, lng: 10.5 }}
     >
 
-        {props.geoList.map((geo)=>{
-            let geoSplit = geo.split(',');
-            return(props.isMarkerShown && <Marker key={geo} position={{lat: parseInt(geoSplit[0]), lng: parseInt(geoSplit[1])}} onClick={props.onMarkerClick}/>)
+        {props.geoList.map((item)=>{
+            let geoSplit = item.geo.split(',');
+            return(props.isMarkerShown && <Marker key={item} position={{lat: parseInt(geoSplit[0]), lng: parseInt(geoSplit[1])}} onClick={props.onMarkerClick}/>)
         })}
     </GoogleMap>
 )
 
 export default class Map extends React.PureComponent {
+
+        constructor(props){
+            super();
+        }
+
+
     state = {
         isMarkerShown: false,
     }
@@ -54,6 +60,7 @@ export default class Map extends React.PureComponent {
             <MyMapComponent
                 isMarkerShown={this.state.isMarkerShown}
                 onMarkerClick={this.handleMarkerClick}
+                geoList={this.props.geoList}
             />
         )
     }
