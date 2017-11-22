@@ -127,7 +127,11 @@ export default class Place extends React.Component {
                         <button onClick={this.sortOnRating}>Sort on Rating</button>
                     </form>
                 </div>
-                {this.state.view[0] && <Map geoList={this.state.view}/>}
+
+                <div className="bigmap">
+                    {this.state.view[0] && <Map geoList={this.state.view}/>}
+                </div>
+
                 {this.state.view.map((item) => (
                     <div className="places-container clearfix">
 
