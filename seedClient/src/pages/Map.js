@@ -33,10 +33,6 @@ export default class Map extends React.PureComponent {
 
         constructor(props){
             super();
-            this.state = {
-                geoList: props.geoList
-            }
-
         }
 
 
@@ -64,7 +60,7 @@ export default class Map extends React.PureComponent {
             <MyMapComponent
                 isMarkerShown={this.state.isMarkerShown}
                 onMarkerClick={this.handleMarkerClick}
-                geoList={this.state.geoList}
+                geoList={this.props.geoList}
             />
         )
     }
