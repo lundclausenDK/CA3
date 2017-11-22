@@ -49,7 +49,7 @@ class TopMenu extends Component {
                   (
                     <li>
                       <Link to="/login">
-                        <span className="glyphicon glyphicon-log-in"></span> Login </Link> | <Link to="/signup"><span className="glyphicon glyphicon-signin"></span> Signup </Link>&nbsp;&nbsp;
+                        <span className="glyphicon glyphicon-log-in"></span> Login</Link> | <Link to="/signup"><span className="glyphicon glyphicon-signin"></span>Signup</Link>&nbsp;&nbsp;
                     </li>
                   )}
               </li>
