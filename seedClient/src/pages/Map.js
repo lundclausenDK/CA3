@@ -7,7 +7,7 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-map
 
 const MyMapComponent = compose(
     withProps({
-        googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
+        googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCaRpo-oDGV9teoq8FfWG7oCefLuCpPamY",
         loadingElement: <div style={{ height: `100%` }} />,
         containerElement: <div style={{ height: `600px` }} />,
         mapElement: <div style={{ height: `100%` }} />,
@@ -17,7 +17,7 @@ const MyMapComponent = compose(
     withGoogleMap,
 )((props) =>
     <GoogleMap
-        api="AIzaSyAPL2w6-qEYb83Da8rcYbaXVERKya6kNy0"
+        apiKey={"AIzaSyAPL2w6-qEYb83Da8rcYbaXVERKya6kNy0"}
         defaultZoom={7}
         defaultCenter={{ lat: 56.15, lng: 10.5 }}
     >
@@ -37,11 +37,11 @@ export default class Map extends React.PureComponent {
 
 
     state = {
-        isMarkerShown: false,
+        isMarkerShown: true,
     }
 
     componentDidMount() {
-        this.delayedShowMarker()
+        //this.delayedShowMarker()
     }
 
     delayedShowMarker = () => {
