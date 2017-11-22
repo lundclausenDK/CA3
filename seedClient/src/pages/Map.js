@@ -24,7 +24,7 @@ const MyMapComponent = compose(
 
         {props.isMarkerShown && props.geoList.map((item)=>{
             let geoSplit = item.geo.split(',');
-            return(<Marker key={item} position={{lat: parseInt(geoSplit[0]), lng: parseInt(geoSplit[1])}} onClick={props.onMarkerClick}/>)
+            return(<Marker key={item} position={{lat: parseFloat(geoSplit[0]), lng: parseFloat(geoSplit[1])}} onClick={props.onMarkerClick}/>)
         })}
     </GoogleMap>
 )
