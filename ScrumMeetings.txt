@@ -1,3 +1,7 @@
 Scrum meeting tirsdag 21-11
 20 minutter.
 scrum sprint fra mandag blev gjort klar, og task blev delt ud. Vi fik snakket om hvilke problemer der var sidst, og hvordan vi kommer videre. Vi havde lidt forvirring omkring testing da vi havde en del kode som allerede var klar men ikke blev testet. Blev enige om at vi whitebox tester den kode vi allerede har. Denne uges sprint har mest arbejde i front end så ATTD kommer til at blive svært at køre.
+
+Scrum meeting onsdag 22-11
+12 minutter
+Dagens scrum meeting gik rigtig godt, der er god movement på backloggen, alle har noget at tage sig til, og der er ikke nogle problemer med hensyn til kodning. De fleste tasks er klar til demo test, og vi forventer at alle tasks bliver klar til torsdag.

@@ -28,25 +28,20 @@ public class InitialSeedRestIntegrationTest {
     private static final String APP_CONTEXT = "/seed";
     private static EmbeddedTomcat tomcat;
 
-    public InitialSeedRestIntegrationTest()
-    {
+    public InitialSeedRestIntegrationTest() {
         String content = "tokenSecret=c6hFJOYY75765444EEEEvgTdeMnbV30h";
         Properties prop = new Properties();
-        try (InputStream input = new ByteArrayInputStream(content.getBytes()))
-        {
+        try (InputStream input = new ByteArrayInputStream(content.getBytes())) {
             prop.load(input);
             Secret.SHARED_SECRET = prop.getProperty("tokenSecret").getBytes();
-        }
-        catch (IOException ex)
-        {
+        } catch (IOException ex) {
             Logger.getLogger(DeploymentConfiguration.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     private static String securityToken;
 
     //Utility method to login and set the securityToken
-    private static void login(String role, String password)
-    {
+    private static void login(String role, String password) {
         String json = String.format("{username: \"%s\", password: \"%s\"}", role, password);
         System.out.println(json);
         securityToken = given()
@@ -59,9 +54,8 @@ public class InitialSeedRestIntegrationTest {
 
     }
 
-    private static void register(String role, String password)
-    {
-        String json = String.format("{username: \"%s\", password: \"%s\", role: \"%s\"}", role, password, "User");
+    private static void register(String role, String password) {
+        String json = String.format("{username: \"%s\", password: \"%s\", roles: [User]}", role, password);
         securityToken = given()
                 .contentType("application/json")
                 .body(json)
@@ -70,14 +64,16 @@ public class InitialSeedRestIntegrationTest {
                 .extract().path("token");
     }
 
-    private void logOut()
-    {
+    private static void deleteUser(String role) {
+        
+    }
+
+    private void logOut() {
         securityToken = null;
     }
 
     @BeforeClass
-    public static void setUpBeforeAll() throws ServletException, MalformedURLException, LifecycleException
-    {
+    public static void setUpBeforeAll() throws ServletException, MalformedURLException, LifecycleException {
         tomcat = new EmbeddedTomcat();
         tomcat.start(SERVER_PORT, APP_CONTEXT);
         RestAssured.baseURI = "http://localhost";
@@ -87,14 +83,12 @@ public class InitialSeedRestIntegrationTest {
     }
 
     @AfterClass
-    public static void after() throws ServletException, MalformedURLException, LifecycleException, IOException
-    {
+    public static void after() throws ServletException, MalformedURLException, LifecycleException, IOException {
         tomcat.stop();
     }
 
     @Test
-    public void testRestNoAuthenticationRequired()
-    {
+    public void testRestNoAuthenticationRequired() {
         given()
                 .contentType("application/json")
                 .when()
@@ -104,9 +98,8 @@ public class InitialSeedRestIntegrationTest {
     }
 
     @Test
-    @Ignore
-    public void tesRestForAdmin()
-    {
+
+    public void tesRestForAdmin() {
         login("admin", "test");
         given()
                 .contentType("application/json")
@@ -119,8 +112,7 @@ public class InitialSeedRestIntegrationTest {
     }
 
     @Test
-    public void testRestForUser()
-    {
+    public void testRestForUser() {
         login("user", "test");
         given()
                 .contentType("application/json")
@@ -132,9 +124,7 @@ public class InitialSeedRestIntegrationTest {
     }
 
     @Test
-    @Ignore
-    public void registerNewUser()
-    {
+    public void registerNewUserAndDeleteHim() {
         logOut();
         register("testuser11", "test");
         given()
@@ -144,13 +134,23 @@ public class InitialSeedRestIntegrationTest {
                 .get("/api/demouser").then()
                 .statusCode(200)
                 .body("message", equalTo("Hello User from Server (Accesible by only authenticated USERS)"));
+        logOut();
+        login("admin", "test");
+        String json = String.format("{username: \"%s\"}", "testuser11");
+        given()
+                .contentType("application/json")
+                .header("Authorization", "Bearer " + securityToken)
+                .body(json)
+                .when().post("api/user_control/delete")
+                .then()
+                .statusCode(200);
+                
 
     }
 
     @Test
-    @Ignore
-    public void userNotAuthenticated()
-    {
+
+    public void userNotAuthenticated() {
         logOut();
         given()
                 .contentType("application/json")
@@ -161,9 +161,8 @@ public class InitialSeedRestIntegrationTest {
     }
 
     @Test
-    @Ignore
-    public void adminNotAuthenticated()
-    {
+
+    public void adminNotAuthenticated() {
         logOut();
         given()
                 .contentType("application/json")
