@@ -14,7 +14,7 @@ public class CollectiveFacadeFactory
     {
         return INSTANCE;
     }
-    
+
     public static ICollectiveFacade getTestInstance(String puName)
     {
         return new CollectiveFacade(Persistence.createEntityManagerFactory(puName), new UserFacade(), new RoleFacade(), new PlaceFacade());
