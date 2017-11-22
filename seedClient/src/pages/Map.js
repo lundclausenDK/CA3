@@ -18,7 +18,7 @@ const MyMapComponent = compose(
 )((props) =>
     <GoogleMap
         api="AIzaSyAPL2w6-qEYb83Da8rcYbaXVERKya6kNy0"
-        defaultZoom={8}
+        defaultZoom={7}
         defaultCenter={{ lat: 56.15, lng: 10.5 }}
     >
 
