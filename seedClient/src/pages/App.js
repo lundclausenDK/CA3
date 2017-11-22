@@ -9,7 +9,9 @@ import TopMenu from "./TopMenu";
 import Places from "./Places";
 import Signup from "./Signup";
 import AddPlace from "./AddPlace";
+import Map from "./Map";
 import SummerhouseList from "./SummerhouseList";
+
 
 function App() {
     return (
@@ -23,6 +25,7 @@ function App() {
                 <Route path="/admin" component={AdminPage}/>
                 <Route path="/add-new-place" component={AddPlace}/>
                 <Route path="/places" component={Places}/>
+                <Route path="/map" component={Map} />
                 <Route path="/summerhouses" component={SummerhouseList}/>
                 <Route path="/signup" component={Signup}/>
             </Switch>

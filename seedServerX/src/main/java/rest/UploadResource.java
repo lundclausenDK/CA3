@@ -107,30 +107,32 @@ public class UploadResource {
             @DefaultValue("") @FormDataParam("street") String street,
             @DefaultValue("") @FormDataParam("zip") String zip,
             @DefaultValue("") @FormDataParam("city") String city,
+            @DefaultValue("") @FormDataParam("userName") String userName,
             @FormDataParam("rating") int rating,
             @FormDataParam("file") InputStream file,
             @FormDataParam("file") FormDataContentDisposition fileDisposition) {
 
-        String placeName = name;
-        String placeInfo = info;
-        String placeGEO = geo;
-        String placeStreet = street;
-        String placeCity = city;
         String fileName = fileDisposition.getFileName();
         System.out.println(fileName);
         int placeZip = Integer.parseInt(zip);
+        
+        if (rating < 1)
+            rating = 1;
 
         try {
+            
+            Place place = new Place(name, city, street, info, fileName, placeZip, geo);
             saveFile(file, path + fileName);
-            
-            Place place = new Place(placeName, placeCity, placeStreet, placeInfo, fileName, placeZip, placeGEO);
-            
-            Rating r = new Rating(rating);
-            List<Rating> ratings = new ArrayList();
-            ratings.add(r);
-            place.setRatings(ratings);
-            
+
             uf.createPlace(place);
+            
+            Place found = uf.findPlaceByName(name);
+            
+            if (found != null)
+            {
+                uf.addRating(found.getId(), rating, userName);
+            }
+            
         } catch (IOException ex) {
             Logger.getLogger(UploadResource.class.getName()).log(Level.SEVERE, null, ex);
         }

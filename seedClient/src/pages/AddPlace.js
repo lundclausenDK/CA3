@@ -1,5 +1,6 @@
 import React from "react";
 import fetchHelper from "../facades/fetchHelpers";
+import auth from '../authorization/auth';
 
 const URL = require("../../package.json").serverURL;
 
@@ -15,6 +16,11 @@ export default class AddPlace extends React.Component {
             zip: null,
             desc: null,
             rating: null,
+        }
+
+        auth.initDataFromToken();
+        if (auth.isloggedIn) {
+            this.state.userName = auth.userName;
         }
 
         this.addData = this.addData.bind(this);
@@ -58,12 +64,13 @@ export default class AddPlace extends React.Component {
         data.append("city", this.state.city);
         data.append("zip", this.state.zip);
         data.append("desc", this.state.desc);
+        data.append("userName", this.state.userName);
         data.append("rating", this.state.rating);
 
         data.append('file', input.files[0]);
         fetch(URL + 'api/upload/placeUpload', {
             method: 'POST',
-            body: data, headers: {'Authorization': sessionStorage.token}
+            body: data, headers: {'Authorization': `Bearer ${sessionStorage.token}`}
         });
     }
 

@@ -3,18 +3,18 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import entity.Place;
 import entity.Rating;
 import facades.CollectiveFacadeFactory;
 import facades.ICollectiveFacade;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
@@ -42,6 +42,7 @@ public class PlacesResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getJson() {
+        NumberFormat formatter = new DecimalFormat("#0.0");
         //TODO return proper representation object
         List<Place> placesList = cf.listAllPlaces();
 
@@ -70,7 +71,7 @@ public class PlacesResource {
                     actualRaters += 1;
                 }
                 placeObject.add("raters", raters);
-                placeObject.addProperty("rating", ratingValue / actualRaters);
+                placeObject.addProperty("rating", formatter.format(ratingValue / actualRaters));
             }else{
                 placeObject.add("raters", raters);
                 placeObject.addProperty("rating", 0);

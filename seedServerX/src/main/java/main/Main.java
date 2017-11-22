@@ -13,7 +13,7 @@ import security.PasswordStorage;
 
 public class Main {
     public static void main(String[] args) throws PasswordStorage.CannotPerformOperationException {
-        
+        /*
         Place place01 = new Place();
         Place place02 = new Place();
         Place place03 = new Place();
@@ -60,6 +60,13 @@ public class Main {
         facade.createPlace(place01);
         facade.createPlace(place02);
         facade.createPlace(place03);
+        */
+        
+        ICollectiveFacade facade = CollectiveFacadeFactory.getInstance();
+        
+        Place place = facade.findPlaceByName("Skjoldenæsholm");
+        
+        System.out.println(place.getName());
     }
 
 }
