@@ -25,7 +25,6 @@ function App() {
                 <Route path="/admin" component={AdminPage}/>
                 <Route path="/add-new-place" component={AddPlace}/>
                 <Route path="/places" component={Places}/>
-                <Route path="/map" component={Map} />
                 <Route path="/summerhouses" component={SummerhouseList}/>
                 <Route path="/signup" component={Signup}/>
             </Switch>

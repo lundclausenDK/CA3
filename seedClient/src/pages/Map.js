@@ -23,13 +23,9 @@ const MyMapComponent = compose(
     >
 
         {props.geoList.map((geo)=>{
-            let geosplittet = geo.split(',');
-            return <Marker position={{ lat: geosplittet[0], lng: geosplittet[1]}} onClick={props.onMarkerClick}/>
+            let geoSplit = geo.split(',');
+            return(props.isMarkerShown && <Marker key={geo} position={{lat: parseInt(geoSplit[0]), lng: parseInt(geoSplit[1])}} onClick={props.onMarkerClick}/>)
         })}
-
-        /*{props.isMarkerShown && <Marker position={{ lat: 56.058363, lng: 12.067663 }} onClick={props.onMarkerClick} />}
-        {props.isMarkerShown && <Marker position={{ lat: 55.5346844, lng: 11.8525492 }} onClick={props.onMarkerClick} />}
-        {props.isMarkerShown && <Marker position={{ lat: 56.021966, lng: 10.2598323 }} onClick={props.onMarkerClick} />}*/
     </GoogleMap>
 )
 

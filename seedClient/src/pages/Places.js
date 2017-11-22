@@ -1,5 +1,6 @@
 import React from 'react'
 import auth from '../authorization/auth'
+import Map from './Map'
 
 const URL = require("../../package.json").serverURL;
 
@@ -126,7 +127,7 @@ export default class Place extends React.Component {
                         <button onClick={this.sortOnRating}>Sort on Rating</button>
                     </form>
                 </div>
-
+                <Map/>
                 {this.state.view.map((item) => (
                     <div className="places-container clearfix">
 
