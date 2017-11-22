@@ -22,9 +22,9 @@ const MyMapComponent = compose(
         defaultCenter={{ lat: 56.15, lng: 10.5 }}
     >
 
-        {props.geoList.map((item)=>{
+        {props.isMarkerShown && props.geoList.map((item)=>{
             let geoSplit = item.geo.split(',');
-            return(props.isMarkerShown && <Marker key={item} position={{lat: parseInt(geoSplit[0]), lng: parseInt(geoSplit[1])}} onClick={props.onMarkerClick}/>)
+            return(<Marker key={item} position={{lat: parseInt(geoSplit[0]), lng: parseInt(geoSplit[1])}} onClick={props.onMarkerClick}/>)
         })}
     </GoogleMap>
 )
