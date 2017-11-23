@@ -2,20 +2,30 @@ package facades;
 
 import entity.Home;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 public class HomeFacade implements IHomeFacade
 {
+    private EntityManagerFactory emf;
+    
     @Override
     public void addEntityManagerFactory(EntityManagerFactory emf)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.emf = emf;
     }
 
     @Override
     public List<Home> listAllHomes()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emf.createEntityManager();
+        
+        Query query = em.createQuery("select h from Home h");
+        List<Home> homes = query.getResultList();
+        em.close();
+        
+        return homes;
     }
 
     @Override
@@ -27,7 +37,12 @@ public class HomeFacade implements IHomeFacade
     @Override
     public Home findHomeById(int id)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emf.createEntityManager();
+        
+        Home found = em.find(Home.class, id);
+        em.close();
+        
+        return found;
     }
 
     @Override
