@@ -100,6 +100,7 @@ public class InitialSeedRestIntegrationTest {
     @Test
 
     public void tesRestForAdmin() {
+        logOut();
         login("admin", "test");
         given()
                 .contentType("application/json")
@@ -113,6 +114,7 @@ public class InitialSeedRestIntegrationTest {
 
     @Test
     public void testRestForUser() {
+        logOut();
         login("user", "test");
         given()
                 .contentType("application/json")
