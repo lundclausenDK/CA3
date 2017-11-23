@@ -5,3 +5,7 @@ scrum sprint fra mandag blev gjort klar, og task blev delt ud. Vi fik snakket om
 Scrum meeting onsdag 22-11
 12 minutter
 Dagens scrum meeting gik rigtig godt, der er god movement på backloggen, alle har noget at tage sig til, og der er ikke nogle problemer med hensyn til kodning. De fleste tasks er klar til demo test, og vi forventer at alle tasks bliver klar til torsdag.
+
+Scrum meeting torsdag 23-11
+10 minutter
+Fuld enighed om hvad vi skal have klar til sprint review fredag 23-11. Vi havde 1 enkelt problem som vi ikke kommer videre med nu indtil vi har talt med product owner. 
