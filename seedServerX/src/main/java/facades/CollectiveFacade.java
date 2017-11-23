@@ -153,7 +153,7 @@ class CollectiveFacade implements ICollectiveFacade {
     }
 
     // ######################## //
-    // ##### Place Facade ##### //
+    // ##### Home Facade ##### //
     // ######################## //
     
     @Override
