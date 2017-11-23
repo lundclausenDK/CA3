@@ -1,5 +1,6 @@
 package facades;
 
+import entity.Home;
 import entity.IUser;
 import entity.Place;
 import entity.Role;
@@ -27,4 +28,8 @@ public interface ICollectiveFacade
     List<Place> listAllPlaces();
     List<Place> searchForPlaces(String searchWord);
     void addRating(int locationID, int rating, String userName);
+    
+    public List<Home> listAllHomes();
+    public List<Home> findHomesCloseTo(String geolocation);
+    public boolean rentHome(int id);
 }

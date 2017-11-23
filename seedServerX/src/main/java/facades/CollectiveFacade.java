@@ -1,5 +1,6 @@
 package facades;
 
+import entity.Home;
 import entity.Role;
 import entity.User;
 import java.util.ArrayList;
@@ -13,20 +14,24 @@ class CollectiveFacade implements ICollectiveFacade {
     private final IUserFacade userFacade;
     private final IRoleFacade roleFacade;
     private final IPlaceFacade placeFacade;
+    private final IHomeFacade homeFacade;
 
-    CollectiveFacade(EntityManagerFactory emf, IUserFacade userFacade, IRoleFacade roleFacade, IPlaceFacade placeFacade)
+    CollectiveFacade(EntityManagerFactory emf, IUserFacade userFacade, IRoleFacade roleFacade, IPlaceFacade placeFacade, IHomeFacade homeFacade)
     {
         this.userFacade = userFacade;
         this.roleFacade = roleFacade;
         this.placeFacade = placeFacade;
+        this.homeFacade = homeFacade;
         userFacade.addEntityManagerFactory(emf);
         roleFacade.addEntityManagerFactory(emf);
         placeFacade.addEntityManagerFactory(emf);
+        homeFacade.addEntityManagerFactory(emf);
     }
 
     // ####################### //
     // ##### User facade ##### //
     // ####################### //
+    
     @Override
     public boolean registerUser(User user)
     {
@@ -76,6 +81,7 @@ class CollectiveFacade implements ICollectiveFacade {
     // ####################### //
     // ##### Role Facade ##### //
     // ####################### //
+    
     @Override
     public boolean createRole(Role role)
     {
@@ -103,6 +109,7 @@ class CollectiveFacade implements ICollectiveFacade {
     // ######################## //
     // ##### Place Facade ##### //
     // ######################## //
+    
     @Override
     public boolean createPlace(Place place)
     {
@@ -143,5 +150,27 @@ class CollectiveFacade implements ICollectiveFacade {
     public void addRating(int locationID, int rating, String userName)
     {
         placeFacade.addRating(locationID, rating, userName);
+    }
+
+    // ######################## //
+    // ##### Place Facade ##### //
+    // ######################## //
+    
+    @Override
+    public List<Home> listAllHomes()
+    {
+        return homeFacade.listAllHomes();
+    }
+
+    @Override
+    public List<Home> findHomesCloseTo(String geolocation)
+    {
+        return homeFacade.findHomesCloseTo(geolocation);
+    }
+
+    @Override
+    public boolean rentHome(int id)
+    {
+        return homeFacade.rentHome(id);
     }
 }
