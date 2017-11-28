@@ -56,6 +56,7 @@ class AuthenticationHandler {
         this._isUser = true;
       }
     }, this);
+    
   }
 
 
@@ -119,8 +120,6 @@ class AuthenticationHandler {
       return;
   }
 
-
-
   login = (username, password, cb) => {
     this._errorMessage = "";
     if (this._token != null) {
@@ -136,6 +135,7 @@ class AuthenticationHandler {
         'Content-Type': 'application/json'
       })
     }
+    
     let resFromFirstPromise = null;  //Pass on response the "second" promise so we can read errors from server
     fetch(URL + "api/login", options)
       .then(res => {
