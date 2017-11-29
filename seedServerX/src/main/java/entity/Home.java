@@ -6,10 +6,12 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -22,43 +24,94 @@ public class Home implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    private String name;
+    private String description;
+    private String address;
+    private int zipcode;
+    private String city;
+    private String geo;
+    private double price;
+    
+    @OneToMany
+    List<Booking> bookings;
 
-    public int getId()
-    {
-        return id;
+    public Home() {}
+
+    public Home(String name, String description, String address, int zipcode, String city, String geo, double price) {
+        this.name = name;
+        this.description = description;
+        this.address = address;
+        this.zipcode = zipcode;
+        this.city = city;
+        this.geo = geo;
+        this.price = price;
     }
-
-    public void setId(int id)
-    {
-        this.id = id;
-    }
-
+    
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         int hash = 0;
         hash += (int) id;
         return hash;
     }
 
     @Override
-    public boolean equals(Object object)
-    {
+    public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Home))
-        {
+        if (!(object instanceof Home)) {
             return false;
         }
         Home other = (Home) object;
-        if (this.id != other.id)
+        if (this.id != other.id) {
             return false;
+        }
         return true;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "entity.Home[ id=" + id + " ]";
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public int getZipcode() {
+        return zipcode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getGeo() {
+        return geo;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
     
+    
+
 }

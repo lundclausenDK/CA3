@@ -8,6 +8,7 @@ public interface IHomeFacade
 {
     public void addEntityManagerFactory(EntityManagerFactory emf);
     
+    public void addHome(Home home);
     public List<Home> listAllHomes();
     public List<Home> findHomesCloseTo(String geolocation);
     public Home findHomeById(int id);
