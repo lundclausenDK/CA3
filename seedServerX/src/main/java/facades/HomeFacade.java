@@ -1,5 +1,6 @@
 package facades;
 
+import entity.Booking;
 import entity.Home;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -19,7 +20,12 @@ public class HomeFacade implements IHomeFacade
     @Override
     public void addHome(Home home)
     {
-        throw new UnsupportedOperationException("Not supported yet");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(home);
+        em.getTransaction().commit();
+        em.close();
+        
     }
     
     @Override
@@ -35,7 +41,7 @@ public class HomeFacade implements IHomeFacade
     }
 
     @Override
-    public List<Home> findHomesCloseTo(String geolocation)
+    public List<Home> findHomesCloseTo(String geolocation, double radius)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -52,7 +58,7 @@ public class HomeFacade implements IHomeFacade
     }
 
     @Override
-    public boolean rentHome(int id)
+    public boolean rentHome(int id, Booking booking)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

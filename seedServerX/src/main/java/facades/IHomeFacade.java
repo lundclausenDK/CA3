@@ -1,5 +1,6 @@
 package facades;
 
+import entity.Booking;
 import entity.Home;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -10,7 +11,7 @@ public interface IHomeFacade
     
     public void addHome(Home home);
     public List<Home> listAllHomes();
-    public List<Home> findHomesCloseTo(String geolocation);
+    public List<Home> findHomesCloseTo(String geolocation, double radius);
     public Home findHomeById(int id);
-    public boolean rentHome(int id);
+    public boolean rentHome(int id, Booking booking);
 }
