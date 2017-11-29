@@ -1,5 +1,6 @@
 package facades;
 
+import entity.Booking;
 import entity.Home;
 import entity.Role;
 import entity.User;
@@ -172,5 +173,15 @@ class CollectiveFacade implements ICollectiveFacade {
     public boolean rentHome(int id)
     {
         return homeFacade.rentHome(id);
+    }
+
+    @Override
+    public void addHome(Home home) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void bookHome(int id, Booking booking) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

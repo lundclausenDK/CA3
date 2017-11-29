@@ -17,6 +17,12 @@ public class HomeFacade implements IHomeFacade
     }
 
     @Override
+    public void addHome(Home home)
+    {
+        throw new UnsupportedOperationException("Not supported yet");
+    }
+    
+    @Override
     public List<Home> listAllHomes()
     {
         EntityManager em = emf.createEntityManager();

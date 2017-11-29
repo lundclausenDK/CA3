@@ -1,5 +1,6 @@
 package facades;
 
+import entity.Booking;
 import entity.Home;
 import entity.IUser;
 import entity.Place;
@@ -32,4 +33,6 @@ public interface ICollectiveFacade
     public List<Home> listAllHomes();
     public List<Home> findHomesCloseTo(String geolocation);
     public boolean rentHome(int id);
+    public void addHome(Home home);
+    public void bookHome(int id, Booking booking);
 }
