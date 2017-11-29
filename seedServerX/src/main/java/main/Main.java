@@ -1,18 +1,13 @@
 package main;
 
-import entity.Place;
-import entity.Rating;
-import entity.Role;
-import entity.User;
 import facades.CollectiveFacadeFactory;
-import facades.ICollectiveFacade;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import facades.DBUtil;
 import security.PasswordStorage;
 
 public class Main {
     public static void main(String[] args) throws PasswordStorage.CannotPerformOperationException {
+        
+        /*
         
         Place place01 = new Place();
         Place place02 = new Place();
@@ -60,6 +55,13 @@ public class Main {
         facade.createPlace(place01);
         facade.createPlace(place02);
         facade.createPlace(place03);
+
+        */
+        
+        CollectiveFacadeFactory.getTestInstance();
+        
+        DBUtil util = new DBUtil(CollectiveFacadeFactory.getTestEmf());
+        util.clearDB();
     }
 
 }

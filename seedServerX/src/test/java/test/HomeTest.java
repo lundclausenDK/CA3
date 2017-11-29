@@ -7,10 +7,10 @@ package test;
 
 import entity.Booking;
 import entity.Home;
+import facades.DBUtil;
 import facades.CollectiveFacadeFactory;
 import facades.ICollectiveFacade;
 import java.util.List;
-import javax.persistence.Persistence;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -25,12 +25,15 @@ import static org.junit.Assert.*;
 public class HomeTest {
 
     private static ICollectiveFacade facade;
+    private static DBUtil util;
 
     public HomeTest() {
     }
 
     @BeforeClass
     public static void setUpClass() {
+        facade = CollectiveFacadeFactory.getTestInstance();
+        util = new DBUtil(CollectiveFacadeFactory.getTestEmf());
     }
 
     @AfterClass
@@ -48,7 +51,7 @@ public class HomeTest {
     }
 
     public void clear() {
-        facade = CollectiveFacadeFactory.getTestInstance();
+        util.clearDB();
     }
 
     @Test
