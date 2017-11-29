@@ -60,4 +60,14 @@ public class SummerHouseResource {
   public String postHouse(String content){
       return "{\"message\": \"done\"}";
   }
+  
+  @Path("rent/{id}")
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public String reservedHome(String content, @PathParam("id") int id) {
+      return "{\"message\": \"reserved: "+ id +"\"}";
+  }
+  
+  
 }

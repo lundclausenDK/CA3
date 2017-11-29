@@ -82,4 +82,15 @@ public class SummerhouseRestTest {
                 + "'geo': '44.55,55.44'}";
         given().contentType("application/json").body(json).when().post(api).then().body("message", equalTo("done"));
     }
+    
+    @Test
+    public void rentHomeTest(){
+        int home_id = 2;
+        String api = "/api/summerhouses/rent/{id}";
+        String json = "{"
+                + "'start': '10500500',"
+                + "'end': '20500500',"
+                + "'user_id': '1'}";
+        given().pathParams("id", home_id).contentType("application/json").body(json).when().post(api).then().body("message", equalTo("reserved: " + home_id));
+    }
 }
