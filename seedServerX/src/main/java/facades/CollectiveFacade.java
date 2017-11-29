@@ -18,7 +18,7 @@ class CollectiveFacade implements ICollectiveFacade {
     private final IHomeFacade homeFacade;
 
     CollectiveFacade(EntityManagerFactory emf, IUserFacade userFacade, IRoleFacade roleFacade, IPlaceFacade placeFacade, IHomeFacade homeFacade)
-    {
+    {     
         this.userFacade = userFacade;
         this.roleFacade = roleFacade;
         this.placeFacade = placeFacade;
@@ -164,24 +164,19 @@ class CollectiveFacade implements ICollectiveFacade {
     }
 
     @Override
-    public List<Home> findHomesCloseTo(String geolocation)
+    public List<Home> findHomesCloseTo(String geolocation, double radius)
     {
-        return homeFacade.findHomesCloseTo(geolocation);
+        return homeFacade.findHomesCloseTo(geolocation, radius);
     }
 
-    @Override
-    public boolean rentHome(int id)
-    {
-        return homeFacade.rentHome(id);
-    }
 
     @Override
     public void addHome(Home home) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        homeFacade.addHome(home);
     }
 
     @Override
     public void bookHome(int id, Booking booking) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        homeFacade.rentHome(id, booking);
     }
 }
