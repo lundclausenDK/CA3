@@ -8,6 +8,7 @@ package entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,14 +32,15 @@ public class Home implements Serializable {
     private int zipcode;
     private String city;
     private String geo;
+    private String picture;
     private double price;
     
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     List<Booking> bookings = new ArrayList();
 
     public Home() {}
 
-    public Home(String name, String description, String address, int zipcode, String city, String geo, double price) {
+    public Home(String name, String description, String address, int zipcode, String city, String geo, double price, String picture) {
         this.name = name;
         this.description = description;
         this.address = address;
@@ -46,6 +48,7 @@ public class Home implements Serializable {
         this.city = city;
         this.geo = geo;
         this.price = price;
+        this.picture = picture;
     }
 
     public Home(int id, String name, String description, String address, int zipcode, String city, String geo, double price, List<Booking> bookings) {
@@ -129,6 +132,13 @@ public class Home implements Serializable {
     public void addBooking(Booking booking)
     {
         bookings.add(booking);
+    }
+
+    /**
+     * @return the picture
+     */
+    public String getPicture() {
+        return picture;
     }
     
     

@@ -63,7 +63,7 @@ public class HomeTest {
     public void testListAllHomes()
     {
         clear();
-        Home home = new Home("forste sommerhus", "et sommerhus", "en addresse", 666, "a city", "200.35092,11.3323", 20000.0);
+        Home home = new Home("forste sommerhus", "et sommerhus", "en addresse", 666, "a city", "200.35092,11.3323", 20000, "null");
         facade.addHome(home);
 
         List<Home> res = facade.listAllHomes();
@@ -81,7 +81,7 @@ public class HomeTest {
     public void testBookHome()
     {
         clear();
-        Home home = new Home("book home", "et sommerhus", "en addresse", 666, "a city", "200.35092,11.3323", 20000.0);
+        Home home = new Home("book home", "et sommerhus", "en addresse", 666, "a city", "200.35092,11.3323", 20000.0, "null");
         
         User user = (User) facade.getUserByUserName("user");
         Booking booking = new Booking(10l, 20l, user);
@@ -96,7 +96,7 @@ public class HomeTest {
     public void testCreateSummerhouse()
     {
         clear();
-        Home home = new Home("eneste sommerhus", "et sommerhus", "en addresse", 666, "a city", "202.35092,11.3323", 20000.0);
+        Home home = new Home("eneste sommerhus", "et sommerhus", "en addresse", 666, "a city", "202.35092,11.3323", 20000.0, "null");
         facade.addHome(home);
         List<Home> test = facade.listAllHomes();
 

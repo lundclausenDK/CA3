@@ -100,7 +100,7 @@ public class SummerHouseResource {
             int price = json.get("price").getAsInt();
             String geo = json.get("geo").getAsString();
             
-            Home home = new Home(title, description, address, price, city, geo, price);
+            Home home = new Home(title, description, address, price, city, geo, price, "null");
             uf.addHome(home);
             
             return "{\"message\": \"done\"}";

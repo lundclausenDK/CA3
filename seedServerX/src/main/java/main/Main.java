@@ -1,13 +1,19 @@
 package main;
 
+import entity.Booking;
+import entity.Home;
+import entity.Place;
+import entity.Role;
+import entity.User;
 import facades.CollectiveFacadeFactory;
 import facades.DBUtil;
+import facades.ICollectiveFacade;
+import java.util.ArrayList;
+import java.util.List;
 import security.PasswordStorage;
 
 public class Main {
     public static void main(String[] args) throws PasswordStorage.CannotPerformOperationException {
-        
-        /*
         
         Place place01 = new Place();
         Place place02 = new Place();
@@ -37,13 +43,28 @@ public class Main {
         place03.setGeo("56.021966,10.2598323");
         place03.setZip(8300);
         
-        ICollectiveFacade facade = CollectiveFacadeFactory.getInstance();
-        
         Role userRole = new Role("User");
         Role adminRole = new Role("Admin");
         
         User user = new User("user", "test");
         User admin = new User("admin", "test");
+        
+        Booking booking1 = new Booking(150000000000l, 1500800000000l, user);
+        Booking booking2 = new Booking(150000000000l, 1500800000000l, admin);
+        
+        List<Booking> bookingList1 = new ArrayList();
+        List<Booking> bookingList2 = new ArrayList();
+        
+        bookingList1.add(booking1);
+        bookingList2.add(booking2);
+        
+        Home home1 = new Home(1, "Beautiful home", "The most beautiful home", "Main Streed", 3700, "CA", "44.33,22.44", 300, bookingList1);
+        Home home2 = new Home(1, "Beautiful home", "The most beautiful home", "Main Streed", 3700, "CA", "44.33,22.44", 300, bookingList2);
+        
+        
+        ICollectiveFacade facade = CollectiveFacadeFactory.getInstance();
+        
+        
         user.addRole(userRole);
         admin.addRole(adminRole);
         
@@ -55,8 +76,10 @@ public class Main {
         facade.createPlace(place01);
         facade.createPlace(place02);
         facade.createPlace(place03);
+        
+        //facade.addHome(home1);
+        //facade.addHome(home2);
 
-        */
         
         CollectiveFacadeFactory.getTestInstance();
         

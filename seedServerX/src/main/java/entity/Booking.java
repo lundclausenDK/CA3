@@ -1,11 +1,15 @@
 package entity;
 
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -24,7 +28,7 @@ public class Booking implements Serializable {
 
     public Booking() {
     }
-    
+   
     
     private long startTime;
     private long endTime;
