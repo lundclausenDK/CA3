@@ -28,7 +28,7 @@ import test.utils.EmbeddedTomcat;
  *
  * @author craci
  */
-
+@Ignore
 public class SummerhouseRestTest {
     
     private static final int SERVER_PORT = 9999;
