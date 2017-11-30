@@ -15,6 +15,12 @@ public class Booking implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    public Booking(long startTime, long endTime, User renter) {
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.renter = renter;
+    }
     
     private long startTime;
     private long endTime;

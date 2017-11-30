@@ -43,8 +43,32 @@ public class HomeFacade implements IHomeFacade
     @Override
     public List<Home> findHomesCloseTo(String geolocation, double radius)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+     EntityManager em = emf.createEntityManager();
+     em.getTransaction().begin();
+     Query query = em.createQuery("select * from Home");
+     List<Home> homes = query.getResultList();
+     
+     for(Home home: homes){
+         
+         String[] geo = geolocation.split(",");
+         String[] geo2 = home.getGeo().split(",");
+         double temp = (Math.pow(Double.parseDouble(geo[0]) - Double.parseDouble(geo2[0]), 2)) + 
+                 (Math.pow(Double.parseDouble(geo[1]) - Double.parseDouble(geo2[1]), 2)); 
+         double dist = Math.sqrt(temp);
+         
+         if(dist > radius){
+             homes.remove(home);
+         }
+         
+     }
+     return homes;
+     
+     }
+     
+     
+     
+     
+    
 
     @Override
     public Home findHomeById(int id)
@@ -60,7 +84,32 @@ public class HomeFacade implements IHomeFacade
     @Override
     public boolean rentHome(int id, Booking booking)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(booking);
+        em.getTransaction().commit();
+        em.close();
+        return true;
+        
+        
+        
+        /*
+        String[] loc =  booking.split(",");
+         for(Home home : homes){
+         String[] loc2 = home.getGeo().split(",");
+         if( (Integer.parseInt(loc[0]) > Integer.parseInt(loc2[0]) && Integer.parseInt(loc[0]) < Integer.parseInt(loc2[1])) || 
+                 ( Integer.parseInt(loc[1]) > Integer.parseInt(loc2[0]) && Integer.parseInt(loc[1]) < Integer.parseInt(loc2[1]) ) ){
+         
+     } else{
+        return true;
+        }
+        return false;
+        }
+        
+        */
+        
+    
+        
     }
     
 }
