@@ -11,6 +11,7 @@ import AddPlace from "./AddPlace";
 import AddSummerhouse from "./AddSummerhouse";
 import Map from "./Map";
 import SummerhouseList from "./SummerhouseList";
+import SummerhouseDetail from "./SummerhouseDetail";
 
 function App() {
     return (
@@ -28,6 +29,8 @@ function App() {
 
                 <Route path="/add-new-summerhouse" component={AddSummerhouse}/>
                 <Route path="/summerhouses" component={SummerhouseList}/>
+
+                <Route path="/house/:summerHouseId" component={SummerhouseDetail}/>
 
                 <Route path="/signup" component={Signup}/>
             </Switch>
