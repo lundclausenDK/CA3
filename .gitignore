@@ -23,3 +23,10 @@ seedClient/.idea/modules.xml
 seedClient/.idea/seedClient.iml
 seedClient/.idea/workspace.xml
 seedClient/npm-debug.log
+<<<<<<< HEAD
+
+seedClient/package\.json
+seednative/.idea/workspace.xml
+=======
+>>>>>>> d6ada1a3ef7fe922ba723589e59af4a97a3ce13e
+/seedServerX/nbproject/

@@ -90,7 +90,7 @@ public class JWTAuthenticationFilter implements ContainerRequestFilter {
 
   private UserPrincipal getPricipalByUserId(String userId) {
     ICollectiveFacade facade = CollectiveFacadeFactory.getInstance();
-    IUser user = facade.getUserByUserId(userId);
+    IUser user = facade.getUserByUserName(userId);
     if (user != null) {
       return new UserPrincipal(user.getUserName(), user.getRolesAsStrings());
     }

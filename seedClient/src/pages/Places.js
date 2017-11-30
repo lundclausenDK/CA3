@@ -1,4 +1,6 @@
-import React from 'react';
+import React from 'react'
+import auth from '../authorization/auth'
+import Map from './Map'
 
 const URL = require("../../package.json").serverURL;
 
@@ -8,8 +10,16 @@ export default class Place extends React.Component {
         this.state = {
             places: [],
             view: [],
-            ratingSort: true
+            ratingSort: true,
+            rated: false,
+            userName: "none"
         };
+
+        auth.initDataFromToken();
+        if (auth.isloggedIn) {
+            this.state.userName = auth.userName;
+        }
+
         this.getData = this.getData.bind(this);
         this.getData();
     }
@@ -19,7 +29,14 @@ export default class Place extends React.Component {
             .then(function (response) {
                 return response.json()
             }).then(function (data) {
-            console.log(data);
+            //console.log(data);
+            for (let i = 0; i < data.length; i++) {
+                for (let y = 0; y < data[i].raters.length; y++) {
+                    if (data[i].raters[y].user.includes(this.state.userName.toLocaleLowerCase())) {
+                        data[i].rated = true;
+                    }
+                }
+            }
             this.setState({places: data, view: data});
         }.bind(this));
 
@@ -70,6 +87,31 @@ export default class Place extends React.Component {
         e.preventDefault();
     };
 
+    submitRating = (e) => {
+        const ratingString = e.target.value.split(" ");
+        const locationID = e.target.name;
+        const rating = ratingString[0];
+
+        let myRatingPost = {
+            locationID: locationID,
+            rating: rating,
+            userName: this.state.userName
+        };
+        console.log(myRatingPost);
+        fetch(URL + "api/rate", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionStorage.token}`
+            },
+            body: JSON.stringify(myRatingPost)
+        }).then(() => {
+            this.getData();
+        });
+
+    };
+
     render() {
         return (
             <div>
@@ -86,19 +128,36 @@ export default class Place extends React.Component {
                     </form>
                 </div>
 
+                <div className="bigmap">
+                    {this.state.view[0] && <Map geoList={this.state.view}/>}
+                </div>
+
                 {this.state.view.map((item) => (
                     <div className="places-container clearfix">
 
-                        <div className="left image"><img src={item.url}/></div>
+                        <div className="left image"><img src={"https://designcookies.dk/img/"+item.url}/></div>
                         <div className="bold">{item.name}</div>
                         <div>{item.description}</div>
                         <div>{item.street}</div>
                         <div>{item.zip} {item.city}</div>
-                        <div>Rating: {item.rating}</div>
-                        <div>GEO: {item.geo}</div>
+                        {item.geo && <div>GEO: {item.geo}</div>}
+
+                        {item.rated || this.state.userName === "none"?
+                            (<div>Rating: {item.rating} / 5,0 ({item.raters.length})</div>) :
+                            (<form>
+                                <select name={item.id} onChange={this.submitRating}>
+                                    <option>Rate this place...</option>
+                                    <option>5 (Most positive)</option>
+                                    <option>4</option>
+                                    <option>3</option>
+                                    <option>2</option>
+                                    <option>1 (Low of the lowest)</option>
+                                </select>
+                            </form>)}
 
 
                     </div>
+
 
                 ))}
 

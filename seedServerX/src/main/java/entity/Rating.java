@@ -5,15 +5,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+<<<<<<< HEAD
 import javax.persistence.ManyToOne;
+=======
+>>>>>>> master
 import javax.persistence.OneToOne;
 
 @Entity
 public class Rating implements Serializable {
 
+<<<<<<< HEAD
     @ManyToOne
     private Place place;
 
+=======
+>>>>>>> master
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,6 +28,18 @@ public class Rating implements Serializable {
     
     @OneToOne
     private User user;
+<<<<<<< HEAD
+=======
+
+    public Rating()
+    {
+    }
+
+    public Rating(int ratingValue)
+    {
+        this.ratingValue = ratingValue;
+    }
+>>>>>>> master
     
     public int getRatingValue() {
         return ratingValue;
@@ -38,6 +56,7 @@ public class Rating implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
+<<<<<<< HEAD
 
     public Place getPlace() {
         return place;
@@ -46,6 +65,8 @@ public class Rating implements Serializable {
     public void setPlace(Place place) {
         this.place = place;
     }
+=======
+>>>>>>> master
     
     public int getId() {
         return id;

@@ -1,5 +1,7 @@
 package facades;
 
+import entity.Booking;
+import entity.Home;
 import entity.Role;
 import entity.User;
 import java.util.ArrayList;
@@ -13,17 +15,20 @@ class CollectiveFacade implements ICollectiveFacade {
     private final IUserFacade userFacade;
     private final IRoleFacade roleFacade;
     private final IPlaceFacade placeFacade;
+    private final IHomeFacade homeFacade;
 
-    CollectiveFacade(EntityManagerFactory emf, IUserFacade userFacade, IRoleFacade roleFacade, IPlaceFacade placeFacade)
-    {
+    CollectiveFacade(EntityManagerFactory emf, IUserFacade userFacade, IRoleFacade roleFacade, IPlaceFacade placeFacade, IHomeFacade homeFacade)
+    {     
         this.userFacade = userFacade;
         this.roleFacade = roleFacade;
         this.placeFacade = placeFacade;
+        this.homeFacade = homeFacade;
         userFacade.addEntityManagerFactory(emf);
         roleFacade.addEntityManagerFactory(emf);
         placeFacade.addEntityManagerFactory(emf);
+        homeFacade.addEntityManagerFactory(emf);
     }
-    
+
     // ####################### //
     // ##### User facade ##### //
     // ####################### //
@@ -35,11 +40,25 @@ class CollectiveFacade implements ICollectiveFacade {
         for (Role role : user.getRoles())
         {
             if (roleFacade.findRole(role.getRoleName()) != null)
+            {
                 roles.add(role);
+            }
         }
         user.setRoles(roles);
 
         return userFacade.registerUser(user);
+    }
+
+    @Override
+    public boolean deleteUser(String username)
+    {
+        return userFacade.deleteUser(username);
+    }
+
+    @Override
+    public boolean editUser(User user)
+    {
+        return userFacade.editUser(user);
     }
 
     @Override
@@ -49,9 +68,9 @@ class CollectiveFacade implements ICollectiveFacade {
     }
 
     @Override
-    public IUser getUserByUserId(String id)
+    public IUser getUserByUserName(String name)
     {
-        return userFacade.getUserByUserId(id);
+        return userFacade.findUser(name);
     }
 
     @Override
@@ -82,10 +101,16 @@ class CollectiveFacade implements ICollectiveFacade {
         return roleFacade.findRole(roleName);
     }
 
+    @Override
+    public List<Role> listAllRoles()
+    {
+        return roleFacade.listAllRoles();
+    }
+
     // ######################## //
     // ##### Place Facade ##### //
     // ######################## //
-
+    
     @Override
     public boolean createPlace(Place place)
     {
@@ -105,6 +130,12 @@ class CollectiveFacade implements ICollectiveFacade {
     }
 
     @Override
+    public Place findPlaceByName(String locationName)
+    {
+        return placeFacade.findPlace(locationName);
+    }
+
+    @Override
     public List<Place> listAllPlaces()
     {
         return placeFacade.listAllPlaces();
@@ -114,5 +145,37 @@ class CollectiveFacade implements ICollectiveFacade {
     public List<Place> searchForPlaces(String searchWord)
     {
         return placeFacade.searchForPlaces(searchWord);
+    }
+
+    @Override
+    public void addRating(int locationID, int rating, String userName)
+    {
+        placeFacade.addRating(locationID, rating, userName);
+    }
+
+    // ######################## //
+    // ##### Home Facade ##### //
+    // ######################## //
+    
+    @Override
+    public List<Home> listAllHomes()
+    {
+        return homeFacade.listAllHomes();
+    }
+
+    @Override
+    public void addHome(Home home) {
+        homeFacade.addHome(home);
+    }
+
+    @Override
+    public boolean bookHome(int id, Booking booking) {
+        return homeFacade.rentHome(id, booking);
+    }
+
+    @Override
+    public Home findHomeById(int id)
+    {
+        return homeFacade.findHomeById(id);
     }
 }

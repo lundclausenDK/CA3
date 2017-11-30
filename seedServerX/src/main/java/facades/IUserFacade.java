@@ -9,7 +9,9 @@ interface IUserFacade
 {
     void addEntityManagerFactory(EntityManagerFactory emf);
     List<String> authenticateUser(String userName, String password);
-    IUser getUserByUserId(String id);
+    User findUser(String id);
     boolean registerUser(User user);
+    boolean deleteUser(String username);
+    boolean editUser(User user);
     List<User> listAllUsers();
 }

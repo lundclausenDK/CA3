@@ -4,7 +4,7 @@
       margin: 0;
       /*font-family: Helvetica, Arial, sans-serif;*/
     }
-       
+    
     ul.header li {
       display: inline;
       list-style-type: none;
@@ -111,3 +111,73 @@
 
 
 .clearfix:after {height:0; content:" "; clear:both; display:block; visibility:hidden;}
+
+.ca3 input, textarea {min-width: 300px; display: block; padding: 10px; margin-bottom: 10px; border-radius: 4px; border: solid 1px lightgray}
+
+    .summerhouse-list-item {
+        padding: 20px;
+        width: 100%;
+        display: table;
+        cursor: pointer;
+    }
+    .summerhouse-list-item:hover {
+        background-color: #ddd;
+    }
+    .summerhouse-list-item .photo {
+        float:left;
+    }
+    .summerhouse-list-item .photo img {
+        width: 200px;
+        margin-right: 20px;
+    }
+    .summerhouse-list-item .content {
+        float: left;
+    }
+    .summerhouse-list-item .content .title {
+        margin-top: 0px;
+    }
+
+    .house-detail {
+        display: table;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding-top: 20px;
+    }
+    .house-detail .house-detail-photo {
+        float: left;
+        width: 50%;
+    }
+    .house-detail .house-detail-photo img{
+        width: 100%;
+    }
+    .house-detail .house-detail-info {
+        float: left;
+        width: 50%;
+    }
+    .house-detail .house-detail-info .house-title {
+        margin-top: 0px;
+        padding-left: 20px;
+    }
+    .house-detail .house-detail-info .house-description {
+        padding-left: 20px;
+    }
+    .house-detail .house-detail-info .house-city {
+        padding-left: 20px;
+    }
+    .house-detail .house-detail-info .house-address {
+        padding-left: 20px;
+    }
+    .house-detail .house-detail-info .house-price {
+        padding-left: 20px;
+    }
+    .house-detail .house-detail-info .house-booking {
+        font-size: 16px;
+        padding: 10px;
+        margin-left: 20px;
+    }
+
+    .bigmap {
+        margin-bottom: 30px;
+    }
+
+    .glyphicon {margin-top: 16px;}

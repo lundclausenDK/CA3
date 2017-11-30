@@ -1,11 +1,14 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Place implements Serializable {
@@ -14,19 +17,47 @@ public class Place implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    
+
     private String name;
     private String city;
     private String street;
     private String description;
     private String url;
     private int zip;
-    
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<Rating> ratings;
+
     @Column(nullable = true)
     private String geo;
-    private int rating;
 
+    public Place(String name, String city, String street, String description, String url, int zip, String geo) {
+        this.name = name;
+        this.city = city;
+        this.street = street;
+        this.description = description;
+        this.url = url;
+        this.zip = zip;
+        this.geo = geo;
+    }
 
+    public Place(String name, String city, String street, String description, int zip) {
+        this.name = name;
+        this.city = city;
+        this.street = street;
+        this.description = description;
+        this.zip = zip;
+    }
+    
+    
+    
+    public Place(){
+        
+    }
+    
+    
+    
+    
     public int getId() {
         return id;
     }
@@ -82,8 +113,7 @@ public class Place implements Serializable {
     public void setZip(int zip) {
         this.zip = zip;
     }
-    
-    
+
     public String getGeo() {
         return geo;
     }
@@ -92,22 +122,6 @@ public class Place implements Serializable {
         this.geo = geo;
     }
 
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-       
-    
-    
-    
-    
-    
-    
-    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -131,6 +145,20 @@ public class Place implements Serializable {
     @Override
     public String toString() {
         return "entity.Place[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the ratings
+     */
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    /**
+     * @param ratings the ratings to set
+     */
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
     }
 
 }
