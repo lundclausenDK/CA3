@@ -73,7 +73,6 @@ public class User implements IUser, Serializable {
             roles = new ArrayList();
         }
         roles.add(role);
-        role.addUser(this);
     }
 
     public List<Role> getRoles() {
