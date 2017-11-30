@@ -2,22 +2,17 @@ package test;
 
 import entity.Booking;
 import entity.Home;
-import entity.Role;
 import entity.User;
 import facades.DBUtil;
 import facades.CollectiveFacadeFactory;
 import facades.ICollectiveFacade;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
-import security.PasswordStorage;
 
 /**
  *
