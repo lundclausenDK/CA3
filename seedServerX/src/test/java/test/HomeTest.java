@@ -84,7 +84,7 @@ public class HomeTest {
         Home home = new Home("book home", "et sommerhus", "en addresse", 666, "a city", "200.35092,11.3323", 20000.0, "null");
 
         facade.addHome(home);
-        boolean success = facade.bookHome(home.getId(), "user", 1400000l, 15000000);
+        boolean success = facade.bookHome(home.getId(), "user", "Day1", "Day2");
 
         assertEquals(true, success);
     }

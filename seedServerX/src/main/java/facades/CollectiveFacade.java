@@ -169,7 +169,7 @@ class CollectiveFacade implements ICollectiveFacade {
     }
 
     @Override
-    public boolean bookHome(int id, String userName, long start, long end) {
+    public boolean bookHome(int id, String userName, String start, String end) {
         User user = (User) getUserByUserName(userName);
         Booking booking = new Booking(start, end, user);
         return homeFacade.rentHome(id, booking);

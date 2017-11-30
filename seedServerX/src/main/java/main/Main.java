@@ -16,7 +16,7 @@ public class Main {
 
     public static void main(String[] args) throws PasswordStorage.CannotPerformOperationException
     {
-        /*
+        
         Place place01 = new Place();
         Place place02 = new Place();
         Place place03 = new Place();
@@ -51,8 +51,8 @@ public class Main {
         User user = new User("user", "test");
         User admin = new User("admin", "test");
 
-        Booking booking1 = new Booking(150000000000l, 1500800000000l, user);
-        Booking booking2 = new Booking(150000000000l, 1500800000000l, admin);
+        Booking booking1 = new Booking("day1", "day2", user);
+        Booking booking2 = new Booking("day1", "day2", admin);
 
         List<Booking> bookingList1 = new ArrayList();
         List<Booking> bookingList2 = new ArrayList();
@@ -79,7 +79,7 @@ public class Main {
 
         facade.addHome(home1);
         facade.addHome(home2);
-        */
+        
     }
 
 }

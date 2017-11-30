@@ -43,11 +43,12 @@ export default class AddPlace extends React.Component {
         var input = document.querySelector('input[type="file"]');
         var data = new FormData();
 
-        data.append("title", this.state.title);
-        data.append("address", this.state.address);
+        data.append("name", this.state.title);
+        data.append("street", this.state.address);
         data.append("city", this.state.city);
         data.append("zip", this.state.zip);
-        data.append("desc", this.state.desc);
+        data.append("desc", this.state.description);
+        data.append("price", this.state.price);
         //data.append("userName", this.state.userName);
 
         data.append('file', input.files[0]);
@@ -66,6 +67,7 @@ export default class AddPlace extends React.Component {
                     <input placeholder="Type street here" value={this.state.address} onChange={this.returnValue} id="address" />
                     <input placeholder="Type city here" value={this.state.city} onChange={this.returnValue} id="city" />
                     <input type="number" placeholder="Type zip here" value={this.state.zip} onChange={this.returnValue} id="zip" />
+                    <input type="number" placeholder="Type price here" value={this.state.zip} onChange={this.returnValue} id="price" />
                     <textarea placeholder="Please type description" value={this.state.description} onChange={this.returnValue} id="description" />
                     <label>Select File</label><input type="file" id="file" /> <br /><br />
                     <button onClick={this.pushSummerhouseToServer}>Submit</button>

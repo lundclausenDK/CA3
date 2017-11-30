@@ -11,6 +11,7 @@ import facades.CollectiveFacadeFactory;
 import facades.ICollectiveFacade;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
@@ -46,7 +47,7 @@ public class SummerHouseResource {
             homeDetails.addProperty("address", home.getAddress());
             homeDetails.addProperty("description", home.getDescription());
             homeDetails.addProperty("city", home.getCity());
-            homeDetails.addProperty("picture", "hej");
+            homeDetails.addProperty("picture", home.getPicture());
             homeDetails.addProperty("price", home.getPrice());
             homeDetails.addProperty("geo", home.getGeo());
 
@@ -80,7 +81,7 @@ public class SummerHouseResource {
             homeDetails.addProperty("address", home.getAddress());
             homeDetails.addProperty("description", home.getDescription());
             homeDetails.addProperty("city", home.getCity());
-            homeDetails.addProperty("picture", "hej");
+            homeDetails.addProperty("picture", home.getPicture());
             homeDetails.addProperty("price", home.getPrice());
             homeDetails.addProperty("geo", home.getGeo());
 
@@ -143,15 +144,17 @@ public class SummerHouseResource {
     {
         try
         {
+            System.out.println(content);
             JsonObject json = new JsonParser().parse(content).getAsJsonObject();
             String userName = json.get("userName").getAsString();
-            int start = json.get("start").getAsInt();
-            int end = json.get("end").getAsInt();
+            String start = json.get("start").getAsString();
+            String end = json.get("end").getAsString();
             uf.bookHome(id, userName, start, end);
             return "{\"message\": \"reserved: " + id + "\"}";
         }
         catch (Exception e)
         {
+            e.printStackTrace();
             return "{\"message\": \"ERROR\"}";
         }
     }

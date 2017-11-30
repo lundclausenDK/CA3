@@ -32,6 +32,6 @@ public interface ICollectiveFacade
     
     public List<Home> listAllHomes();
     public void addHome(Home home);
-    public boolean bookHome(int id, String userName, long start, long end);
+    public boolean bookHome(int id, String userName, String start, String end);
     public Home findHomeById(int id);
 }

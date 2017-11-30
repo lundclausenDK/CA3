@@ -20,7 +20,7 @@ public class Booking implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    public Booking(long startTime, long endTime, User renter) {
+    public Booking(String startTime, String endTime, User renter) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.renter = renter;
@@ -30,8 +30,8 @@ public class Booking implements Serializable {
     }
    
     
-    private long startTime;
-    private long endTime;
+    private String startTime;
+    private String endTime;
     
     @OneToOne
     private User renter;
@@ -88,14 +88,14 @@ public class Booking implements Serializable {
     /**
      * @return the startTime
      */
-    public long getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
     /**
      * @return the endTime
      */
-    public long getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 

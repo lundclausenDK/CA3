@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import SummerhouseListItem from './SummerhouseListItem';
+import Map from './Map';
+
+const URL = require("../../package.json").serverURL;
 
 class SummerhouseList extends Component {
 
@@ -7,7 +10,7 @@ class SummerhouseList extends Component {
     super();
     this.state = {
       houseList : []
-    }
+    };
     this.loadData = this.loadData.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
@@ -19,7 +22,7 @@ class SummerhouseList extends Component {
   loadData() {
     let scope = this;
 
-    fetch("https://designcookies.dk/backend/seedMaven/api/summerhouses", {
+    fetch(URL + "api/summerhouses", {
       method: "GET"
     }).then(function(response) {
       return response.json()
@@ -39,6 +42,9 @@ class SummerhouseList extends Component {
     return (
       <div>
         <h1>Test</h1>
+          <div className="bigmap">
+              {this.state.houseList[0] && <Map geoList={this.state.houseList}/>}
+          </div>
         {this.state.houseList.map((h, i) =>
           <SummerhouseListItem house={h} key={i}/>
         )}
