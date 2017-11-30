@@ -16,6 +16,7 @@ import org.junit.Ignore;
  *
  * @author craci
  */
+@Ignore
 public class SummerhouseRestTest {
     
     public SummerhouseRestTest() {

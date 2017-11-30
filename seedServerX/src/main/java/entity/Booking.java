@@ -21,6 +21,10 @@ public class Booking implements Serializable {
         this.endTime = endTime;
         this.renter = renter;
     }
+
+    public Booking() {
+    }
+    
     
     private long startTime;
     private long endTime;

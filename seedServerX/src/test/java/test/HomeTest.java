@@ -75,7 +75,6 @@ public class HomeTest {
     }
 
     @Test
-    @Ignore
     public void testBookHome() {
         clear();
         Home home = new Home("book home", "et sommerhus", "en addresse", 666, "a city", "200.35092,11.3323", 20000.0);
@@ -112,7 +111,6 @@ public class HomeTest {
     }
 
     @Test
-    @Ignore
     public void testCreateSummerhouse() {
         clear();
         Home home = new Home("eneste sommerhus", "et sommerhus", "en addresse", 666, "a city", "202.35092,11.3323", 20000.0);
