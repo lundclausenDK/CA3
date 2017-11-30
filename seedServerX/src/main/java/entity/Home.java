@@ -6,6 +6,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +34,7 @@ public class Home implements Serializable {
     private double price;
     
     @OneToMany
-    List<Booking> bookings;
+    List<Booking> bookings = new ArrayList();
 
     public Home() {}
 
@@ -123,6 +124,11 @@ public class Home implements Serializable {
 
     public List<Booking> getBookings() {
         return bookings;
+    }
+    
+    public void addBooking(Booking booking)
+    {
+        bookings.add(booking);
     }
     
     

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package test;
 
 import entity.Booking;
@@ -33,62 +28,84 @@ public class HomeTest {
     private static ICollectiveFacade facade;
     private static DBUtil util;
 
-    public HomeTest() {
+    public HomeTest()
+    {
     }
 
     @BeforeClass
-    public static void setUpClass() {
+    public static void setUpClass()
+    {
         facade = CollectiveFacadeFactory.getTestInstance();
         util = new DBUtil(CollectiveFacadeFactory.getTestEmf());
     }
 
     @AfterClass
-    public static void tearDownClass() {
+    public static void tearDownClass()
+    {
     }
 
     @Before
-    public void setUp() {
+    public void setUp()
+    {
 
     }
 
     @After
-    public void tearDown() {
+    public void tearDown()
+    {
 
     }
 
-    public void clear() {
+    public void clear()
+    {
         util.clearDB();
     }
 
     @Test
-    public void testListAllHomes() {
+    public void testListAllHomes()
+    {
         clear();
         Home home = new Home("forste sommerhus", "et sommerhus", "en addresse", 666, "a city", "200.35092,11.3323", 20000.0);
         facade.addHome(home);
 
         List<Home> res = facade.listAllHomes();
 
-        Home[] expected = {home};
+        Home[] expected =
+        {
+            home
+        };
         Home[] resArr = res.toArray(expected);
 
         assertArrayEquals(expected, resArr);
     }
 
     @Test
-    public void testBookHome() {
+    public void testBookHome()
+    {
         clear();
         Home home = new Home("book home", "et sommerhus", "en addresse", 666, "a city", "200.35092,11.3323", 20000.0);
         Role role = new Role();
         User user;
-        try {
+        try
+        {
             user = new User("testnavn", "testpassword");
             Booking booking = new Booking(10l, 20l, user);
             facade.bookHome(home.getId(), booking);
             facade.addHome(home);
-            Home found = facade.listAllHomes().get(0);
-            assertEquals(booking, found.getBookings().get(0));
 
-        } catch (PasswordStorage.CannotPerformOperationException ex) {
+            Booking foundBooking = null;
+            List<Home> homes = facade.listAllHomes();
+            if (homes != null && !homes.isEmpty())
+            {
+                Home ham = homes.get(0);
+                foundBooking = ham.getBookings().get(0);
+            }
+
+            assertEquals(booking, foundBooking);
+
+        }
+        catch (PasswordStorage.CannotPerformOperationException ex)
+        {
             Logger.getLogger(HomeTest.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -96,7 +113,8 @@ public class HomeTest {
 
     @Test
     @Ignore
-    public void testFindHomesCloseTo() {
+    public void testFindHomesCloseTo()
+    {
         clear();
         Home home = new Home("forste sommerhus", "et sommerhus", "en addresse", 666, "a city", "200.35092,11.3323", 20000.0);
         facade.addHome(home);
@@ -111,7 +129,8 @@ public class HomeTest {
     }
 
     @Test
-    public void testCreateSummerhouse() {
+    public void testCreateSummerhouse()
+    {
         clear();
         Home home = new Home("eneste sommerhus", "et sommerhus", "en addresse", 666, "a city", "202.35092,11.3323", 20000.0);
         facade.addHome(home);
