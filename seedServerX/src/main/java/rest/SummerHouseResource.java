@@ -66,7 +66,11 @@ public class SummerHouseResource {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public String reservedHome(String content, @PathParam("id") int id) {
-      return "{\"message\": \"reserved: "+ id +"\"}";
+      try {
+        return "{\"message\": \"reserved: "+ id +"\"}";          
+      } catch (Exception e) {
+        return "{\"message\": \"ERROR\"}";
+      }
   }
   
   
