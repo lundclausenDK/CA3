@@ -6,7 +6,7 @@ class TopMenu extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { loggedIn: auth.loggedIn, userName: auth.userName, isUser: false, isAdmin: false }
+    this.state = { loggedIn: auth.isloggedIn, userName: auth.userName, isUser: auth.isUser, isAdmin: auth.isAdmin }
   }
 
   loginStatus = (status, userName, isUser, isAdmin) => {
@@ -31,7 +31,6 @@ class TopMenu extends Component {
             <ul className="nav navbar-nav">
               <li><Link to="">Home</Link></li>
               <li><Link to="/about">About</Link></li>
-                {this.state.isUser && <li><Link to="/user">Page for Users</Link></li>}
                 {this.state.isUser && <li><Link to="/add-new-place">Add new place</Link></li>}
               
               <li><Link to="/places">Places</Link></li>
@@ -49,9 +48,7 @@ class TopMenu extends Component {
                   (
                     <li>
                       <Link to="/login">
-                        <span className="glyphicon glyphicon-log-in"></span> Login </Link><br></br>
-                      <Link to="/signup">
-                        <span className="glyphicon glyphicon-signin"></span> Signup </Link>
+                        <span className="glyphicon glyphicon-log-in"></span> Login</Link> | <Link to="/signup"><span className="glyphicon glyphicon-signin"></span>Signup</Link>&nbsp;&nbsp;
                     </li>
                   )}
               </li>

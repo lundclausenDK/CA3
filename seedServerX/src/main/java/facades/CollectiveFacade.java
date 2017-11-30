@@ -1,5 +1,7 @@
 package facades;
 
+import entity.Booking;
+import entity.Home;
 import entity.Role;
 import entity.User;
 import java.util.ArrayList;
@@ -13,20 +15,24 @@ class CollectiveFacade implements ICollectiveFacade {
     private final IUserFacade userFacade;
     private final IRoleFacade roleFacade;
     private final IPlaceFacade placeFacade;
+    private final IHomeFacade homeFacade;
 
-    CollectiveFacade(EntityManagerFactory emf, IUserFacade userFacade, IRoleFacade roleFacade, IPlaceFacade placeFacade)
-    {
+    CollectiveFacade(EntityManagerFactory emf, IUserFacade userFacade, IRoleFacade roleFacade, IPlaceFacade placeFacade, IHomeFacade homeFacade)
+    {     
         this.userFacade = userFacade;
         this.roleFacade = roleFacade;
         this.placeFacade = placeFacade;
+        this.homeFacade = homeFacade;
         userFacade.addEntityManagerFactory(emf);
         roleFacade.addEntityManagerFactory(emf);
         placeFacade.addEntityManagerFactory(emf);
+        homeFacade.addEntityManagerFactory(emf);
     }
 
     // ####################### //
     // ##### User facade ##### //
     // ####################### //
+    
     @Override
     public boolean registerUser(User user)
     {
@@ -62,9 +68,9 @@ class CollectiveFacade implements ICollectiveFacade {
     }
 
     @Override
-    public IUser getUserByUserId(String id)
+    public IUser getUserByUserName(String name)
     {
-        return userFacade.findUser(id);
+        return userFacade.findUser(name);
     }
 
     @Override
@@ -76,6 +82,7 @@ class CollectiveFacade implements ICollectiveFacade {
     // ####################### //
     // ##### Role Facade ##### //
     // ####################### //
+    
     @Override
     public boolean createRole(Role role)
     {
@@ -103,6 +110,7 @@ class CollectiveFacade implements ICollectiveFacade {
     // ######################## //
     // ##### Place Facade ##### //
     // ######################## //
+    
     @Override
     public boolean createPlace(Place place)
     {
@@ -143,5 +151,25 @@ class CollectiveFacade implements ICollectiveFacade {
     public void addRating(int locationID, int rating, String userName)
     {
         placeFacade.addRating(locationID, rating, userName);
+    }
+
+    // ######################## //
+    // ##### Home Facade ##### //
+    // ######################## //
+    
+    @Override
+    public List<Home> listAllHomes()
+    {
+        return homeFacade.listAllHomes();
+    }
+
+    @Override
+    public void addHome(Home home) {
+        homeFacade.addHome(home);
+    }
+
+    @Override
+    public boolean bookHome(int id, Booking booking) {
+        return homeFacade.rentHome(id, booking);
     }
 }
