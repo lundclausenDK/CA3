@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import entity.Booking;
 import entity.Home;
 import facades.CollectiveFacadeFactory;
@@ -97,14 +98,15 @@ public class SummerHouseResource {
             String address = json.get("address").getAsString();
             String description = json.get("description").getAsString();
             String city = json.get("city").getAsString();
+            String picture = json.get("picture").getAsString();
             int price = json.get("price").getAsInt();
             String geo = json.get("geo").getAsString();
             
-            Home home = new Home(title, description, address, price, city, geo, price, "null");
+            Home home = new Home(title, description, address, price, city, geo, price, picture);
             uf.addHome(home);
             
             return "{\"message\": \"done\"}";
-        }catch(Exception e){
+        }catch(JsonSyntaxException e){
             return "{\"error\": \"Couldn't add home\"}";
         }
 
@@ -116,6 +118,11 @@ public class SummerHouseResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String reservedHome(String content, @PathParam("id") int id) {
         try {
+            JsonObject json = new JsonParser().parse(content).getAsJsonObject();
+            String userName = json.get("userName").getAsString();
+            int start = json.get("start").getAsInt();
+            int end = json.get("end").getAsInt();
+            uf.bookHome(id, userName, start, end);
             return "{\"message\": \"reserved: " + id + "\"}";
         } catch (Exception e) {
             return "{\"message\": \"ERROR\"}";
