@@ -21,8 +21,6 @@ export default class AddPlace extends React.Component {
         if (auth.isloggedIn) {
             this.state.userName = auth.userName;
         }
-
-        this.addData = this.addData.bind(this);
     }
 
     returnValue = (e) => {
@@ -31,19 +29,6 @@ export default class AddPlace extends React.Component {
 
         this.setState({ [id]: value });
         e.preventDefault();
-    };
-
-    addData = () => {
-
-        const options = fetchHelper.makeOptions("POST", true, {
-            title: this.state.title,
-            address: this.state.address,
-            city: this.state.city,
-            zip: this.state.zip,
-            description: this.state.description
-        });
-
-        fetch(URL + "api/summerhouses/add_home", options);
     };
 
     pushSummerhouseToServer = () => {
