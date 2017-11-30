@@ -16,7 +16,7 @@ public class Main {
 
     public static void main(String[] args) throws PasswordStorage.CannotPerformOperationException
     {
-
+        /*
         Place place01 = new Place();
         Place place02 = new Place();
         Place place03 = new Place();
@@ -79,6 +79,7 @@ public class Main {
 
         facade.addHome(home1);
         facade.addHome(home2);
+        */
     }
 
 }

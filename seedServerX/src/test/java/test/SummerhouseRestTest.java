@@ -28,7 +28,7 @@ import test.utils.EmbeddedTomcat;
  *
  * @author craci
  */
-@Ignore
+
 public class SummerhouseRestTest {
     
     private static final int SERVER_PORT = 9999;
@@ -130,7 +130,7 @@ public class SummerhouseRestTest {
         String json = "{"
                 + "\"start\": \"10500500\","
                 + "\"end\": \"20500500\","
-                + "\"user_id\": \"1\"}";
+                + "\"userName\": \"1\"}";
         given().pathParams("id", home_id).contentType("application/json").body(json).when().post(api).then().body("message", equalTo("reserved: " + home_id));
     }
 }
