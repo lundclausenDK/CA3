@@ -14,8 +14,7 @@ export default class AddPlace extends React.Component {
             street: null,
             city: null,
             zip: null,
-            desc: null,
-            rating: null,
+            desc: null
         }
 
         auth.initDataFromToken();
@@ -44,7 +43,7 @@ export default class AddPlace extends React.Component {
             desc: this.state.description
         });
 
-        fetch(URL + "api/summerhouses", options);
+        fetch(URL + "api/summerhouses/add_home", options);
     };
 
     pushSummerhouseToServer = () => {
@@ -64,10 +63,10 @@ export default class AddPlace extends React.Component {
         data.append("city", this.state.city);
         data.append("zip", this.state.zip);
         data.append("desc", this.state.desc);
-        data.append("userName", this.state.userName);
+        //data.append("userName", this.state.userName);
 
         data.append('file', input.files[0]);
-        fetch(URL + 'api/summerhouses', {
+        fetch(URL + 'api/summerhouses/add_home', {
             method: 'POST',
             body: data, headers: {'Authorization': `Bearer ${sessionStorage.token}`}
         });
