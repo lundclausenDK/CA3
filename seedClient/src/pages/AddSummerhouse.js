@@ -10,12 +10,11 @@ export default class AddPlace extends React.Component {
         super();
 
         this.state = {
-            name: null,
-            street: null,
+            title: null,
+            address: null,
             city: null,
             zip: null,
-            desc: null,
-            rating: null,
+            description: null
         }
 
         auth.initDataFromToken();
@@ -37,11 +36,11 @@ export default class AddPlace extends React.Component {
     addData = () => {
 
         const options = fetchHelper.makeOptions("POST", true, {
-            name: this.state.name,
-            street: this.state.street,
+            title: this.state.title,
+            address: this.state.address,
             city: this.state.city,
             zip: this.state.zip,
-            desc: this.state.description
+            description: this.state.description
         });
 
         fetch(URL + "api/summerhouses", options);
@@ -59,11 +58,11 @@ export default class AddPlace extends React.Component {
         var input = document.querySelector('input[type="file"]');
         var data = new FormData();
 
-        data.append("name", this.state.name);
-        data.append("street", this.state.street);
+        data.append("title", this.state.title);
+        data.append("address", this.state.address);
         data.append("city", this.state.city);
         data.append("zip", this.state.zip);
-        data.append("desc", this.state.desc);
+        data.append("desc", this.state.description);
         data.append("userName", this.state.userName);
 
         data.append('file', input.files[0]);
