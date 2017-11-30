@@ -52,7 +52,6 @@ public class InitialSeedRestIntegrationTest {
                 .then()
                 .extract().path("token");
         System.out.println("Token: " + securityToken);
-
     }
 
     private static void register(String role, String password) {
