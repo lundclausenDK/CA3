@@ -18,7 +18,7 @@ import org.junit.Ignore;
  * @author Peter
  */
 
-
+@Ignore
 public class RestEndpointTest {
     
     

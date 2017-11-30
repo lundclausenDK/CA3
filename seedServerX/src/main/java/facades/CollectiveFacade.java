@@ -68,9 +68,9 @@ class CollectiveFacade implements ICollectiveFacade {
     }
 
     @Override
-    public IUser getUserByUserId(String id)
+    public IUser getUserByUserName(String name)
     {
-        return userFacade.findUser(id);
+        return userFacade.findUser(name);
     }
 
     @Override
@@ -169,7 +169,7 @@ class CollectiveFacade implements ICollectiveFacade {
     }
 
     @Override
-    public void bookHome(int id, Booking booking) {
-        homeFacade.rentHome(id, booking);
+    public boolean bookHome(int id, Booking booking) {
+        return homeFacade.rentHome(id, booking);
     }
 }
