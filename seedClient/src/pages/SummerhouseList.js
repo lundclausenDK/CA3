@@ -40,7 +40,7 @@ class SummerhouseList extends Component {
       <div>
         <h1>Test</h1>
         {this.state.houseList.map((h, i) =>
-          <SummerhouseListItem house={h} key={i} onClick={this.handleClick}/>
+          <SummerhouseListItem house={h} key={i}/>
         )}
       </div>
     );
