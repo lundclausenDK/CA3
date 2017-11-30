@@ -23,8 +23,6 @@ import security.PasswordStorage;
  *
  * @author Peter
  */
-
-
 public class HomeTest {
 
     private static ICollectiveFacade facade;
@@ -86,19 +84,14 @@ public class HomeTest {
     {
         clear();
         Home home = new Home("book home", "et sommerhus", "en addresse", 666, "a city", "200.35092,11.3323", 20000.0);
-        try
-        {
-            User user = new User("testnavn", "testpassword");
-            Booking booking = new Booking(10l, 20l, user);
-            boolean success = facade.bookHome(home.getId(), booking);
+        
+        User user = (User) facade.getUserByUserName("user");
+        Booking booking = new Booking(10l, 20l, user);
 
-            assertEquals(true, success);
-        }
-        catch (PasswordStorage.CannotPerformOperationException ex)
-        {
-            Logger.getLogger(HomeTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        facade.addHome(home);
+        boolean success = facade.bookHome(home.getId(), booking);
 
+        assertEquals(true, success);
     }
 
     @Test

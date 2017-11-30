@@ -11,7 +11,7 @@ import java.util.List;
 public interface ICollectiveFacade 
 {
     List<String> authenticateUser(String userName, String password);
-    IUser getUserByUserId(String id);
+    IUser getUserByUserName(String name);
     boolean registerUser(User user);
     boolean deleteUser(String username);
     boolean editUser(User user);

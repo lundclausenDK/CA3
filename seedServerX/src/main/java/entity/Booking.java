@@ -75,5 +75,10 @@ public class Booking implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
+    
+    public void setRenter(User user)
+    {
+        renter = user;
+    }
 
 }

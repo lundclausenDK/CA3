@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
         <action>
-            <actionName>CUSTOM-Skip_test_on_build</actionName>
-            <displayName>Skip_test_on_build</displayName>
+            <actionName>CUSTOM-Package</actionName>
+            <displayName>Package</displayName>
             <goals>
                 <goal>clean</goal>
-                <goal>install</goal>
+                <goal>package</goal>
             </goals>
             <properties>
                 <skipTests>true</skipTests>
