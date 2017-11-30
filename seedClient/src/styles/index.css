@@ -181,3 +181,7 @@
     }
 
     .glyphicon {margin-top: 16px;}
+
+    .headerFont {display: inline-block; margin: 0 0 0 20px; color: darkorange;}
+    .headerFont span {font-weight: bold; color: orangered}
+    .headerIcon {margin-bottom: -5px; z-index: 100; position: relative;}
