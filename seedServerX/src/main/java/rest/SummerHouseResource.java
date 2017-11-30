@@ -9,6 +9,7 @@ import entity.Booking;
 import entity.Home;
 import facades.CollectiveFacadeFactory;
 import facades.ICollectiveFacade;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
@@ -22,12 +23,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
+import uploadHelper.ImageUpload;
 
 @Path("summerhouses")
 public class SummerHouseResource {
 
     private ICollectiveFacade uf = CollectiveFacadeFactory.getInstance();
     private Gson gs = new Gson();
+    private ImageUpload imageUpload = new ImageUpload();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -111,20 +114,22 @@ public class SummerHouseResource {
             @FormDataParam("zip") int zip,
             @DefaultValue("") @FormDataParam("city") String city,
             @FormDataParam("price") double price,
-            @FormDataParam("picture") InputStream file,
-            @FormDataParam("picture") FormDataContentDisposition fileDisposition)
+            @FormDataParam("file") InputStream file,
+            @FormDataParam("file") FormDataContentDisposition fileDisposition)
     {
         try
         {
-            String picture = "the_pic";//fileDisposition.getFileName();
+            String picture = fileDisposition.getFileName();
 
             Home home = new Home(name, info, street, zip, city, geo, price, picture);
+            imageUpload.saveFile(file, picture);
             uf.addHome(home);
 
             return "{\"message\": \"done\"}";
         }
-        catch (JsonSyntaxException e)
+        catch (JsonSyntaxException | IOException e )
         {
+            e.printStackTrace();
             return "{\"error\": \"Couldn't add home\"}";
         }
 
