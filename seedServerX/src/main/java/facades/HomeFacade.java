@@ -57,11 +57,17 @@ class HomeFacade implements IHomeFacade {
         boolean success = false;
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-
+        Query query = em.createQuery("select b from Booking,Home_Booking where Home_ID like :locname");
+        query.setParameter("locname", id);
+        List<Booking> bookings = query.getResultList();
         Home found = em.find(Home.class, id);
-
+        
+        //String[] book1 = booking.
         if (found != null)
         {
+            for(Booking bookingTemp: bookings){
+                
+            }
             success = true;
             found.addBooking(booking);
             em.persist(booking);
