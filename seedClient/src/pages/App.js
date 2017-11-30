@@ -8,6 +8,7 @@ import TopMenu from "./TopMenu";
 import Places from "./Places";
 import Signup from "./Signup";
 import AddPlace from "./AddPlace";
+import AddSummerhouse from "./AddSummerhouse";
 import Map from "./Map";
 import SummerhouseList from "./SummerhouseList";
 
@@ -18,11 +19,16 @@ function App() {
             <Switch>
                 <Route path="/login" component={Login}/>
                 <Route path="/logout" component={Logout}/>
+
                 <Route path="/about" component={About}/>
                 <Route path="/admin" component={AdminPage}/>
+
                 <Route path="/add-new-place" component={AddPlace}/>
                 <Route path="/places" component={Places}/>
+
+                <Route path="/add-new-summerhouse" component={AddSummerhouse}/>
                 <Route path="/summerhouses" component={SummerhouseList}/>
+
                 <Route path="/signup" component={Signup}/>
             </Switch>
         </div>

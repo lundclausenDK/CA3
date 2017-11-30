@@ -47,7 +47,7 @@ export default class AddPlace extends React.Component {
         fetch(URL + "api/summerhouses", options);
     };
 
-    pushPlaceToServer = () => {
+    pushSummerhouseToServer = () => {
 
         /*
         const place = { name: this.state.name, street: this.state.street, city: this.state.city, zip: this.state.zip, desc: this.state.desc, file: this.state.file };
@@ -67,7 +67,7 @@ export default class AddPlace extends React.Component {
         data.append("userName", this.state.userName);
 
         data.append('file', input.files[0]);
-        fetch(URL + 'api/upload/placeUpload', {
+        fetch(URL + 'api/summerhouses', {
             method: 'POST',
             body: data, headers: {'Authorization': `Bearer ${sessionStorage.token}`}
         });
@@ -84,7 +84,7 @@ export default class AddPlace extends React.Component {
                     <input type="number" placeholder="Type zip here" value={this.state.zip} onChange={this.returnValue} id="zip" />
                     <textarea placeholder="Please type description" value={this.state.description} onChange={this.returnValue} id="desc" />
                     <label>Select File</label><input type="file" id="file" /> <br /><br />
-                    <button onClick={this.pushPlaceToServer}>Submit</button>
+                    <button onClick={this.pushSummerhouseToServer}>Submit</button>
                 </form>
             </div>
         );
