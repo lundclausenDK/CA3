@@ -46,6 +46,19 @@ public class Home implements Serializable {
         this.geo = geo;
         this.price = price;
     }
+
+    public Home(int id, String name, String description, String address, int zipcode, String city, String geo, double price, List<Booking> bookings) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.address = address;
+        this.zipcode = zipcode;
+        this.city = city;
+        this.geo = geo;
+        this.price = price;
+        this.bookings = bookings;
+    }
+    
     
     @Override
     public int hashCode() {

@@ -16,4 +16,8 @@ Dagens scrum møde var lidt løst. Scrumleader var ikke rigtig valgt, og der var
 
 Scrum meeting tirsdag 28-11
 7 minutter
-Godt scrum møde, Scrumleader var på igen, og siden vi har valgt at lave pair programming hvor det meste af projectet skal laves onsdag torsdag, var det nemt at finde ud af hvad der skulle laves i dag. 
+Godt scrum møde, Scrumleader var på igen, og siden vi har valgt at lave pair programming hvor det meste af projectet skal laves onsdag torsdag, var det nemt at finde ud af hvad der skulle laves i dag.
+
+Scrum meeting onsdag 29-11
+25 minutter
+Dagens scrum møde varede lidt længere tid. Dette skyldes at vi til idag havde aftalt at vi skulle mødes og lave pair programming. Til dette skulle vi først aftale hvordan det skulle forløbe og hvad der skulle laves. Selve mødet trods dets længde var effektivt. Vi fik desuden opklaret en del tvivl omkring ATTD med hensyn til pair programming. 
