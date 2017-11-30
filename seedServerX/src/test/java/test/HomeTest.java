@@ -82,12 +82,9 @@ public class HomeTest {
     {
         clear();
         Home home = new Home("book home", "et sommerhus", "en addresse", 666, "a city", "200.35092,11.3323", 20000.0, "null");
-        
-        User user = (User) facade.getUserByUserName("user");
-        Booking booking = new Booking(10l, 20l, user);
 
         facade.addHome(home);
-        boolean success = facade.bookHome(home.getId(), booking);
+        boolean success = facade.bookHome(home.getId(), "user", 1400000l, 15000000);
 
         assertEquals(true, success);
     }
