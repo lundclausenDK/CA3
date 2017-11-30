@@ -25,6 +25,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
+import uploadHelper.ImageUpload;
 
 @Path("upload")
 //@RolesAllowed("User")
@@ -32,6 +33,7 @@ public class UploadResource {
 
     private ICollectiveFacade uf = CollectiveFacadeFactory.getInstance();
     private String path = "/var/www/img/";
+    private ImageUpload imageUpload = new ImageUpload();
 
     public UploadResource() {
         File folder = new File(path);
@@ -122,7 +124,8 @@ public class UploadResource {
         try {
             
             Place place = new Place(name, city, street, info, fileName, placeZip, geo);
-            saveFile(file, path + fileName);
+            //saveFile(file, path + fileName);
+            imageUpload.saveFile(file, fileName);
 
             uf.createPlace(place);
             

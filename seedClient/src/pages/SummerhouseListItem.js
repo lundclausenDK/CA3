@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const SummerhouseListItem = (props) => (
   <div className="summerhouse-list-item" onClick={props.onClick}>
@@ -10,6 +11,7 @@ const SummerhouseListItem = (props) => (
       <p>City : {props.house.city}</p>
       <p>Price : {props.house.price}</p>
       <p>{props.house.description}</p>
+      <Link to={"/house/" + props.house.id}>see details</Link>
     </div>
   </div>
 );

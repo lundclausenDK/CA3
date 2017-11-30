@@ -10,8 +10,8 @@ export default class AddPlace extends React.Component {
         super();
 
         this.state = {
-            name: null,
-            street: null,
+            title: null,
+            address: null,
             city: null,
             zip: null,
             desc: null
@@ -36,11 +36,11 @@ export default class AddPlace extends React.Component {
     addData = () => {
 
         const options = fetchHelper.makeOptions("POST", true, {
-            name: this.state.name,
-            street: this.state.street,
+            title: this.state.title,
+            address: this.state.address,
             city: this.state.city,
             zip: this.state.zip,
-            desc: this.state.description
+            description: this.state.description
         });
 
         fetch(URL + "api/summerhouses/add_home", options);
@@ -58,8 +58,8 @@ export default class AddPlace extends React.Component {
         var input = document.querySelector('input[type="file"]');
         var data = new FormData();
 
-        data.append("name", this.state.name);
-        data.append("street", this.state.street);
+        data.append("title", this.state.title);
+        data.append("address", this.state.address);
         data.append("city", this.state.city);
         data.append("zip", this.state.zip);
         data.append("desc", this.state.desc);
@@ -77,11 +77,11 @@ export default class AddPlace extends React.Component {
             <div>
                 <h2>Add new summerhouse</h2>
                 <form className="ca3">
-                    <input placeholder="Type name here" value={this.state.name} onChange={this.returnValue} id="name" />
-                    <input placeholder="Type street here" value={this.state.street} onChange={this.returnValue} id="street" />
+                    <input placeholder="Type name here" value={this.state.title} onChange={this.returnValue} id="title" />
+                    <input placeholder="Type street here" value={this.state.address} onChange={this.returnValue} id="address" />
                     <input placeholder="Type city here" value={this.state.city} onChange={this.returnValue} id="city" />
                     <input type="number" placeholder="Type zip here" value={this.state.zip} onChange={this.returnValue} id="zip" />
-                    <textarea placeholder="Please type description" value={this.state.description} onChange={this.returnValue} id="desc" />
+                    <textarea placeholder="Please type description" value={this.state.description} onChange={this.returnValue} id="description" />
                     <label>Select File</label><input type="file" id="file" /> <br /><br />
                     <button onClick={this.pushSummerhouseToServer}>Submit</button>
                 </form>
