@@ -51,10 +51,10 @@ public class Booking implements Serializable {
             return false;
         }
         final Booking other = (Booking) obj;
-        if (this.startTime != other.startTime) {
+        if (this.getStartTime() != other.getStartTime()) {
             return false;
         }
-        if (this.endTime != other.endTime) {
+        if (this.getEndTime() != other.getEndTime()) {
             return false;
         }
         if (!Objects.equals(this.renter, other.renter)) {
@@ -79,6 +79,27 @@ public class Booking implements Serializable {
     public void setRenter(User user)
     {
         renter = user;
+    }
+
+    /**
+     * @return the startTime
+     */
+    public long getStartTime() {
+        return startTime;
+    }
+
+    /**
+     * @return the endTime
+     */
+    public long getEndTime() {
+        return endTime;
+    }
+
+    /**
+     * @return the renter
+     */
+    public User getRenter() {
+        return renter;
     }
 
 }
