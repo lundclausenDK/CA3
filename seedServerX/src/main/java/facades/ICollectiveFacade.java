@@ -31,7 +31,6 @@ public interface ICollectiveFacade
     void addRating(int locationID, int rating, String userName);
     
     public List<Home> listAllHomes();
-    public List<Home> findHomesCloseTo(String geolocation, double radius);
     public void addHome(Home home);
     public void bookHome(int id, Booking booking);
 }

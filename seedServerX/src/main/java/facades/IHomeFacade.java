@@ -11,7 +11,6 @@ public interface IHomeFacade
     
     public void addHome(Home home);
     public List<Home> listAllHomes();
-    public List<Home> findHomesCloseTo(String geolocation, double radius);
     public Home findHomeById(int id);
     public boolean rentHome(int id, Booking booking);
 }

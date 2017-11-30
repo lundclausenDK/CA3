@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
-public class HomeFacade implements IHomeFacade {
+class HomeFacade implements IHomeFacade {
 
     private EntityManagerFactory emf;
 
@@ -41,33 +41,6 @@ public class HomeFacade implements IHomeFacade {
     }
 
     @Override
-    public List<Home> findHomesCloseTo(String geolocation, double radius)
-    {
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        Query query = em.createQuery("select h from Home h");
-        List<Home> homes = query.getResultList();
-
-        for (Home home : homes)
-        {
-
-            String[] geo = geolocation.split(",");
-            String[] geo2 = home.getGeo().split(",");
-            double temp = (Math.pow(Double.parseDouble(geo[0]) - Double.parseDouble(geo2[0]), 2))
-                    + (Math.pow(Double.parseDouble(geo[1]) - Double.parseDouble(geo2[1]), 2));
-            double dist = Math.sqrt(temp);
-
-            if (dist > radius)
-            {
-                homes.remove(home);
-            }
-
-        }
-        return homes;
-
-    }
-
-    @Override
     public Home findHomeById(int id)
     {
         EntityManager em = emf.createEntityManager();
@@ -79,7 +52,7 @@ public class HomeFacade implements IHomeFacade {
     }
 
     @Override
-    public Home rentHome(int id, Booking booking)
+    public boolean rentHome(int id, Booking booking)
     {
         boolean success = false;
         EntityManager em = emf.createEntityManager();

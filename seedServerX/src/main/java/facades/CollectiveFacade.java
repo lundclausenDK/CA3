@@ -164,13 +164,6 @@ class CollectiveFacade implements ICollectiveFacade {
     }
 
     @Override
-    public List<Home> findHomesCloseTo(String geolocation, double radius)
-    {
-        return homeFacade.findHomesCloseTo(geolocation, radius);
-    }
-
-
-    @Override
     public void addHome(Home home) {
         homeFacade.addHome(home);
     }
