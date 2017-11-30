@@ -32,5 +32,5 @@ public interface ICollectiveFacade
     
     public List<Home> listAllHomes();
     public void addHome(Home home);
-    public void bookHome(int id, Booking booking);
+    public boolean bookHome(int id, Booking booking);
 }

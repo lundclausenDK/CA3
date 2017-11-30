@@ -169,7 +169,7 @@ class CollectiveFacade implements ICollectiveFacade {
     }
 
     @Override
-    public void bookHome(int id, Booking booking) {
-        homeFacade.rentHome(id, booking);
+    public boolean bookHome(int id, Booking booking) {
+        return homeFacade.rentHome(id, booking);
     }
 }
