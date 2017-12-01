@@ -57,16 +57,20 @@ class HomeFacade implements IHomeFacade {
         boolean success = false;
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Query query = em.createQuery("select b from Booking,Home_Booking where Home_ID like :locname");
+        Query query = em.createQuery("select b from BOOKING b join HOME_BOOKING e where Home_ID like " + id);
         query.setParameter("locname", id);
         List<Booking> bookings = query.getResultList();
         Home found = em.find(Home.class, id);
         
-        //String[] book1 = booking.
+        long start = booking.getStartTime();
+        long end = booking.getEndTime();
         if (found != null)
-        {
+        { 
             for(Booking bookingTemp: bookings){
-                
+                if((start > bookingTemp.getStartTime() && start < bookingTemp.getEndTime()) || (end > bookingTemp.getStartTime() && end < bookingTemp.getEndTime())){
+                    System.out.println("TEST !!!!!!!!!!!!!!!!!!!!!");
+                    return false;
+                }
             }
             success = true;
             found.addBooking(booking);

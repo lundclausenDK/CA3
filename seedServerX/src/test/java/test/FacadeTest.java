@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import static org.mockito.Mockito.inOrder;
@@ -23,6 +24,8 @@ import static org.mockito.Mockito.when;
  *
  * @author Peter
  */
+/*
+@Ignore
 public class FacadeTest {
     
     @Mock
@@ -60,3 +63,4 @@ public class FacadeTest {
         
     }
 }
+*/
