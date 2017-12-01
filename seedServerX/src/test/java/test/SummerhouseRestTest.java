@@ -28,7 +28,7 @@ import test.utils.EmbeddedTomcat;
  *
  * @author craci
  */
-@Ignore
+//@Ignore
 public class SummerhouseRestTest {
     
     private static final int SERVER_PORT = 9999;
@@ -108,14 +108,15 @@ public class SummerhouseRestTest {
                 .body("id", equalTo(1));
     }
     
+    @Ignore
     @Test
     public void putMethodTesting(){
         login("admin", "test");
-        String api = "/api/summerhouses";
+        String api = "/api/summerhouses/add_home";
         String json = "{"
-                + "\"title\": \"Super summerhouse\","
-                + "\"address\": \"gadevejen 32\","
-                + "\"description\": \"Gammel skøn klassiker\","
+                + "\"name\": \"Super summerhouse\","
+                + "\"street\": \"gadevejen 32\","
+                + "\"desc\": \"Gammel skøn klassiker\","
                 + "\"city\": \"Bystaden\","
                 + "\"picture\": \"hus.jpg\","
                 + "\"price\": \"3000\","
@@ -128,8 +129,8 @@ public class SummerhouseRestTest {
         int home_id = 2;
         String api = "/api/summerhouses/rent/{id}";
         String json = "{"
-                + "\"start\": \"10500500\","
-                + "\"end\": \"20500500\","
+                + "\"start\": \"12/11/2017\","
+                + "\"end\": \"14/11/2017\","
                 + "\"userName\": \"1\"}";
         given().pathParams("id", home_id).contentType("application/json").body(json).when().post(api).then().body("message", equalTo("reserved: " + home_id));
     }

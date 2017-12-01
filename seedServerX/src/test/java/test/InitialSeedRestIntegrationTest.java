@@ -21,7 +21,7 @@ import org.junit.Test;
 import security.Secret;
 import test.utils.EmbeddedTomcat;
 
-@Ignore
+//@Ignore
 public class InitialSeedRestIntegrationTest {
 
     private static final int SERVER_PORT = 9999;
