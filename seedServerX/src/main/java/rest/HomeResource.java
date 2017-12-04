@@ -26,7 +26,7 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 import uploadHelper.ImageUpload;
 
 @Path("summerhouses")
-public class SummerHouseResource {
+public class HomeResource {
 
     private ICollectiveFacade uf = CollectiveFacadeFactory.getInstance();
     private Gson gs = new Gson();
@@ -34,7 +34,7 @@ public class SummerHouseResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getSomething() {
+    public String listAllHomes() {
         List<Home> homeList = uf.listAllHomes();
         JsonArray homeArray = new JsonArray();
         for (Home home : homeList) {
@@ -66,7 +66,7 @@ public class SummerHouseResource {
     @Path("{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getSpecific(@PathParam("id") int id) {
+    public String getSpecificHome(@PathParam("id") int id) {
         try {
             Home home = uf.findHomeById(id);
             JsonObject homeDetails = new JsonObject();
@@ -100,7 +100,7 @@ public class SummerHouseResource {
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed("Admin")
-    public String postHouse(@DefaultValue("") @FormDataParam("name") String name,
+    public String postHome(@DefaultValue("") @FormDataParam("name") String name,
             @DefaultValue("") @FormDataParam("desc") String info,
             @DefaultValue("") @FormDataParam("geo") String geo,
             @DefaultValue("") @FormDataParam("street") String street,
@@ -129,7 +129,7 @@ public class SummerHouseResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String reservedHome(String content, @PathParam("id") int id) {
+    public String bookHome(String content, @PathParam("id") int id) {
         try {
             System.out.println(content);
             JsonObject json = new JsonParser().parse(content).getAsJsonObject();

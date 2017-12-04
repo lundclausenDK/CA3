@@ -48,7 +48,7 @@ class HomeFacade implements IHomeFacade {
     }
 
     @Override
-    public boolean rentHome(int id, Booking booking) {
+    public boolean bookHome(int id, Booking booking) {
         boolean success = false;
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();

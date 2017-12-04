@@ -3,7 +3,7 @@ package test;
 import entity.Booking;
 import entity.Home;
 import entity.User;
-import facades.DBUtil;
+import db.DBUtil;
 import facades.CollectiveFacadeFactory;
 import facades.ICollectiveFacade;
 import java.util.List;

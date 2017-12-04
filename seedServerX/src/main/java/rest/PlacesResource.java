@@ -32,7 +32,7 @@ public class PlacesResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getJson() {
+    public String listAllPlaces() {
         NumberFormat formatter = new DecimalFormat("#0.0");
         //TODO return proper representation object
         List<Place> placesList = cf.listAllPlaces();

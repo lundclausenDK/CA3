@@ -38,7 +38,7 @@ public class Register {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getSomething(String content) {
+    public Response registerUser(String content) {
         /*User user = gs.fromJson(content, User.class);*/
         JsonObject json = new JsonParser().parse(content).getAsJsonObject();
         String username = json.get("username").getAsString();

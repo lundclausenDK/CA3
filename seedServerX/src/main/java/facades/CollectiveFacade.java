@@ -147,7 +147,7 @@ class CollectiveFacade implements ICollectiveFacade {
     public boolean bookHome(int id, String userName, String start, String end) {
         User user = (User) getUserByUserName(userName);
         Booking booking = new Booking(start, end, user);
-        return homeFacade.rentHome(id, booking);
+        return homeFacade.bookHome(id, booking);
     }
 
     @Override

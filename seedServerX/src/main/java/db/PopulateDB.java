@@ -1,4 +1,4 @@
-package main;
+package db;
 
 import entity.Booking;
 import entity.Home;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import security.PasswordStorage;
 
-public class Main {
+public class PopulateDB {
 
     public static void main(String[] args) throws PasswordStorage.CannotPerformOperationException {
 

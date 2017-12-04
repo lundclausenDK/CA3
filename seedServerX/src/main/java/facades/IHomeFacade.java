@@ -12,5 +12,5 @@ public interface IHomeFacade {
     public void addHome(Home home);
     public List<Home> listAllHomes();
     public Home findHomeById(int id);
-    public boolean rentHome(int id, Booking booking);
+    public boolean bookHome(int id, Booking booking);
 }
