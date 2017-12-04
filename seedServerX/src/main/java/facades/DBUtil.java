@@ -34,8 +34,9 @@ public class DBUtil {
 
         ignoreKey.executeUpdate();
 
-        for (Query q : deletes)
+        for (Query q : deletes) {
             q.executeUpdate();
+        }
 
         acceptKey.executeUpdate();
 

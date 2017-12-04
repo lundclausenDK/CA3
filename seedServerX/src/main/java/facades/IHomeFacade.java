@@ -5,8 +5,8 @@ import entity.Home;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 
-public interface IHomeFacade 
-{
+public interface IHomeFacade {
+    
     public void addEntityManagerFactory(EntityManagerFactory emf);
     
     public void addHome(Home home);

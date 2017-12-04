@@ -16,33 +16,28 @@ public class DeploymentConfiguration implements ServletContextListener {
 
     @Override
     @SuppressWarnings("empty-statement")
-    public void contextInitialized(ServletContextEvent sce)
-    {
+    public void contextInitialized(ServletContextEvent sce) {
         System.out.println("######################################################################################");
         System.out.println("############################ In ContextIntialized ####################################");
         System.out.println("######################################################################################");
 
         //Handling init-params from the properties file (secrets that should not be pushed to GIT)
-        try (InputStream input = getClass().getClassLoader().getResourceAsStream("/config.properties");)
-        {
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("/config.properties");) {
             Properties prop = new Properties();
-            if (input == null)
-            {
+            if (input == null) {
                 System.out.println("Could not load init-properties");
                 return;
             }
             prop.load(input);
             Secret.SHARED_SECRET = prop.getProperty("tokenSecret").getBytes();
         }
-        catch (IOException ex)
-        {
+        catch (IOException ex) {
             Logger.getLogger(DeploymentConfiguration.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public void contextDestroyed(ServletContextEvent sce)
-    {
+    public void contextDestroyed(ServletContextEvent sce) {
 
     }
 }

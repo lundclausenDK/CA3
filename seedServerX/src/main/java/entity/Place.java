@@ -48,16 +48,11 @@ public class Place implements Serializable {
         this.description = description;
         this.zip = zip;
     }
-    
-    
-    
-    public Place(){
-        
+
+    public Place() {
+
     }
-    
-    
-    
-    
+
     public int getId() {
         return id;
     }

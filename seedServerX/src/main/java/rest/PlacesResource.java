@@ -72,10 +72,11 @@ public class PlacesResource {
                 }
                 placeObject.add("raters", raters);
                 placeObject.addProperty("rating", formatter.format(ratingValue / actualRaters));
-            }else{
+            }
+            else {
                 placeObject.add("raters", raters);
                 placeObject.addProperty("rating", 0);
-                
+
             }
 
             places.add(placeObject);
@@ -84,6 +85,7 @@ public class PlacesResource {
         //return gs.toJson(cf.listAllPlaces());
         //return "{content: 'hello'}";
     }
+
     /**
      * PUT method for updating or creating an instance of PlacesResource
      *

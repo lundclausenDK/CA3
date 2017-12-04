@@ -14,7 +14,7 @@ public class CollectiveFacadeFactory {
             new UserFacade(), new RoleFacade(), new PlaceFacade(), new HomeFacade());
 
     private static EntityManagerFactory testEmf;
-    
+
     public static ICollectiveFacade getInstance() {
         return INSTANCE;
     }
@@ -25,12 +25,11 @@ public class CollectiveFacadeFactory {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu_development", props);
 
         testEmf = emf;
-        
+
         return new CollectiveFacade(emf, new UserFacade(), new RoleFacade(), new PlaceFacade(), new HomeFacade());
     }
-    
-    public static EntityManagerFactory getTestEmf()
-    {
+
+    public static EntityManagerFactory getTestEmf() {
         return testEmf;
     }
 }

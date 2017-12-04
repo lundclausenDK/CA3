@@ -56,13 +56,14 @@ public class Register {
             for (Role role : user.getRoles()) {
                 roles.add(role.getRoleName());
             }
-            
+
             String token = createToken(user.getUserName(), roles);
             responseJson.addProperty("username", user.getUserName());
             responseJson.addProperty("token", token);
             return Response.ok(new Gson().toJson(responseJson)).build();
 
-        } catch (JOSEException | PasswordStorage.CannotPerformOperationException e ) {
+        }
+        catch (JOSEException | PasswordStorage.CannotPerformOperationException e) {
             throw new NotAuthorizedException("Couldn't Create User", Response.Status.UNAUTHORIZED);
         }
     }

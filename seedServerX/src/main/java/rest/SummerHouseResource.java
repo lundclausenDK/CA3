@@ -11,7 +11,6 @@ import facades.CollectiveFacadeFactory;
 import facades.ICollectiveFacade;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
@@ -35,12 +34,10 @@ public class SummerHouseResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getSomething()
-    {
+    public String getSomething() {
         List<Home> homeList = uf.listAllHomes();
         JsonArray homeArray = new JsonArray();
-        for (Home home : homeList)
-        {
+        for (Home home : homeList) {
             JsonObject homeDetails = new JsonObject();
             homeDetails.addProperty("id", home.getId());
             homeDetails.addProperty("title", home.getName());
@@ -52,8 +49,7 @@ public class SummerHouseResource {
             homeDetails.addProperty("geo", home.getGeo());
 
             JsonArray bookings = new JsonArray();
-            for (Booking booking : home.getBookings())
-            {
+            for (Booking booking : home.getBookings()) {
                 JsonObject newBooking = new JsonObject();
                 newBooking.addProperty("startDate", booking.getStartTime());
                 newBooking.addProperty("endDate", booking.getEndTime());
@@ -70,10 +66,8 @@ public class SummerHouseResource {
     @Path("{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getSpecific(@PathParam("id") int id)
-    {
-        try
-        {
+    public String getSpecific(@PathParam("id") int id) {
+        try {
             Home home = uf.findHomeById(id);
             JsonObject homeDetails = new JsonObject();
             homeDetails.addProperty("id", home.getId());
@@ -86,8 +80,7 @@ public class SummerHouseResource {
             homeDetails.addProperty("geo", home.getGeo());
 
             JsonArray bookings = new JsonArray();
-            for (Booking booking : home.getBookings())
-            {
+            for (Booking booking : home.getBookings()) {
                 JsonObject newBooking = new JsonObject();
                 newBooking.addProperty("startDate", booking.getStartTime());
                 newBooking.addProperty("endDate", booking.getEndTime());
@@ -97,8 +90,7 @@ public class SummerHouseResource {
             homeDetails.add("bookings", bookings);
             return homeDetails.toString();
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             return null;
         }
     }
@@ -116,10 +108,8 @@ public class SummerHouseResource {
             @DefaultValue("") @FormDataParam("city") String city,
             @FormDataParam("price") double price,
             @FormDataParam("file") InputStream file,
-            @FormDataParam("file") FormDataContentDisposition fileDisposition)
-    {
-        try
-        {
+            @FormDataParam("file") FormDataContentDisposition fileDisposition) {
+        try {
             String picture = fileDisposition.getFileName();
 
             Home home = new Home(name, info, street, zip, city, geo, price, picture);
@@ -128,8 +118,7 @@ public class SummerHouseResource {
 
             return "{\"message\": \"done\"}";
         }
-        catch (JsonSyntaxException | IOException e )
-        {
+        catch (JsonSyntaxException | IOException e) {
             e.printStackTrace();
             return "{\"error\": \"Couldn't add home\"}";
         }
@@ -140,10 +129,8 @@ public class SummerHouseResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String reservedHome(String content, @PathParam("id") int id)
-    {
-        try
-        {
+    public String reservedHome(String content, @PathParam("id") int id) {
+        try {
             System.out.println(content);
             JsonObject json = new JsonParser().parse(content).getAsJsonObject();
             String userName = json.get("userName").getAsString();
@@ -152,8 +139,7 @@ public class SummerHouseResource {
             uf.bookHome(id, userName, start, end);
             return "{\"message\": \"reserved: " + id + "\"}";
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             e.printStackTrace();
             return "{\"message\": \"ERROR\"}";
         }

@@ -15,19 +15,17 @@ public class Rating implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private int ratingValue;
-    
+
     @OneToOne
     private User user;
 
-    public Rating()
-    {
+    public Rating() {
     }
 
-    public Rating(int ratingValue)
-    {
+    public Rating(int ratingValue) {
         this.ratingValue = ratingValue;
     }
-    
+
     public int getRatingValue() {
         return ratingValue;
     }
@@ -43,7 +41,7 @@ public class Rating implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
-    
+
     public int getId() {
         return id;
     }

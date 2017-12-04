@@ -16,8 +16,9 @@ import java.io.OutputStream;
  * @author craci
  */
 public class ImageUpload {
+
     private String path = "/var/www/img/";
-    
+
     public void saveFile(InputStream is, String fileLocation) throws IOException {
 
         String location = path + fileLocation;

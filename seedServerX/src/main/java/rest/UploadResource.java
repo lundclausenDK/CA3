@@ -3,7 +3,6 @@ package rest;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import entity.Place;
-import entity.Rating;
 import facades.CollectiveFacadeFactory;
 import facades.ICollectiveFacade;
 import java.io.File;
@@ -11,8 +10,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
@@ -68,8 +65,7 @@ public class UploadResource {
         String status = "{\"status\":\"uploaded\"}";
         return Response.ok(status).build();
     }
-    */
-    
+     */
     private void saveFile(InputStream is, String fileLocation) throws IOException {
 
         String location = fileLocation;
@@ -117,26 +113,26 @@ public class UploadResource {
         String fileName = fileDisposition.getFileName();
         System.out.println(fileName);
         int placeZip = Integer.parseInt(zip);
-        
+
         if (rating < 1)
             rating = 1;
 
         try {
-            
+
             Place place = new Place(name, city, street, info, fileName, placeZip, geo);
             //saveFile(file, path + fileName);
             imageUpload.saveFile(file, fileName);
 
             uf.createPlace(place);
-            
+
             Place found = uf.findPlaceByName(name);
-            
-            if (found != null)
-            {
+
+            if (found != null) {
                 uf.addRating(found.getId(), rating, userName);
             }
-            
-        } catch (IOException ex) {
+
+        }
+        catch (IOException ex) {
             Logger.getLogger(UploadResource.class.getName()).log(Level.SEVERE, null, ex);
         }
 

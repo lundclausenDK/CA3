@@ -3,7 +3,6 @@ package test;
 import deploy.DeploymentConfiguration;
 import org.junit.BeforeClass;
 import io.restassured.RestAssured;
-import static io.restassured.RestAssured.*;
 import io.restassured.parsing.Parser;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -14,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import org.apache.catalina.LifecycleException;
-import static org.hamcrest.Matchers.*;
 import org.junit.AfterClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -35,7 +33,8 @@ public class InitialSeedRestIntegrationTest {
         try (InputStream input = new ByteArrayInputStream(content.getBytes())) {
             prop.load(input);
             Secret.SHARED_SECRET = prop.getProperty("tokenSecret").getBytes();
-        } catch (IOException ex) {
+        }
+        catch (IOException ex) {
             Logger.getLogger(DeploymentConfiguration.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -65,7 +64,7 @@ public class InitialSeedRestIntegrationTest {
     }
 
     private static void deleteUser(String role) {
-        
+
     }
 
     private void logOut() {
@@ -92,7 +91,7 @@ public class InitialSeedRestIntegrationTest {
         given()
                 .contentType("application/json")
                 .when()
-                .get("/api/demoall").then()
+                .get("/api/demouser/demoall").then()
                 .statusCode(200)
                 .body("message", equalTo("result for all"));
     }
@@ -144,7 +143,6 @@ public class InitialSeedRestIntegrationTest {
                 .when().post("api/user_control/delete")
                 .then()
                 .statusCode(200);
-                
 
     }
 

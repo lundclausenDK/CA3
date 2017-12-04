@@ -4,8 +4,8 @@ import entity.Place;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 
-interface IPlaceFacade 
-{
+interface IPlaceFacade {
+    
     void addEntityManagerFactory(EntityManagerFactory emf);
     boolean createPlace(Place place);
     boolean removePlace(int id);
