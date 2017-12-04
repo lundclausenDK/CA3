@@ -5,7 +5,7 @@ import entity.IUser;
 import entity.Place;
 import entity.User;
 import java.util.List;
-import javax.management.relation.Role;
+import entity.Role;
 
 public interface ICollectiveFacade {
     

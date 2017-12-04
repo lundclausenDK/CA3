@@ -3,6 +3,7 @@ package test;
 import deploy.DeploymentConfiguration;
 import org.junit.BeforeClass;
 import io.restassured.RestAssured;
+import static io.restassured.RestAssured.given;
 import io.restassured.parsing.Parser;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -13,13 +14,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import org.apache.catalina.LifecycleException;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import org.junit.AfterClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import security.Secret;
 import test.utils.EmbeddedTomcat;
 
-//@Ignore
+@Ignore
 public class InitialSeedRestIntegrationTest {
 
     private static final int SERVER_PORT = 9999;

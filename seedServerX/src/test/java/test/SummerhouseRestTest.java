@@ -24,11 +24,7 @@ import org.junit.Ignore;
 import security.Secret;
 import test.utils.EmbeddedTomcat;
 
-/**
- *
- * @author craci
- */
-//@Ignore
+@Ignore
 public class SummerhouseRestTest {
     
     private static final int SERVER_PORT = 9999;
