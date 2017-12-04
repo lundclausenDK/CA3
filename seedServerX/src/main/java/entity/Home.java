@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
 import java.io.Serializable;
@@ -15,10 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-/**
- *
- * @author Bade
- */
 @Entity
 public class Home implements Serializable {
 
@@ -34,11 +25,12 @@ public class Home implements Serializable {
     private String geo;
     private String picture;
     private double price;
-    
+
     @OneToMany(cascade = CascadeType.ALL)
     List<Booking> bookings = new ArrayList();
 
-    public Home() {}
+    public Home() {
+    }
 
     public Home(String name, String description, String address, int zipcode, String city, String geo, double price, String picture) {
         this.name = name;
@@ -62,8 +54,7 @@ public class Home implements Serializable {
         this.price = price;
         this.bookings = bookings;
     }
-    
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -128,19 +119,13 @@ public class Home implements Serializable {
     public List<Booking> getBookings() {
         return bookings;
     }
-    
-    public void addBooking(Booking booking)
-    {
+
+    public void addBooking(Booking booking) {
         bookings.add(booking);
     }
 
-    /**
-     * @return the picture
-     */
     public String getPicture() {
         return picture;
     }
-    
-    
 
 }

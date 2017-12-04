@@ -3,7 +3,7 @@ package test;
 import entity.Booking;
 import entity.Home;
 import entity.User;
-import facades.DBUtil;
+import db.DBUtil;
 import facades.CollectiveFacadeFactory;
 import facades.ICollectiveFacade;
 import java.util.List;
@@ -15,71 +15,58 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Ignore;
 
-/**
- *
- * @author Peter
- */
-
 @Ignore
 public class HomeTest {
 
     private static ICollectiveFacade facade;
     private static DBUtil util;
 
-    public HomeTest()
-    {
+    public HomeTest() {
     }
 
     @BeforeClass
-    public static void setUpClass()
-    {
+    public static void setUpClass() {
         facade = CollectiveFacadeFactory.getTestInstance();
         util = new DBUtil(CollectiveFacadeFactory.getTestEmf());
     }
 
     @AfterClass
-    public static void tearDownClass()
-    {
+    public static void tearDownClass() {
     }
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
 
     }
 
     @After
-    public void tearDown()
-    {
+    public void tearDown() {
 
     }
 
-    public void clear()
-    {
+    public void clear() {
         util.clearDB();
     }
 
     @Test
-    public void testListAllHomes()
-    {
+    public void testListAllHomes() {
         clear();
         Home home = new Home("forste sommerhus", "et sommerhus", "en addresse", 666, "a city", "200.35092,11.3323", 20000, "null");
         facade.addHome(home);
 
         List<Home> res = facade.listAllHomes();
 
-        Home[] expected =
-        {
-            home
-        };
+        Home[] expected
+                = {
+                    home
+                };
         Home[] resArr = res.toArray(expected);
 
         assertArrayEquals(expected, resArr);
     }
 
     @Test
-    public void testBookHome()
-    {
+    public void testBookHome() {
         clear();
         Home home = new Home("book home", "et sommerhus", "en addresse", 666, "a city", "200.35092,11.3323", 20000.0, "null");
 
@@ -90,8 +77,7 @@ public class HomeTest {
     }
 
     @Test
-    public void testCreateSummerhouse()
-    {
+    public void testCreateSummerhouse() {
         clear();
         Home home = new Home("eneste sommerhus", "et sommerhus", "en addresse", 666, "a city", "202.35092,11.3323", 20000.0, "null");
         facade.addHome(home);

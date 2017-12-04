@@ -10,14 +10,12 @@ class RoleFacade implements IRoleFacade {
     private EntityManagerFactory emf;
 
     @Override
-    public void addEntityManagerFactory(EntityManagerFactory emf)
-    {
+    public void addEntityManagerFactory(EntityManagerFactory emf) {
         this.emf = emf;
     }
 
     @Override
-    public boolean createRole(Role role)
-    {
+    public boolean createRole(Role role) {
         EntityManager em = emf.createEntityManager();
 
         if (findRole(role.getRoleName()) != null)
@@ -34,20 +32,17 @@ class RoleFacade implements IRoleFacade {
     }
 
     @Override
-    public boolean removeRole(String roleName)
-    {
+    public boolean removeRole(String roleName) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Role findRole(String roleName)
-    {
+    public Role findRole(String roleName) {
         EntityManager em = emf.createEntityManager();
 
         Role found = em.find(Role.class, roleName);
 
-        if (found != null)
-        {
+        if (found != null) {
             return found;
         }
 
@@ -55,13 +50,12 @@ class RoleFacade implements IRoleFacade {
     }
 
     @Override
-    public List<Role> listAllRoles()
-    {
+    public List<Role> listAllRoles() {
         EntityManager em = emf.createEntityManager();
-        
+
         List<Role> res = em.createQuery("select r from USER_ROLE r").getResultList();
         em.close();
-        
+
         return res;
     }
 

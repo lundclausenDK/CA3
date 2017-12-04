@@ -38,7 +38,7 @@ public class Register {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getSomething(String content) {
+    public Response registerUser(String content) {
         /*User user = gs.fromJson(content, User.class);*/
         JsonObject json = new JsonParser().parse(content).getAsJsonObject();
         String username = json.get("username").getAsString();
@@ -56,13 +56,14 @@ public class Register {
             for (Role role : user.getRoles()) {
                 roles.add(role.getRoleName());
             }
-            
+
             String token = createToken(user.getUserName(), roles);
             responseJson.addProperty("username", user.getUserName());
             responseJson.addProperty("token", token);
             return Response.ok(new Gson().toJson(responseJson)).build();
 
-        } catch (JOSEException | PasswordStorage.CannotPerformOperationException e ) {
+        }
+        catch (JOSEException | PasswordStorage.CannotPerformOperationException e) {
             throw new NotAuthorizedException("Couldn't Create User", Response.Status.UNAUTHORIZED);
         }
     }

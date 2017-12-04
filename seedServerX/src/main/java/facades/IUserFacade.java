@@ -3,11 +3,11 @@ package facades;
 import entity.User;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
-import entity.IUser;
 
-interface IUserFacade 
-{
+interface IUserFacade {
+    
     void addEntityManagerFactory(EntityManagerFactory emf);
+    
     List<String> authenticateUser(String userName, String password);
     User findUser(String id);
     boolean registerUser(User user);

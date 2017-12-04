@@ -67,7 +67,7 @@ public class User implements IUser, Serializable {
         }
         return true;
     }
-    
+
     public void addRole(Role role) {
         if (roles == null) {
             roles = new ArrayList();
