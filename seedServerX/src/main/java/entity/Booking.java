@@ -1,15 +1,11 @@
 package entity;
 
 import java.io.Serializable;
-import java.math.BigInteger;
-import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -20,6 +16,12 @@ public class Booking implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @OneToOne
+    private User renter;
+    
+    private String startTime;
+    private String endTime;
+
     public Booking(String startTime, String endTime, User renter) {
         this.startTime = startTime;
         this.endTime = endTime;
@@ -28,13 +30,6 @@ public class Booking implements Serializable {
 
     public Booking() {
     }
-   
-    
-    private String startTime;
-    private String endTime;
-    
-    @OneToOne
-    private User renter;
 
     @Override
     public int hashCode() {
@@ -79,9 +74,8 @@ public class Booking implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    
-    public void setRenter(User user)
-    {
+
+    public void setRenter(User user) {
         renter = user;
     }
 

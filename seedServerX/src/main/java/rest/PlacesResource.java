@@ -13,10 +13,8 @@ import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 
 @Path("places")
@@ -28,20 +26,13 @@ public class PlacesResource {
     @Context
     private UriInfo context;
 
-    /**
-     * Creates a new instance of PlacesResource
-     */
+    
     public PlacesResource() {
     }
 
-    /**
-     * Retrieves representation of an instance of rest.PlacesResource
-     *
-     * @return an instance of java.lang.String
-     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getJson() {
+    public String listAllPlaces() {
         NumberFormat formatter = new DecimalFormat("#0.0");
         //TODO return proper representation object
         List<Place> placesList = cf.listAllPlaces();
@@ -72,10 +63,11 @@ public class PlacesResource {
                 }
                 placeObject.add("raters", raters);
                 placeObject.addProperty("rating", formatter.format(ratingValue / actualRaters));
-            }else{
+            }
+            else {
                 placeObject.add("raters", raters);
                 placeObject.addProperty("rating", 0);
-                
+
             }
 
             places.add(placeObject);
@@ -83,14 +75,5 @@ public class PlacesResource {
         return places.toString();
         //return gs.toJson(cf.listAllPlaces());
         //return "{content: 'hello'}";
-    }
-    /**
-     * PUT method for updating or creating an instance of PlacesResource
-     *
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
     }
 }

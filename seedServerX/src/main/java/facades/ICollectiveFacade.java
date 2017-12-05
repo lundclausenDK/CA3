@@ -1,15 +1,14 @@
 package facades;
 
-import entity.Booking;
 import entity.Home;
 import entity.IUser;
 import entity.Place;
-import entity.Role;
 import entity.User;
 import java.util.List;
+import entity.Role;
 
-public interface ICollectiveFacade 
-{
+public interface ICollectiveFacade {
+    
     List<String> authenticateUser(String userName, String password);
     IUser getUserByUserName(String name);
     boolean registerUser(User user);

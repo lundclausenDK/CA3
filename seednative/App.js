@@ -1,9 +1,12 @@
 import React from 'react';
 import Places from './Places';
 import Houses from './Houses';
+import Profile from './Profile';
 import {TabNavigator} from 'react-navigation';
 
 export default App = () => <MyApp/>;
+
+const hey = true;
 
 const MyApp = TabNavigator({
     Places: {
@@ -11,6 +14,9 @@ const MyApp = TabNavigator({
     },
     Houses: {
         screen: Houses
+    },
+    Profile: {
+        screen: Profile
     }
 }, {
     tabBarPosition: 'bottom',

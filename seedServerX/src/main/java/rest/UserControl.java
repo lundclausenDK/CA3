@@ -30,12 +30,10 @@ public class UserControl {
 
     @GET
     @Path("list_roles")
-    public String listAllRoles()
-    {
+    public String listAllRoles() {
         List<Role> res = facade.listAllRoles();
         String[] roles = new String[res.size()];
-        for (int i = 0; i < res.size(); i++)
-        {
+        for (int i = 0; i < res.size(); i++) {
             roles[i] = res.get(i).getRoleName();
         }
         return new Gson().toJson(roles);
@@ -43,42 +41,37 @@ public class UserControl {
 
     @GET
     @Path("list_users")
-    public String listAllUsers()
-    {
+    public String listAllUsers() {
         List<User> res = facade.listAllUsers();
         JsonObject[] jsonObjects = new JsonObject[res.size()];
-        
-        for (int i = 0; i < res.size(); i++)
-        {
+
+        for (int i = 0; i < res.size(); i++) {
             JsonObject obj = new JsonObject();
             obj.addProperty("username", res.get(i).getUserName());
             JsonArray roles = new JsonArray();
-            
-            for (Role role : res.get(i).getRoles())
-            {
+
+            for (Role role : res.get(i).getRoles()) {
                 roles.add(role.getRoleName());
             }
             obj.add("roles", roles);
-            
+
             jsonObjects[i] = obj;
         }
-        
+
         return new Gson().toJson(jsonObjects);
     }
 
     @POST
     @Path("delete")
     @Consumes(MediaType.APPLICATION_JSON)
-    public String deleteUser(String body)
-    {
+    public String deleteUser(String body) {
         String status = "User does not exists";
         JsonObject json = new JsonParser().parse(body).getAsJsonObject();
         String username = json.get("username").getAsString();
 
         boolean success = facade.deleteUser(username);
 
-        if (success)
-        {
+        if (success) {
             status = "Successfully deleted user.";
         }
 
@@ -88,8 +81,7 @@ public class UserControl {
     @POST
     @Path("add")
     @Consumes(MediaType.APPLICATION_JSON)
-    public String addUser(String body)
-    {
+    public String addUser(String body) {
         String status = "Could not add user";
         JsonObject json = new JsonParser().parse(body).getAsJsonObject();
         String username = json.get("username").getAsString();
@@ -97,23 +89,19 @@ public class UserControl {
         JsonArray roles = json.get("roles").getAsJsonArray();
 
         List<Role> foundRoles = new ArrayList();
-        for (JsonElement role : roles)
-        {
+        for (JsonElement role : roles) {
             foundRoles.add(new Role(role.getAsString()));
         }
 
-        try
-        {
+        try {
             entity.User registrant = new entity.User(username, password, foundRoles);
             boolean success = facade.registerUser(registrant);
 
-            if (success)
-            {
+            if (success) {
                 status = "Successfully added user.";
             }
         }
-        catch (PasswordStorage.CannotPerformOperationException ex)
-        {
+        catch (PasswordStorage.CannotPerformOperationException ex) {
             Logger.getLogger(UserControl.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -123,24 +111,21 @@ public class UserControl {
     @PUT
     @Path("edit")
     @Consumes(MediaType.APPLICATION_JSON)
-    public String editUser(String body)
-    {
+    public String editUser(String body) {
         String status = "Could not edit user";
         JsonObject json = new JsonParser().parse(body).getAsJsonObject();
         String username = json.get("username").getAsString();
         JsonArray roles = json.get("roles").getAsJsonArray();
 
         List<Role> foundRoles = new ArrayList();
-        for (JsonElement role : roles)
-        {
+        for (JsonElement role : roles) {
             foundRoles.add(new Role(role.getAsString()));
         }
 
         entity.User registrant = new entity.User(username, foundRoles);
         boolean success = facade.editUser(registrant);
 
-        if (success)
-        {
+        if (success) {
             status = "Successfully edited user.";
         }
 

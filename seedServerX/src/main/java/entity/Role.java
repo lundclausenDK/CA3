@@ -8,25 +8,25 @@ import javax.persistence.Id;
 @Entity(name = "USER_ROLE")
 public class Role implements Serializable {
 
-  private static final long serialVersionUID = 1L;
-  
-  @Id
-  @Column(length = 30, name = "ROLE_NAME")
-  private String roleName ;
+    private static final long serialVersionUID = 1L;
 
-  public Role(String roleName) {
-    this.roleName = roleName;
-  }
+    @Id
+    @Column(length = 30, name = "ROLE_NAME")
+    private String roleName;
 
-  public Role() {
-  }
+    public Role(String roleName) {
+        this.roleName = roleName;
+    }
 
-  public String getRoleName() {
-    return roleName;
-  }
+    public Role() {
+    }
 
-  public void setRoleName(String roleName) {
-    this.roleName = roleName;
-  }
- 
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
 }

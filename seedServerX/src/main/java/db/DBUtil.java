@@ -1,4 +1,4 @@
-package facades;
+package db;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -34,8 +34,9 @@ public class DBUtil {
 
         ignoreKey.executeUpdate();
 
-        for (Query q : deletes)
+        for (Query q : deletes) {
             q.executeUpdate();
+        }
 
         acceptKey.executeUpdate();
 

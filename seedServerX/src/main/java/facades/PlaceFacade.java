@@ -13,14 +13,12 @@ class PlaceFacade implements IPlaceFacade {
     private EntityManagerFactory emf;
 
     @Override
-    public void addEntityManagerFactory(EntityManagerFactory emf)
-    {
+    public void addEntityManagerFactory(EntityManagerFactory emf) {
         this.emf = emf;
     }
 
     @Override
-    public boolean createPlace(Place place)
-    {
+    public boolean createPlace(Place place) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
@@ -33,15 +31,13 @@ class PlaceFacade implements IPlaceFacade {
     }
 
     @Override
-    public boolean removePlace(int id)
-    {
+    public boolean removePlace(int id) {
         EntityManager em = emf.createEntityManager();
         boolean removed = false;
         em.getTransaction().begin();
 
         Place found = findPlace(id);
-        if (found != null)
-        {
+        if (found != null) {
             em.remove(found);
             removed = true;
         }
@@ -53,8 +49,7 @@ class PlaceFacade implements IPlaceFacade {
     }
 
     @Override
-    public Place findPlace(int id)
-    {
+    public Place findPlace(int id) {
         EntityManager em = emf.createEntityManager();
 
         Place found = em.find(Place.class, id);
@@ -64,10 +59,9 @@ class PlaceFacade implements IPlaceFacade {
     }
 
     @Override
-    public Place findPlace(String locationName)
-    {
+    public Place findPlace(String locationName) {
         EntityManager em = emf.createEntityManager();
-        
+
         Query query = em.createQuery("select p from Place p where p.name like :locname");
         query.setParameter("locname", locationName);
         Place found = (Place) query.getResultList().get(0);
@@ -77,8 +71,7 @@ class PlaceFacade implements IPlaceFacade {
     }
 
     @Override
-    public List<Place> listAllPlaces()
-    {
+    public List<Place> listAllPlaces() {
         EntityManager em = emf.createEntityManager();
 
         List<Place> res = em.createQuery("select p from Place p").getResultList();
@@ -88,8 +81,7 @@ class PlaceFacade implements IPlaceFacade {
     }
 
     @Override
-    public List<Place> searchForPlaces(String searchWord)
-    {
+    public List<Place> searchForPlaces(String searchWord) {
         EntityManager em = emf.createEntityManager();
 
         Query query = em.createQuery("select p from Place p where p.city like :word or p.description like :word "
@@ -103,8 +95,7 @@ class PlaceFacade implements IPlaceFacade {
     }
 
     @Override
-    public void addRating(int locationID, int rating, String userName)
-    {
+    public void addRating(int locationID, int rating, String userName) {
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();

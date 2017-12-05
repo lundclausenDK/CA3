@@ -13,25 +13,22 @@ class UserFacade implements IUserFacade {
 
     EntityManagerFactory emf;
 
-    private EntityManager getEntityManager()
-    {
+    private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
     @Override
-    public void addEntityManagerFactory(EntityManagerFactory emf)
-    {
+    public void addEntityManagerFactory(EntityManagerFactory emf) {
         this.emf = emf;
     }
 
     @Override
-    public User findUser(String id)
-    {
+    public User findUser(String id) {
         EntityManager em = getEntityManager();
-        
+
         User found = em.find(User.class, id);
         em.close();
-        
+
         return found;
     }
 
@@ -39,24 +36,20 @@ class UserFacade implements IUserFacade {
         Return the Roles if users could be authenticated, otherwise null
      */
     @Override
-    public List<String> authenticateUser(String userName, String password)
-    {
-        try
-        {
+    public List<String> authenticateUser(String userName, String password) {
+        try {
             System.out.println("User Before:" + userName + ", " + password);
             IUser user = findUser(userName);
             System.out.println("User After:" + user.getUserName() + ", " + user.getPasswordHash());
             return user != null && PasswordStorage.verifyPassword(password, user.getPasswordHash()) ? user.getRolesAsStrings() : null;
         }
-        catch (PasswordStorage.CannotPerformOperationException | PasswordStorage.InvalidHashException ex)
-        {
+        catch (PasswordStorage.CannotPerformOperationException | PasswordStorage.InvalidHashException ex) {
             throw new NotAuthorizedException("Invalid username or password", Response.Status.FORBIDDEN);
         }
     }
 
     @Override
-    public boolean registerUser(User user)
-    {
+    public boolean registerUser(User user) {
         EntityManager em = getEntityManager();
 
         em.getTransaction().begin();
@@ -70,14 +63,12 @@ class UserFacade implements IUserFacade {
     }
 
     @Override
-    public boolean deleteUser(String username)
-    {
+    public boolean deleteUser(String username) {
         EntityManager em = emf.createEntityManager();
 
         User found = em.find(User.class, username);
 
-        if (found == null)
-        {
+        if (found == null) {
             return false;
         }
 
@@ -90,14 +81,12 @@ class UserFacade implements IUserFacade {
     }
 
     @Override
-    public boolean editUser(User user)
-    {
+    public boolean editUser(User user) {
         EntityManager em = emf.createEntityManager();
 
         User found = em.find(User.class, user.getUserName());
 
-        if (found == null)
-        {
+        if (found == null) {
             return false;
         }
 
@@ -111,8 +100,7 @@ class UserFacade implements IUserFacade {
     }
 
     @Override
-    public List<User> listAllUsers()
-    {
+    public List<User> listAllUsers() {
         EntityManager em = getEntityManager();
 
         List<User> res = em.createQuery("select u from SEED_USER u").getResultList();

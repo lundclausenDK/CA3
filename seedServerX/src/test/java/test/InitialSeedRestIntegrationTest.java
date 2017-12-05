@@ -3,7 +3,7 @@ package test;
 import deploy.DeploymentConfiguration;
 import org.junit.BeforeClass;
 import io.restassured.RestAssured;
-import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.given;
 import io.restassured.parsing.Parser;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -14,14 +14,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import org.apache.catalina.LifecycleException;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import org.junit.AfterClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import security.Secret;
 import test.utils.EmbeddedTomcat;
 
-//@Ignore
+@Ignore
 public class InitialSeedRestIntegrationTest {
 
     private static final int SERVER_PORT = 9999;
@@ -35,7 +36,8 @@ public class InitialSeedRestIntegrationTest {
         try (InputStream input = new ByteArrayInputStream(content.getBytes())) {
             prop.load(input);
             Secret.SHARED_SECRET = prop.getProperty("tokenSecret").getBytes();
-        } catch (IOException ex) {
+        }
+        catch (IOException ex) {
             Logger.getLogger(DeploymentConfiguration.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -65,7 +67,7 @@ public class InitialSeedRestIntegrationTest {
     }
 
     private static void deleteUser(String role) {
-        
+
     }
 
     private void logOut() {
@@ -92,7 +94,7 @@ public class InitialSeedRestIntegrationTest {
         given()
                 .contentType("application/json")
                 .when()
-                .get("/api/demoall").then()
+                .get("/api/demouser/demoall").then()
                 .statusCode(200)
                 .body("message", equalTo("result for all"));
     }
@@ -105,7 +107,7 @@ public class InitialSeedRestIntegrationTest {
                 .contentType("application/json")
                 .header("Authorization", "Bearer " + securityToken)
                 .when()
-                .get("/api/demoadmin").then()
+                .get("/api/demouser/admin").then()
                 .statusCode(200)
                 .body("message", equalTo("Hello Admin from server (call accesible by only authenticated ADMINS)"))
                 .body("serverTime", notNullValue());
@@ -118,7 +120,7 @@ public class InitialSeedRestIntegrationTest {
                 .contentType("application/json")
                 .header("Authorization", "Bearer " + securityToken)
                 .when()
-                .get("/api/demouser").then()
+                .get("/api/demouser/user").then()
                 .statusCode(200)
                 .body("message", equalTo("Hello User from Server (Accesible by only authenticated USERS)"));
     }
@@ -131,7 +133,7 @@ public class InitialSeedRestIntegrationTest {
                 .contentType("application/json")
                 .header("Authorization", "Bearer " + securityToken)
                 .when()
-                .get("/api/demouser").then()
+                .get("/api/demouser/user").then()
                 .statusCode(200)
                 .body("message", equalTo("Hello User from Server (Accesible by only authenticated USERS)"));
         logOut();
@@ -144,7 +146,6 @@ public class InitialSeedRestIntegrationTest {
                 .when().post("api/user_control/delete")
                 .then()
                 .statusCode(200);
-                
 
     }
 
@@ -155,7 +156,7 @@ public class InitialSeedRestIntegrationTest {
         given()
                 .contentType("application/json")
                 .when()
-                .get("/api/demouser").then()
+                .get("/api/demouser/user").then()
                 .statusCode(401)
                 .body("error.message", equalTo("No authorization header provided"));
     }
@@ -167,7 +168,7 @@ public class InitialSeedRestIntegrationTest {
         given()
                 .contentType("application/json")
                 .when()
-                .get("/api/demoadmin").then()
+                .get("/api/demouser/admin").then()
                 .statusCode(401)
                 .body("error.message", equalTo("No authorization header provided"));
 

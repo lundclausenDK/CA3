@@ -1,4 +1,4 @@
-package main;
+package db;
 
 import entity.Booking;
 import entity.Home;
@@ -6,17 +6,15 @@ import entity.Place;
 import entity.Role;
 import entity.User;
 import facades.CollectiveFacadeFactory;
-import facades.DBUtil;
 import facades.ICollectiveFacade;
 import java.util.ArrayList;
 import java.util.List;
 import security.PasswordStorage;
 
-public class Main {
+public class PopulateDB {
 
-    public static void main(String[] args) throws PasswordStorage.CannotPerformOperationException
-    {
-        
+    public static void main(String[] args) throws PasswordStorage.CannotPerformOperationException {
+
         Place place01 = new Place();
         Place place02 = new Place();
         Place place03 = new Place();
@@ -79,7 +77,7 @@ public class Main {
 
         facade.addHome(home1);
         facade.addHome(home2);
-        
+
     }
 
 }

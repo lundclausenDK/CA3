@@ -17,8 +17,7 @@ class CollectiveFacade implements ICollectiveFacade {
     private final IPlaceFacade placeFacade;
     private final IHomeFacade homeFacade;
 
-    CollectiveFacade(EntityManagerFactory emf, IUserFacade userFacade, IRoleFacade roleFacade, IPlaceFacade placeFacade, IHomeFacade homeFacade)
-    {     
+    CollectiveFacade(EntityManagerFactory emf, IUserFacade userFacade, IRoleFacade roleFacade, IPlaceFacade placeFacade, IHomeFacade homeFacade) {
         this.userFacade = userFacade;
         this.roleFacade = roleFacade;
         this.placeFacade = placeFacade;
@@ -32,15 +31,11 @@ class CollectiveFacade implements ICollectiveFacade {
     // ####################### //
     // ##### User facade ##### //
     // ####################### //
-    
     @Override
-    public boolean registerUser(User user)
-    {
+    public boolean registerUser(User user) {
         List<Role> roles = new ArrayList();
-        for (Role role : user.getRoles())
-        {
-            if (roleFacade.findRole(role.getRoleName()) != null)
-            {
+        for (Role role : user.getRoles()) {
+            if (roleFacade.findRole(role.getRoleName()) != null) {
                 roles.add(role);
             }
         }
@@ -50,116 +45,96 @@ class CollectiveFacade implements ICollectiveFacade {
     }
 
     @Override
-    public boolean deleteUser(String username)
-    {
+    public boolean deleteUser(String username) {
         return userFacade.deleteUser(username);
     }
 
     @Override
-    public boolean editUser(User user)
-    {
+    public boolean editUser(User user) {
         return userFacade.editUser(user);
     }
 
     @Override
-    public List<String> authenticateUser(String userName, String password)
-    {
+    public List<String> authenticateUser(String userName, String password) {
         return userFacade.authenticateUser(userName, password);
     }
 
     @Override
-    public IUser getUserByUserName(String name)
-    {
+    public IUser getUserByUserName(String name) {
         return userFacade.findUser(name);
     }
 
     @Override
-    public List<User> listAllUsers()
-    {
+    public List<User> listAllUsers() {
         return userFacade.listAllUsers();
     }
 
     // ####################### //
     // ##### Role Facade ##### //
     // ####################### //
-    
     @Override
-    public boolean createRole(Role role)
-    {
+    public boolean createRole(Role role) {
         return roleFacade.createRole(role);
     }
 
     @Override
-    public boolean removeRole(String roleName)
-    {
+    public boolean removeRole(String roleName) {
         return roleFacade.removeRole(roleName);
     }
 
     @Override
-    public Role findRole(String roleName)
-    {
+    public Role findRole(String roleName) {
         return roleFacade.findRole(roleName);
     }
 
     @Override
-    public List<Role> listAllRoles()
-    {
+    public List<Role> listAllRoles() {
         return roleFacade.listAllRoles();
     }
 
     // ######################## //
     // ##### Place Facade ##### //
     // ######################## //
-    
     @Override
-    public boolean createPlace(Place place)
-    {
+    public boolean createPlace(Place place) {
         return placeFacade.createPlace(place);
     }
 
     @Override
-    public boolean removePlace(int id)
-    {
+    public boolean removePlace(int id) {
         return placeFacade.removePlace(id);
     }
 
     @Override
-    public Place findPlace(int id)
-    {
+    public Place findPlace(int id) {
         return placeFacade.findPlace(id);
     }
 
     @Override
-    public Place findPlaceByName(String locationName)
-    {
+    public Place findPlaceByName(String locationName) {
         return placeFacade.findPlace(locationName);
     }
 
     @Override
-    public List<Place> listAllPlaces()
-    {
+    public List<Place> listAllPlaces() {
         return placeFacade.listAllPlaces();
     }
 
     @Override
-    public List<Place> searchForPlaces(String searchWord)
-    {
+    public List<Place> searchForPlaces(String searchWord) {
         return placeFacade.searchForPlaces(searchWord);
     }
 
     @Override
-    public void addRating(int locationID, int rating, String userName)
-    {
+    public void addRating(int locationID, int rating, String userName) {
         placeFacade.addRating(locationID, rating, userName);
     }
 
     // ######################## //
     // ##### Home Facade ##### //
     // ######################## //
-    
     @Override
-    public List<Home> listAllHomes()
-    {
+    public List<Home> listAllHomes() {
         return homeFacade.listAllHomes();
     }
 
@@ -172,12 +147,11 @@ class CollectiveFacade implements ICollectiveFacade {
     public boolean bookHome(int id, String userName, String start, String end) {
         User user = (User) getUserByUserName(userName);
         Booking booking = new Booking(start, end, user);
-        return homeFacade.rentHome(id, booking);
+        return homeFacade.bookHome(id, booking);
     }
 
     @Override
-    public Home findHomeById(int id)
-    {
+    public Home findHomeById(int id) {
         return homeFacade.findHomeById(id);
     }
 }

@@ -13,9 +13,9 @@ import javax.ws.rs.core.MediaType;
 @Path("rate")
 @RolesAllowed("User")
 public class RatingEndPoint {
-    
+
     ICollectiveFacade cf = CollectiveFacadeFactory.getInstance();
-    
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void postRate(String content) {
