@@ -15,7 +15,8 @@ export default class Places extends React.Component {
             rated: false,
             userName: "none",
             optionPressed: false,
-            initialized: false
+            initialized: false,
+            searchText: ''
         };
 
         this.getData = this.getData.bind(this);
