@@ -14,7 +14,8 @@ export default class AddPlace extends React.Component {
             address: null,
             city: null,
             zip: null,
-            desc: null
+            desc: null,
+            price: null
         }
 
         auth.initDataFromToken();
@@ -67,7 +68,7 @@ export default class AddPlace extends React.Component {
                     <input placeholder="Type street here" value={this.state.address} onChange={this.returnValue} id="address" />
                     <input placeholder="Type city here" value={this.state.city} onChange={this.returnValue} id="city" />
                     <input type="number" placeholder="Type zip here" value={this.state.zip} onChange={this.returnValue} id="zip" />
-                    <input type="number" placeholder="Type price here" value={this.state.zip} onChange={this.returnValue} id="price" />
+                    <input type="number" placeholder="Type price here" value={this.state.price} onChange={this.returnValue} id="price" />
                     <textarea placeholder="Please type description" value={this.state.description} onChange={this.returnValue} id="description" />
                     <label>Select File</label><input type="file" id="file" /> <br /><br />
                     <button onClick={this.pushSummerhouseToServer}>Submit</button>
