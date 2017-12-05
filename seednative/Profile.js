@@ -13,18 +13,24 @@ class Profile extends React.Component {
     }
 
     componentDidMount() {
-        auth.initDataFromToken();
-        this.setState({username: auth.userName});
+        //auth.logout();
+        auth.initDataFromToken((username) => {
+            this.setState({username: username});
+        });
+    }
+
+    componentWillMount() {
+
     }
 
     update = () => {
-        auth.initDataFromToken();
-        if (auth.userName) {
-            this.setState({username: auth.userName});
-        }
-    }
+        auth.initDataFromToken((username) => {
+                console.log(username);
+                this.setState({username: username});
+        });
+    };
 
-    static navigationOptions = {tabBarLabel: 'Profile', title: 'Profile'};
+    static navigationOptions = {tabBarLabel: 'Profile', header: null};
 
     render() {
         const {navigate} = this.props.navigation;
@@ -33,8 +39,11 @@ class Profile extends React.Component {
                 <Text>Hej</Text>
                 <Text>{auth.userName}</Text>
                 {!this.state.username && <Login update={this.update}/> ||
-                <Text>Logged in</Text> && <Button title='Upload a Place' onPress={()=>{
+                <Button title='Upload a Place' onPress={() => {
                     navigate('Upload')
+                }}/>}
+                {this.state.username && <Button title='logout' onPress={() => {
+                    auth.logout(this.update)
                 }}/>}
             </View>
         );
@@ -42,7 +51,7 @@ class Profile extends React.Component {
 }
 
 const App = StackNavigator({
-    Home: { screen: Profile},
+    Home: {screen: Profile},
     Upload: {screen: UploadPlace},
 
 }, {
