@@ -79,7 +79,7 @@ export default class UploadPlace extends Component{
             method: 'POST',
             body: data, headers: {'Authorization': `Bearer ${token}`}
         });
-        navigate('Profile');
+        navigate('Home');
     }
 
     _pickImage = async () => {
