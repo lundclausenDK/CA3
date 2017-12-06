@@ -48,7 +48,7 @@ export default class UploadPlace extends Component{
     }
 
     pushPlaceToServer = async () => {
-
+        const {navigate} = this.props.navigation;
         /*
         const place = { name: this.state.name, street: this.state.street, city: this.state.city, zip: this.state.zip, desc: this.state.desc, file: this.state.file };
         const options = fetchHelper.makeOptions("POST", true, place);
@@ -79,7 +79,7 @@ export default class UploadPlace extends Component{
             method: 'POST',
             body: data, headers: {'Authorization': `Bearer ${token}`}
         });
-        this.props.navigation.navigate('Profile');
+        navigate('Home');
     }
 
     _pickImage = async () => {
