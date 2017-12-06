@@ -22,9 +22,11 @@ public class CollectiveFacadeFactory {
     public static ICollectiveFacade getTestInstance() {
         Properties props = new Properties();
         props.setProperty("javax.persistence.jdbc.url", "jdbc:mysql://165.227.151.92:3306/CA3_test?zeroDateTimeBehavior=convertToNull");
+        props.setProperty("javax.persistence.schema-generation.database.action", "drop-and-create");
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu_development", props);
 
         testEmf = emf;
+        Persistence.generateSchema("pu_development", props); // clears and updates the tables
 
         return new CollectiveFacade(emf, new UserFacade(), new RoleFacade(), new PlaceFacade(), new HomeFacade());
     }

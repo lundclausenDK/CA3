@@ -1,8 +1,6 @@
 package test;
 
-import entity.Booking;
 import entity.Home;
-import entity.User;
 import db.DBUtil;
 import facades.CollectiveFacadeFactory;
 import facades.ICollectiveFacade;
@@ -15,7 +13,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Ignore;
 
-@Ignore
+//@Ignore
 public class HomeTest {
 
     private static ICollectiveFacade facade;
