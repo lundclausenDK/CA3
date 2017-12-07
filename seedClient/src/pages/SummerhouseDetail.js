@@ -97,7 +97,7 @@ export default class SummerhouseDetail extends React.Component {
                     <p className="house-address">
                         Address : {address}
                     </p>
-                    {geo && <p>Geo: {geo}</p>}
+                {geo && <p className="house-geo">Geo: {geo}</p>}
                     <p className="house-price">
                         Price : ${price}
                     </p>

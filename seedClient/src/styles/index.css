@@ -170,6 +170,9 @@
     .house-detail .house-detail-info .house-price {
         padding-left: 20px;
     }
+    .house-detail .house-detail-info .house-geo {
+        padding-left: 20px;
+    }
     .house-detail .house-detail-info .house-booking {
         font-size: 16px;
         padding: 10px;
