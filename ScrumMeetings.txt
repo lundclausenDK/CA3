@@ -21,3 +21,14 @@ Godt scrum møde, Scrumleader var på igen, og siden vi har valgt at lave pair p
 Scrum meeting onsdag 29-11
 25 minutter
 Dagens scrum møde varede lidt længere tid. Dette skyldes at vi til idag havde aftalt at vi skulle mødes og lave pair programming. Til dette skulle vi først aftale hvordan det skulle forløbe og hvad der skulle laves. Selve mødet trods dets længde var effektivt. Vi fik desuden opklaret en del tvivl omkring ATTD med hensyn til pair programming. 
+
+Scrum meeting torsdag 30-11
+0 minutter
+Der var ingen scrum meeting denne dag. Det var meget åbentlyst at vi var meget bagud i forhold til at få alle user stories færdige til fredag. Efter 2 timers arbejdsgang holdt vi et meget kort møde omkring hvor vi lå. Vi havde alle problemer med fejl og bugs i koden, og er blevet enige om hvilke user stories vi nedprioterer med hensyn til deadline.
+
+
+
+
+Scrum meeting mandag 04-12
+9 minutter
+Længere snak om hvad der egentlig skete fredag, da det kun havde været en person som var til sprint review i fredags. Da dette er den sidste uge, fik vi snakket om hvad vores forventninger er til at runde dette projekt af med. 

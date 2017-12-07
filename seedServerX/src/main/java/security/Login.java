@@ -11,7 +11,6 @@ import facades.ICollectiveFacade;
 import java.util.Date;
 import java.util.List;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -21,12 +20,6 @@ import javax.ws.rs.core.Response;
 
 @Path("login")
 public class Login {
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public String gt() {
-        return "{\"txt\" : \"TEST\"}";
-    }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -40,16 +33,13 @@ public class Login {
             List<String> roles;
             if ((roles = authenticate(username, password)) != null) {
                 String token = createToken(username, roles);
-                System.out.println("så langt");
                 responseJson.addProperty("username", username);
                 responseJson.addProperty("token", token);
-                System.out.println(token);
                 return Response.ok(new Gson().toJson(responseJson)).build();
             }
         }
         catch (Exception e) {
             if (e instanceof JOSEException) {
-                System.out.println("true");
                 throw e;
             }
         }

@@ -1,6 +1,10 @@
 package test;
 
+import db.DBUtil;
+import db.PopulateDB;
 import deploy.DeploymentConfiguration;
+import facades.CollectiveFacadeFactory;
+import facades.ICollectiveFacade;
 import org.junit.BeforeClass;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
@@ -22,12 +26,14 @@ import org.junit.Test;
 import security.Secret;
 import test.utils.EmbeddedTomcat;
 
-@Ignore
+//@Ignore
 public class InitialSeedRestIntegrationTest {
 
     private static final int SERVER_PORT = 9999;
     private static final String APP_CONTEXT = "/seed";
     private static EmbeddedTomcat tomcat;
+
+    private static String securityToken;
 
     public InitialSeedRestIntegrationTest() {
         String content = "tokenSecret=c6hFJOYY75765444EEEEvgTdeMnbV30h";
@@ -41,7 +47,6 @@ public class InitialSeedRestIntegrationTest {
             Logger.getLogger(DeploymentConfiguration.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    private static String securityToken;
 
     //Utility method to login and set the securityToken
     private static void login(String role, String password) {
@@ -64,10 +69,6 @@ public class InitialSeedRestIntegrationTest {
                 .when().post("/api/register")
                 .then()
                 .extract().path("token");
-    }
-
-    private static void deleteUser(String role) {
-
     }
 
     private void logOut() {
@@ -150,7 +151,6 @@ public class InitialSeedRestIntegrationTest {
     }
 
     @Test
-
     public void userNotAuthenticated() {
         logOut();
         given()

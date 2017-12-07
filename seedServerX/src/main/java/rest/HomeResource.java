@@ -5,6 +5,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
+import db.TestSettings;
 import entity.Booking;
 import entity.Home;
 import facades.CollectiveFacadeFactory;
@@ -28,10 +29,20 @@ import uploadHelper.ImageUpload;
 @Path("summerhouses")
 public class HomeResource {
 
-    private ICollectiveFacade uf = CollectiveFacadeFactory.getInstance();
-    private Gson gs = new Gson();
-    private ImageUpload imageUpload = new ImageUpload();
+    private ICollectiveFacade uf;
+    private Gson gs;
+    private ImageUpload imageUpload;
 
+    public HomeResource() {
+        gs = new Gson();
+        imageUpload = new ImageUpload();
+        
+        if (TestSettings.isTesting)
+            uf = CollectiveFacadeFactory.getTestInstance();
+        else
+            uf = CollectiveFacadeFactory.getInstance();
+    }
+    
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String listAllHomes() {
@@ -97,10 +108,10 @@ public class HomeResource {
 
     @POST
     @Path("add_home")
+    @RolesAllowed("Admin")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed("Admin")
-    public String postHome(@DefaultValue("") @FormDataParam("name") String name,
+    public String addHome(@DefaultValue("") @FormDataParam("name") String name,
             @DefaultValue("") @FormDataParam("desc") String info,
             @DefaultValue("") @FormDataParam("geo") String geo,
             @DefaultValue("") @FormDataParam("street") String street,
